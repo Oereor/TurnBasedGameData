@@ -3379,6 +3379,371 @@
       }
     },
     {
+      "Name": "Avatar_Sparxie_00_SkillAha",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": []
+    },
+    {
+      "Modifiers": {
+        "MAvatar_Sparxie_00_Nihilux_AhaArrival": {
+          "BehaviorFlagList": [
+            "RemoveWhenCasterDead"
+          ],
+          "OnAbilityPropertyChange": [
+            {
+              "Property": "ElationEchoPoint",
+              "Ranges": [
+                {
+                  "Min": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "Max": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 9999
+                    }
+                  },
+                  "MaxInclusive": true,
+                  "TriggerClampedChange": true,
+                  "OnChange": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "Sparxie_NihiluxAhaArrival_RefreshGrandPrizeExtraEP"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnDestroy",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "Nihilux_AhaArrival_GrandPrizeExtraEP"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "Nihilux_AhaArrival_ElationSkillDamageRatio"
+                  }
+                }
+              ]
+            },
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -1728424441
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "Nihilux_AhaArrival_ElationSkillDamageRatio"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "Sparxie_NihiluxAhaArrival_RefreshGrandPrizeExtraEP"
+                }
+              ]
+            }
+          ],
+          "AdditionConfig": {
+            "SubModifierList": [
+              {
+                "Name": "MAvatar_Sparxie_00_Nihilux_AhaArrival_ToMember",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "AllLightTeamWithAllLightTeamUnselectable.RemoveBattleEvent"
+                },
+                "DynamicValues": {
+                  "MDF_DefenceIgnoreRatio": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -1761843961
+                      ]
+                    }
+                  }
+                },
+                "IsHaloStatus": true
+              }
+            ]
+          },
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "-1761843961": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1040311302": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-1592019737": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-110648612": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-1728424441": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "2056510587": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          },
+          "TaskListTemplate": [
+            {
+              "Name": "Sparxie_NihiluxAhaArrival_RefreshGrandPrizeExtraEP",
+              "TaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                  "DynamicKey": "_CurrentEchoPoint",
+                  "ReadTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": "ElationEchoPoint"
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "DynamicKey": {
+                      "Value": "MDF_EchoPointPerStep"
+                    },
+                    "ContextScope": "ContextModifier",
+                    "CompareType": "Greater",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQECAQMFEAEBBAQBBRACEQ==",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            339799074,
+                            1776456860,
+                            2056510587,
+                            1040311302,
+                            -1592019737,
+                            -110648612
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "Nihilux_AhaArrival_GrandPrizeExtraEP"
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "Nihilux_AhaArrival_GrandPrizeExtraEP"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "MAvatar_Sparxie_00_Nihilux_AhaArrival_ToMember": {
+          "_CallbackList": [
+            {
+              "Event": "OnBeforeHitAll",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.ModifyDamageData",
+                  "Defender_DefenceAddedRatio": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AAABAAMR",
+                      "FixedValues": [
+                        {
+                          "Value": 0
+                        }
+                      ],
+                      "DynamicHashes": [
+                        -1761843961
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "-1761843961": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "Avatar_Sparxie_00_Nihilux_AhaArrival",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_Sparxie_00_Nihilux_AhaArrival"
+          },
+          "DynamicValues": {
+            "MDF_DefenceIgnoreRatio": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  516975470
+                ]
+              }
+            },
+            "MDF_EchoPointPerStep": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  -1078246754
+                ]
+              }
+            },
+            "MDF_ExtraElationPointPerStep": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  -1185693882
+                ]
+              }
+            },
+            "MDF_MaxExtraElationPoint": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  -1239862106
+                ]
+              }
+            },
+            "MDF_ElationSkillDamageRatio": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  634237884
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "Name": "Avatar_Sparxie_00_PassiveSkill01",
       "TargetInfo": {
         "TargetType": "Caster"
@@ -6551,10 +6916,15 @@
             "ElationDamagePercentage": {
               "IsDynamic": true,
               "PostfixExpr": {
-                "OpCodes": "AQAR",
-                "FixedValues": [],
+                "OpCodes": "AQAAAAEBAgQR",
+                "FixedValues": [
+                  {
+                    "Value": 1
+                  }
+                ],
                 "DynamicHashes": [
-                  -574691960
+                  -574691960,
+                  1847944575
                 ]
               }
             },
@@ -6603,10 +6973,15 @@
                     "ElationDamagePercentage": {
                       "IsDynamic": true,
                       "PostfixExpr": {
-                        "OpCodes": "AQAR",
-                        "FixedValues": [],
+                        "OpCodes": "AQAAAAEBAgQR",
+                        "FixedValues": [
+                          {
+                            "Value": 1
+                          }
+                        ],
                         "DynamicHashes": [
-                          136753734
+                          136753734,
+                          1847944575
                         ]
                       }
                     },
@@ -6964,10 +7339,11 @@
           "AJHHCOHFIFA": {
             "IsDynamic": true,
             "PostfixExpr": {
-              "OpCodes": "AQAR",
+              "OpCodes": "AQABAQIR",
               "FixedValues": [],
               "DynamicHashes": [
-                203243198
+                203243198,
+                -330175567
               ]
             }
           },

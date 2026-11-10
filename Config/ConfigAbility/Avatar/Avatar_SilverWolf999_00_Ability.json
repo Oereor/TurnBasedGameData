@@ -2651,24 +2651,12 @@
         {
           "$type": "RPG.GameCore.PredicateTaskList",
           "Predicate": {
-            "$type": "RPG.GameCore.ByCompareCharacterNumber",
-            "TargetType": {
-              "$type": "RPG.GameCore.TargetAlias",
-              "Alias": "AllEnemy"
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "Skill11_IsAllEnemyKilledByThisAttack"
             },
-            "Predicate": {
-              "$type": "RPG.GameCore.ByIsContainModifier",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "ParamEntity"
-              },
-              "ModifierName": {
-                "Value": "MCommon_LockHPThresholdReached_Mark"
-              },
-              "Inverse": true
-            },
-            "CompareType": "Greater",
-            "CompareNumber": {
+            "CompareType": "LessEqual",
+            "CompareValue": {
               "IsDynamic": false,
               "FixedValue": {
                 "Value": 0
@@ -3082,24 +3070,12 @@
         {
           "$type": "RPG.GameCore.PredicateTaskList",
           "Predicate": {
-            "$type": "RPG.GameCore.ByCompareCharacterNumber",
-            "TargetType": {
-              "$type": "RPG.GameCore.TargetAlias",
-              "Alias": "AllEnemy"
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "Skill11_IsAllEnemyKilledByThisAttack"
             },
-            "Predicate": {
-              "$type": "RPG.GameCore.ByIsContainModifier",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "ParamEntity"
-              },
-              "ModifierName": {
-                "Value": "MCommon_LockHPThresholdReached_Mark"
-              },
-              "Inverse": true
-            },
-            "CompareType": "Greater",
-            "CompareNumber": {
+            "CompareType": "LessEqual",
+            "CompareValue": {
               "IsDynamic": false,
               "FixedValue": {
                 "Value": 0
@@ -4067,24 +4043,12 @@
         {
           "$type": "RPG.GameCore.PredicateTaskList",
           "Predicate": {
-            "$type": "RPG.GameCore.ByCompareCharacterNumber",
-            "TargetType": {
-              "$type": "RPG.GameCore.TargetAlias",
-              "Alias": "AllEnemy"
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "Skill11_IsAllEnemyKilledByThisAttack"
             },
-            "Predicate": {
-              "$type": "RPG.GameCore.ByIsContainModifier",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "ParamEntity"
-              },
-              "ModifierName": {
-                "Value": "MCommon_LockHPThresholdReached_Mark"
-              },
-              "Inverse": true
-            },
-            "CompareType": "Greater",
-            "CompareNumber": {
+            "CompareType": "LessEqual",
+            "CompareValue": {
               "IsDynamic": false,
               "FixedValue": {
                 "Value": 0
@@ -4964,20 +4928,29 @@
     {
       "OnInsertAbort": [
         {
-          "$type": "RPG.GameCore.AddModifier",
-          "TargetType": {
-            "$type": "RPG.GameCore.TargetAlias",
-            "Alias": "Caster"
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCheckFightFinish",
+            "Inverse": true
           },
-          "ModifierName": {
-            "Value": "_M_SilverWolf999_00_ItemInsertCheck"
-          },
-          "LayerAddWhenStack": {
-            "IsDynamic": false,
-            "FixedValue": {
-              "Value": 1
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "ModifierName": {
+                "Value": "_M_SilverWolf999_00_ItemInsertCheck"
+              },
+              "LayerAddWhenStack": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
             }
-          }
+          ]
         }
       ],
       "Name": "Avatar_SilverWolf999_00_Item_Insert",
@@ -7039,6 +7012,405 @@
       ]
     },
     {
+      "Name": "Avatar_SilverWolf999_00_SkillAha",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": []
+    },
+    {
+      "Modifiers": {
+        "MAvatar_SilverWolf999_00_Nihilux_AhaArrival": {
+          "BehaviorFlagList": [
+            "RemoveWhenCasterDead"
+          ],
+          "OnAbilityPropertyChange": [
+            {
+              "Property": "ElationEchoPoint",
+              "Ranges": [
+                {
+                  "Min": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "Max": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 9999
+                    }
+                  },
+                  "MaxInclusive": true,
+                  "TriggerClampedChange": true,
+                  "OnChange": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByChangeValue",
+                      "DynamicKey": "_EchoPointDelta",
+                      "ContextScope": "ContextModifier"
+                    },
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "DynamicKey": {
+                          "Value": "_EchoPointDelta"
+                        },
+                        "ContextScope": "ContextModifier",
+                        "CompareType": "Greater",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0
+                          }
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.PredicateTaskList",
+                          "Predicate": {
+                            "$type": "RPG.GameCore.ByIsContainModifier",
+                            "TargetType": {
+                              "$type": "RPG.GameCore.TargetAlias",
+                              "Alias": "ModifierOwnerEntity"
+                            },
+                            "ModifierName": {
+                              "Value": "MAvatar_SilverWolf999_00_Nihilux_AhaArrival_MaxScore"
+                            },
+                            "Inverse": true
+                          },
+                          "SuccessTaskList": [
+                            {
+                              "$type": "RPG.GameCore.AddModifier",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ModifierOwnerEntity"
+                              },
+                              "ModifierName": {
+                                "Value": "MAvatar_SilverWolf999_00_Nihilux_AhaArrival_MaxScore"
+                              },
+                              "DynamicValues": {
+                                "MDF_MaxScore": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      -325738424
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "SilverWolf999_00_ModifySP",
+                          "DynamicValues": {
+                            "Arg0_AddValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQABAQECBBABEQ==",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  1554761690,
+                                  302338178,
+                                  1112777215
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.StackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "CriticalDamageBase",
+                  "PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -905434611
+                      ]
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MAvatar_SilverWolf999_00_Nihilux_AhaArrival_MaxScore"
+                    },
+                    "Inverse": true
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_SilverWolf999_00_Nihilux_AhaArrival_MaxScore"
+                      },
+                      "DynamicValues": {
+                        "MDF_MaxScore": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -325738424
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "-325738424": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1112777215": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-905434611": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "302338178": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        },
+        "MAvatar_SilverWolf999_00_Nihilux_AhaArrival_MaxScore": {
+          "BehaviorFlagList": [
+            "RemoveWhenCasterDead"
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                  "DynamicKey": "_CurrentMaxSpecialSP",
+                  "ReadTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": "MaxSpecialSP"
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                  "DynamicKey": "_CurrentMaxExtraSpecialSP",
+                  "ReadTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": "MaxExtraSpecialSP"
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                  "DynamicKey": "_CurrentExtraSpecialSP",
+                  "ReadTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": "CurExtraSpecialSP"
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAAAAEBAQIDAQMDEAIR",
+                      "FixedValues": [
+                        {
+                          "Value": 0
+                        }
+                      ],
+                      "DynamicHashes": [
+                        696029444,
+                        -325738424,
+                        517362922,
+                        -716558408
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "_MaxScoreDelta"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.StackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "MaxExtraSpecialSP",
+                  "PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        787652891
+                      ]
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.ModifyProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "CurExtraSpecialSP",
+                  "ModifyFunction": "Set",
+                  "ModifyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        2043460574
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "-325738424": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "517362922": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-716558408": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "2043460574": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "787652891": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "Avatar_SilverWolf999_00_Nihilux_AhaArrival",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_SilverWolf999_00_Nihilux_AhaArrival"
+          },
+          "DynamicValues": {
+            "MDF_MaxScore": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  459946987
+                ]
+              }
+            },
+            "MDF_ScoreRatioPerEchoPoint": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  -1472826437
+                ]
+              }
+            },
+            "MDF_CriticalDamageRatio": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  1504234276
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "Modifiers": {
         "MAvatar_SilverWolf999_Passive01": {
           "OnElationPointChange": [
@@ -8390,7 +8762,9 @@
                   "$type": "RPG.GameCore.PredicateTaskList",
                   "Predicate": {
                     "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                    "ModifierName": "MAvatar_SilverWolf999_00_Ultra"
+                    "ModifierName": {
+                      "Value": "MAvatar_SilverWolf999_00_Ultra"
+                    }
                   },
                   "SuccessTaskList": [
                     {
@@ -10813,6 +11187,18 @@
           "Event": "OnCreate",
           "CallbackConfig": [
             {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "DynamicKey": {
+                "Value": "Skill11_IsAllEnemyKilledByThisAttack"
+              }
+            },
+            {
               "$type": "RPG.GameCore.RemoveModifier",
               "TargetType": {
                 "$type": "RPG.GameCore.TargetAlias",
@@ -10986,13 +11372,16 @@
             {
               "$type": "RPG.GameCore.PredicateTaskList",
               "Predicate": {
-                "$type": "RPG.GameCore.ByIsContainModifier",
-                "TargetType": {
-                  "$type": "RPG.GameCore.TargetAlias",
-                  "Alias": "Caster"
+                "$type": "RPG.GameCore.ByCompareDynamicValue",
+                "DynamicKey": {
+                  "Value": "Skill11_IsAllEnemyKilledByThisAttack"
                 },
-                "ModifierName": {
-                  "Value": "_M_SilverWolf999_00_IsStackingSkill11Succession"
+                "CompareType": "Greater",
+                "CompareValue": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0
+                  }
                 }
               },
               "SuccessTaskList": [
@@ -11006,6 +11395,18 @@
                   "EKGDOELGLFK": true
                 }
               ]
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "DynamicKey": {
+                "Value": "Skill11_IsAllEnemyKilledByThisAttack"
+              }
             }
           ]
         },
@@ -11279,7 +11680,9 @@
               "$type": "RPG.GameCore.PredicateTaskList",
               "Predicate": {
                 "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                "ModifierName": "MCommon_LockHPThresholdReached_Mark"
+                "ModifierName": {
+                  "Value": "MCommon_LockHPThresholdReached_Mark"
+                }
               },
               "SuccessTaskList": [
                 {
@@ -13501,6 +13904,26 @@
           "ContextScope": "ContextTaskTemplate"
         },
         {
+          "$type": "RPG.GameCore.SetDynamicValueByProperty",
+          "DynamicKey": "TDF_MaxSP",
+          "ContextScope": "ContextTaskTemplate",
+          "ReadTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Value": "MaxSpecialSP"
+        },
+        {
+          "$type": "RPG.GameCore.SetDynamicValueByProperty",
+          "DynamicKey": "TDF_MaxExtraSP",
+          "ContextScope": "ContextTaskTemplate",
+          "ReadTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Value": "MaxExtraSpecialSP"
+        },
+        {
           "$type": "RPG.GameCore.SwitchCaseByDynamicValue",
           "Switch": {
             "IsDynamic": true,
@@ -13697,8 +14120,8 @@
                     "OpCodes": "AQABAQIR",
                     "FixedValues": [],
                     "DynamicHashes": [
-                      73664679,
-                      -1338392010
+                      -1642506738,
+                      -1106885258
                     ]
                   }
                 }
@@ -13938,6 +14361,18 @@
             }
           },
           "-788883517": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "-1642506738": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "-1106885258": {
             "ReadInfo": {
               "Type": "None",
               "Index": 0
@@ -14760,24 +15195,12 @@
         {
           "$type": "RPG.GameCore.PredicateTaskList",
           "Predicate": {
-            "$type": "RPG.GameCore.ByCompareCharacterNumber",
-            "TargetType": {
-              "$type": "RPG.GameCore.TargetAlias",
-              "Alias": "AllEnemy"
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "Skill11_IsAllEnemyKilledByThisAttack"
             },
-            "Predicate": {
-              "$type": "RPG.GameCore.ByIsContainModifier",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "ParamEntity"
-              },
-              "ModifierName": {
-                "Value": "MCommon_LockHPThresholdReached_Mark"
-              },
-              "Inverse": true
-            },
-            "CompareType": "Greater",
-            "CompareNumber": {
+            "CompareType": "LessEqual",
+            "CompareValue": {
               "IsDynamic": false,
               "FixedValue": {
                 "Value": 0
@@ -15283,6 +15706,18 @@
       "TaskList": [
         {
           "$type": "RPG.GameCore.DamagePerformFinish"
+        },
+        {
+          "$type": "RPG.GameCore.SetDynamicValue",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "DynamicKey": {
+            "Value": "Skill11_IsAllEnemyKilledByThisAttack"
+          }
         },
         {
           "$type": "RPG.GameCore.AddModifier",

@@ -1,0 +1,203 @@
+{
+  "GroupsMap": {
+    "Skill02_ForceUseWhenNoLingShi": {
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAIAllTeamMemberCombine",
+            "TeamType": "TeamLight",
+            "Evaluator": {
+              "$type": "RPG.GameCore.ComplexSkillAIContainModifier",
+              "ModifilerName": "MAvatar_Nihilux_10_Skill02_Buff_LingShi"
+            },
+            "ListCombineType": "Max"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 1000
+                },
+                "xmax": {
+                  "Value": 0.5
+                },
+                "ymax": {
+                  "Value": 1000
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 0.5
+                },
+                "xmax": {
+                  "Value": 1
+                }
+              }
+            ]
+          },
+          "PostProcess": {
+            "$type": "RPG.GameCore.ComplexSkillAIPostProcessBreak",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "Value": 1000
+            },
+            "IsOverrideFinalScore": true,
+            "FinalScore": {
+              "Value": 1000
+            }
+          }
+        }
+      ]
+    },
+    "Skill02_CheckBPWhenLingShiExists": {
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAIBattleGlobalData",
+            "DataType": "TeamBoostPoint"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 1
+                },
+                "xmax": {
+                  "Value": 1.5
+                },
+                "ymax": {
+                  "Value": 1
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 1.5
+                },
+                "xmax": {
+                  "Value": 5
+                }
+              }
+            ]
+          },
+          "PostProcess": {
+            "$type": "RPG.GameCore.ComplexSkillAIPostProcessPreCheckFail",
+            "CompareType": "GreaterEqual",
+            "CompareValue": {
+              "Value": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  "SkillMap": {
+    "Skill01": {
+      "ComplexSkillAIPreCheck": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill_PreCheck"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight",
+            "Weight": {
+              "Value": 0.3
+            }
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight",
+            "Weight": {
+              "Value": 0.3
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_SingleAttack",
+            "Weight": {
+              "Value": 0.3
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_WeakBreak",
+            "Weight": {
+              "Value": 0.4
+            }
+          }
+        ]
+      }
+    },
+    "Skill02": {
+      "AlwaysDoAutoLock": true,
+      "AutoLockType": "HighWP_DamageCarry",
+      "ComplexSkillAIPreCheck": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Skill02_ForceUseWhenNoLingShi"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill_PreCheck"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Skill02_CheckBPWhenLingShiExists"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddNP_Common_BPSkill",
+            "Weight": {
+              "Value": 0.1
+            }
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Base_Common_CompareDPTWithDamageCarry"
+          }
+        ]
+      }
+    },
+    "Skill03": {
+      "ComplexSkillAI": {
+        "SkillBasicPower": {
+          "Value": 100
+        },
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultUltra"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Ultra_Common_ImmediateRelease"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,1687 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "MAvatar_GridFight_S2_Hyacine_00_SkillPC01": {
+          "_CallbackList": [
+            {
+              "Event": "OnListenHPChange",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByTargetEntityType",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "EntityTypeMask": "Avatar"
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByTargetTeam",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "Team": "TeamLight"
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "Avatar_GridFight_S2_Hyacine_00_ScanRainbowHeal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnAfterSkillUse",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCurrentSkillType",
+                    "SkillType": "Ultra"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "Caster"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_Hyacine_00_Rainbow_Charge"
+                      },
+                      "MaxLayer": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            569652157
+                          ]
+                        }
+                      },
+                      "LayerAddWhenStack": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1311860188
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster"
+        }
+      },
+      "Name": "Avatar_GridFight_S2_Hyacine_00_SkillPC01",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Hyacine_00_SkillPC01"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Hyacine_00_Rainbow_Charge"
+          },
+          "MaxLayer": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                569652157
+              ]
+            }
+          },
+          "LayerAddWhenStack": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                1182856373
+              ]
+            }
+          }
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {}
+      }
+    },
+    {
+      "Name": "Avatar_GridFight_S2_Hyacine_00_SkillPC02",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Hyacine_00_SkillPC02_Listener"
+          },
+          "DynamicValues": {
+            "MDF_SpeedAddedRatio": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  87708202
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Modifiers": {
+        "MAvatar_GridFight_S2_Hyacine_00_SkillPC03_Servant": {
+          "_CallbackList": [
+            {
+              "Event": "OnEnterBattle",
+              "Priority": 999999,
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByGridFightHasTrait",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "TeamTrait": {
+                          "Value": "Origin_200602"
+                        },
+                        "IncludeInactiveTrait": false
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_ExtraSummonPower"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByGridFightCustomProperty",
+                      "DynamicKey": "MDF_ExtraSummonPower",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "CustomType": {
+                        "EnumIndex": 2,
+                        "Value": 113
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQQR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1202004745,
+                            1353286002
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_ExtraHealRecordRatio"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQQR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            2026014192,
+                            1353286002
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_DamageAddedRatio"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "Caster"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_Hyacine_00_SkillPC03"
+                      },
+                      "DynamicValues": {
+                        "MDF_ExtraHealRecordRatio": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              1855765380
+                            ]
+                          }
+                        },
+                        "MDF_DamageAddedRatio": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              625640552
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "DynamicValues": {
+            "Floats": {
+              "1353286002": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1855765380": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "625640552": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "Avatar_GridFight_S2_Hyacine_00_SkillPC03",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Hyacine_00_SkillPC03_Servant"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Avatar_GridFight_S2_Hyacine_00_RainbowHeal_Phase01",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "Avatar_GridFight_S2_Hyacine_00_RainbowHeal_Phase02"
+          },
+          "IsSkillPerform": true,
+          "DynamicValues": {
+            "Heal_Percentage": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  754545879
+                ]
+              }
+            },
+            "IsBackEnd": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  1937514598
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "Avatar_GridFight_S2_Hyacine_00_RainbowHeal_Camera"
+          },
+          "IsSkillPerform": true
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "754545879": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "1937514598": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Modifiers": {},
+      "Name": "Avatar_GridFight_S2_Hyacine_00_RainbowHeal_Phase02",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "IsBackEnd"
+            },
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Visible": true
+            },
+            {
+              "$type": "RPG.GameCore.GridFightShowRightCutIn",
+              "UIPrefabPath": "UI/GridFight/Battle/SpecialAction/SpecialAction_GridFight_Avatar.prefab",
+              "TitleTextID": {
+                "Hash": 17397343320493766995
+              },
+              "ImagePath": "SpriteOutput/AvatarSpecialActionFigures/ImgSpecialAction_1409.png",
+              "AvatarTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              }
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.GridFightShowRightCutIn",
+              "UIPrefabPath": "UI/GridFight/Battle/SpecialAction/SpecialAction_GridFight_Avatar.prefab",
+              "TitleTextID": {
+                "Hash": 7732442776491140203
+              },
+              "ImagePath": "SpriteOutput/AvatarSpecialActionFigures/ImgSpecialAction_1409.png",
+              "AvatarTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.ShowBattleUI"
+        },
+        {
+          "$type": "RPG.GameCore.HideLevelStage",
+          "IsHide": true
+        },
+        {
+          "$type": "RPG.GameCore.SetAttachmentScale",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AttachPoints": [
+            {
+              "Name": "EffectWeapon"
+            }
+          ],
+          "Scale": {
+            "X": 0,
+            "Y": 0,
+            "Z": 0
+          }
+        },
+        {
+          "$type": "RPG.GameCore.EnableEmotion",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityPosition",
+          "PosTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllTeamCenter"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAnimState",
+          "AnimStateName": "BattleEventHyacine"
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareTargetCount",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AllLightTeam.RemoveServant - Caster"
+            },
+            "Number": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            },
+            "CompareType": "Equal"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetTeamFormation",
+              "FormationTarget": {
+                "$type": "RPG.GameCore.TargetConcat",
+                "Targets": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  }
+                ]
+              },
+              "CustomFormationName": "Monster_4015020_BattleEventHyacine",
+              "CustomCenterTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllTeamCenter"
+              },
+              "CustomFormationIgnoreDying": false
+            },
+            {
+              "$type": "RPG.GameCore.ScaleCharacterModel",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllLightTeam.RemoveServant - Caster"
+              },
+              "ModelScaleBase": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1.1
+                }
+              },
+              "OutlineWidthScale": 0.95346,
+              "Multiplier": {
+                "0": 1
+              }
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.SetTeamFormation",
+              "FormationTarget": {
+                "$type": "RPG.GameCore.TargetSequence",
+                "Sequence": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetSortByFormation",
+                    "HighestFirst": true
+                  }
+                ]
+              },
+              "CustomFormationName": "Monster_4015020_BattleEventHyacine",
+              "CustomCenterTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllTeamCenter"
+              },
+              "CustomFormationIgnoreDying": false
+            },
+            {
+              "$type": "RPG.GameCore.ScaleCharacterModel",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetSequence",
+                "Sequence": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetSortByFormation",
+                    "HighestFirst": true
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetIndex",
+                    "IndexType": "IndexStrict"
+                  }
+                ]
+              },
+              "ModelScaleBase": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.8
+                }
+              },
+              "OutlineWidthScale": 1.11803,
+              "Multiplier": {
+                "0": 1
+              }
+            },
+            {
+              "$type": "RPG.GameCore.ScaleCharacterModel",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetSequence",
+                "Sequence": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetSortByFormation",
+                    "HighestFirst": true
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetIndex",
+                    "IndexType": "IndexStrict",
+                    "IndexValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              "ModelScaleBase": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1.1
+                }
+              },
+              "OutlineWidthScale": 0.95346,
+              "Multiplier": {
+                "0": 1
+              }
+            },
+            {
+              "$type": "RPG.GameCore.ScaleCharacterModel",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetSequence",
+                "Sequence": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetSortByFormation",
+                    "HighestFirst": true
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetIndex",
+                    "IndexType": "IndexStrict",
+                    "IndexValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2
+                      }
+                    }
+                  }
+                ]
+              },
+              "ModelScaleBase": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.4
+                }
+              },
+              "OutlineWidthScale": 1.58114,
+              "Multiplier": {
+                "0": 1
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "BattleEventHyacine",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.625
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Hyacine_00_Rainbow_Charge"
+          },
+          "MaxLayer": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                569652157
+              ]
+            }
+          },
+          "LayerAddWhenStack": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": -1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.HealHP",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllLightTeam.RemoveServant"
+          },
+          "FormulaType": "HealByTargetMaxHP",
+          "HealPercentage": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                754545879
+              ]
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareTargetCount",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AllLightTeam.RemoveServant - Caster"
+            },
+            "Number": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            },
+            "CompareType": "Equal"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllLightTeam.RemoveServant - Caster"
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_BattleEvent/Eff_BattleEvent_Hyacine/Eff_BattleEvent_Hyacine_Buff.prefab",
+              "Scale": {
+                "X": 1.1,
+                "Y": 1.1,
+                "Z": 1.1
+              },
+              "ForceSimulateImmediately": false
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetSequence",
+                "Sequence": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetSortByFormation",
+                    "HighestFirst": true
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetIndex",
+                    "IndexType": "IndexStrict"
+                  }
+                ]
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_BattleEvent/Eff_BattleEvent_Hyacine/Eff_BattleEvent_Hyacine_Buff.prefab",
+              "Scale": {
+                "X": 0.8,
+                "Y": 0.8,
+                "Z": 0.8
+              },
+              "ForceSimulateImmediately": false
+            },
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetSequence",
+                "Sequence": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetSortByFormation",
+                    "HighestFirst": true
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetIndex",
+                    "IndexType": "IndexStrict",
+                    "IndexValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_BattleEvent/Eff_BattleEvent_Hyacine/Eff_BattleEvent_Hyacine_Buff.prefab",
+              "Scale": {
+                "X": 1.1,
+                "Y": 1.1,
+                "Z": 1.1
+              },
+              "ForceSimulateImmediately": false
+            },
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetSequence",
+                "Sequence": [
+                  {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeam.RemoveServant - Caster"
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetSortByFormation",
+                    "HighestFirst": true
+                  },
+                  {
+                    "$type": "RPG.GameCore.TargetIndex",
+                    "IndexType": "IndexStrict",
+                    "IndexValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 2
+                      }
+                    }
+                  }
+                ]
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_BattleEvent/Eff_BattleEvent_Hyacine/Eff_BattleEvent_Hyacine_Buff.prefab",
+              "Scale": {
+                "X": 0.4,
+                "Y": 0.4,
+                "Z": 0.4
+              },
+              "ForceSimulateImmediately": false
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "BattleEventHyacine",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ShowBattleUI",
+          "IsShow": true
+        },
+        {
+          "$type": "RPG.GameCore.EnableEmotion",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Enable": true
+        },
+        {
+          "$type": "RPG.GameCore.SetAttachmentScale",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AttachPoints": [
+            {
+              "Name": "EffectWeapon"
+            }
+          ],
+          "IsReset": true
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "IsBackEnd"
+            },
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.HideLevelStage"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAnimState",
+          "AnimLogicState": "Idle"
+        },
+        {
+          "$type": "RPG.GameCore.ScaleCharacterModel",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllLightTeam.RemoveServant - Caster"
+          },
+          "ModelScaleBase": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "Multiplier": {
+            "0": 1
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetSimulationSpeedEnable",
+          "Enable": true
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "Team": "TeamLight",
+          "FormationType": "LightTeamNormal"
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "754545879": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "1937514598": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "Avatar_GridFight_S2_Hyacine_00_RainbowHeal_Camera",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Character_Hyacine_00_BattleEventHyacine_TimeLine",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Override": true
+            },
+            "BlendConfig": {
+              "BlendType": "Cut"
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "IsTargetIgnoreCameraDither": true
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "BattleEventHyacine",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.558
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "CasterWithAllLightTeamWithAllLightTeamUnselectable"
+              },
+              "IsTargetIgnoreCameraDither": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {
+    "MAvatar_GridFight_S2_Hyacine_00_Rainbow_Charge": {
+      "UIConfig": {
+        "ModifierUIPriority": "HardControl"
+      },
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByModifierValue",
+              "ValueType": "Layer",
+              "Multiplier": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              },
+              "DynamicKey": "MDF_RainbowHealRemainCount"
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    705531918
+                  ]
+                }
+              },
+              "DynamicKey": {
+                "Value": "MDF_RainbowHealRatio"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    1220054893
+                  ]
+                }
+              },
+              "DynamicKey": {
+                "Value": "MDF_RainbowHealHPRatioThreshold"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareModifierValue",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ModifierOwnerEntity"
+                },
+                "ValueType": "Layer",
+                "CompareType": "LessEqual",
+                "CompareValue": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.RemoveSelfModifier"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Stacking": "ReplaceByCaster",
+      "DynamicValues": {
+        "Floats": {
+          "-1374291759": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "2043826551": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "949451050": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    "MAvatar_GridFight_S2_Hyacine_00_SkillPC02_Listener": {
+      "AdditionConfig": {
+        "SubModifierList": [
+          {
+            "Name": "MAvatar_GridFight_S2_Hyacine_00_SkillPC02_SpeedUp",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AllLightTeamWithAllUnselectableLightTeam.RemoveBattleEvent + GridFight_AllBackEnd"
+            },
+            "IncludeBattleEvent": true,
+            "DynamicValues": {
+              "MDF_SpeedAddedRatio": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -422130114
+                  ]
+                }
+              }
+            },
+            "IsHaloStatus": true
+          }
+        ]
+      },
+      "Stacking": "ReplaceByCaster",
+      "DynamicValues": {
+        "Floats": {
+          "-422130114": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    "MAvatar_GridFight_S2_Hyacine_00_SkillPC03": {
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByIsTargetValid",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "CasterServant"
+                },
+                "AliveOnly": true
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "CasterServant"
+                  },
+                  "ModifierName": {
+                    "Value": "MAvatar_GridFight_S2_Hyacine_00_SkillPC03_Glasses"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Event": "OnListenCharacterCreate",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareTarget",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                },
+                "CompareType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "CasterServant"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "MAvatar_GridFight_S2_Hyacine_00_SkillPC03_Glasses"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "AdditionConfig": {
+        "SubModifierList": [
+          {
+            "Name": "MAvatar_GridFight_S2_Hyacine_00_SkillPC03_DamageUp",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AllLightTeamWithAllUnselectableLightTeam.RemoveBattleEvent + GridFight_AllBackEnd"
+            },
+            "IncludeBattleEvent": true,
+            "DynamicValues": {
+              "MDF_DamageAddedRatio": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    625640552
+                  ]
+                }
+              }
+            },
+            "IsHaloStatus": true,
+            "AliveOnly": "False"
+          },
+          {
+            "Name": "MServant_GridFight_HyacineServant_00_ExtraHealRecord",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AllLightTeamWithAllLightTeamUnselectable.RemoveBattleEvent + GridFight_AllBackEnd - Caster - CasterServant"
+            },
+            "IncludeBattleEvent": true,
+            "DynamicValues": {
+              "MDF_ExtraHealRecordRatio": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    1855765380
+                  ]
+                }
+              }
+            },
+            "IsHaloStatus": true,
+            "AliveOnly": "False"
+          }
+        ]
+      },
+      "Stacking": "ReplaceByCaster",
+      "DynamicValues": {
+        "Floats": {
+          "1855765380": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "625640552": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    "MServant_GridFight_HyacineServant_00_ExtraHealRecord": {
+      "BehaviorFlagList": [
+        "RemoveWhenCasterDead"
+      ],
+      "_CallbackList": [
+        {
+          "Event": "OnAfterDealHeal",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByHealDataProperty",
+              "DynamicKey": "_OtherHealValue",
+              "ContextScope": "ContextCaster",
+              "ReadTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQABAQECBAIR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -1529990532,
+                    1746709022,
+                    1855765380
+                  ]
+                }
+              },
+              "DynamicKey": {
+                "Value": "_HealValueTotal"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByIsTargetValid",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "CasterServant"
+                },
+                "AliveOnly": true
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "CasterServant"
+                  },
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -1529990532
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "_SummonerHealValueTotal"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "CasterServant"
+                  },
+                  "ModifierName": {
+                    "Value": "MServant_HyacineServant_00_Passive_Mark"
+                  },
+                  "InheritCaster": "TargetSelf"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "1855765380": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    "MAvatar_GridFight_S2_Hyacine_00_SkillPC03_Glasses": {
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "IsAttachToTargetEntity": true,
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Avatar/Eff_Hyacine_00/Eff_GridFight_Avatar_Hyacine_00_Glasses.prefab",
+              "UniqueEffectName": "GridFight_S2_Hyacine_PC03_Glasses",
+              "AttachPoint": "Head",
+              "PositionOffset": {
+                "X": -0.04,
+                "Y": 0.12,
+                "Z": 0
+              },
+              "RotationOffset": {
+                "X": -90,
+                "Y": 90,
+                "Z": 0
+              },
+              "Scale": {
+                "X": 0.001,
+                "Y": 0.001,
+                "Z": 0.001
+              },
+              "ForceSimulateImmediately": false,
+              "MinMutexTime": -1,
+              "MinMutexType": "Entity"
+            }
+          ]
+        }
+      ]
+    },
+    "MAvatar_GridFight_S2_Hyacine_00_SkillPC03_DamageUp": {
+      "BehaviorFlagList": [
+        "RemoveWhenCasterDead"
+      ],
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.StackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Property": "ExtraAllDamageTypeAddedRatio1",
+              "PropertyValue": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    625640552
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "Stacking": "ReplaceByCaster",
+      "DynamicValues": {
+        "Floats": {
+          "625640552": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    "MAvatar_GridFight_S2_Hyacine_00_SkillPC02_SpeedUp": {
+      "BehaviorFlagList": [
+        "STAT_SpeedUp",
+        "RemoveWhenCasterDead"
+      ],
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.StackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Property": "ExtraSpeedAddedRatio1",
+              "PropertyValue": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -422130114
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "Stacking": "ReplaceByCaster",
+      "DynamicValues": {
+        "Floats": {
+          "-422130114": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "GlobalTemplates": [
+    {
+      "Name": "Avatar_GridFight_S2_Hyacine_00_ScanRainbowHeal",
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllLightTeam.RemoveServant"
+          },
+          "Predicate": {
+            "$type": "RPG.GameCore.ByAnd",
+            "PredicateList": [
+              {
+                "$type": "RPG.GameCore.ByTargetEntityType",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                },
+                "EntityTypeMask": "Avatar"
+              },
+              {
+                "$type": "RPG.GameCore.ByCompareHPRatio",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                },
+                "CompareType": "LessEqual",
+                "CompareValue": {
+                  "IsDynamic": true,
+                  "PostfixExpr": {
+                    "OpCodes": "AQAR",
+                    "FixedValues": [],
+                    "DynamicHashes": [
+                      1220054893
+                    ]
+                  }
+                }
+              },
+              {
+                "$type": "RPG.GameCore.ByNot",
+                "Predicate": {
+                  "$type": "RPG.GameCore.ByContainBehaviorFlag",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "Flag": "DisableHealHP"
+                }
+              },
+              {
+                "$type": "RPG.GameCore.ByCompareModifierValue",
+                "ModifierName": "MAvatar_GridFight_S2_Hyacine_00_Rainbow_Charge",
+                "ValueType": "Layer",
+                "CompareType": "Greater",
+                "CompareValue": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0
+                  }
+                }
+              },
+              {
+                "$type": "RPG.GameCore.ByNot",
+                "Predicate": {
+                  "$type": "RPG.GameCore.ByAny",
+                  "PredicateList": [
+                    {
+                      "$type": "RPG.GameCore.ByContainBehaviorFlag",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "Caster"
+                      },
+                      "Flag": "STAT_CTRL"
+                    },
+                    {
+                      "$type": "RPG.GameCore.ByContainBehaviorFlag",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "Caster"
+                      },
+                      "Flag": "DisableAction"
+                    }
+                  ]
+                }
+              },
+              {
+                "$type": "RPG.GameCore.ByTargetAliveState",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "Caster"
+                },
+                "AliveStateMask": "Mask_AliveOnly"
+              }
+            ]
+          },
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.TurnInsertAbility",
+              "AbilityName": {
+                "Value": "Avatar_GridFight_S2_Hyacine_00_RainbowHeal_Phase01"
+              },
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AbilityTarget": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllLightTeam.RemoveServant"
+              },
+              "AbortBehaviorFlags": [
+                "STAT_CTRL",
+                "DisableAction"
+              ],
+              "InsertAbilityPriority": "AvatarHealOthers",
+              "DynamicValues": {
+                "Heal_Percentage": {
+                  "IsDynamic": true,
+                  "PostfixExpr": {
+                    "OpCodes": "AQAR",
+                    "FixedValues": [],
+                    "DynamicHashes": [
+                      705531918
+                    ]
+                  }
+                },
+                "IsBackEnd": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0
+                  }
+                }
+              },
+              "ShowInActionBar": true,
+              "PreCheck": {
+                "$type": "RPG.GameCore.TurnInsertAbilityCondition",
+                "Type": "AbilityOwnerInsertCount",
+                "Count": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

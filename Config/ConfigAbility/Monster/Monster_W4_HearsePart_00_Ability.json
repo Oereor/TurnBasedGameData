@@ -222,7 +222,9 @@
               "$type": "RPG.GameCore.PredicateTaskList",
               "Predicate": {
                 "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                "ModifierName": "Monster_W4_HearsePart_00_AddPassive"
+                "ModifierName": {
+                  "Value": "Monster_W4_HearsePart_00_AddPassive"
+                }
               },
               "SuccessTaskList": [
                 {
@@ -242,7 +244,17 @@
             }
           ]
         }
-      ]
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "350792237": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
     },
     "Monster_W4_HearsePart_00_AddPassive": {},
     "Monster_W4_HearsePart_00_Passive": {
@@ -377,6 +389,117 @@
                     }
                   },
                   "InheritCaster": "CasterSelf"
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByHPRatio",
+              "DynamicKey": "MDF_HPRatio",
+              "ReadTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareDynamicValue",
+                "DynamicKey": {
+                  "Value": "MDF_HPRatio"
+                },
+                "CompareType": "Less",
+                "CompareValue": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 1
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.Retarget",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllLightTeamWithAllUnselectableLightTeam.RemoveServant"
+                  },
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "Monster_W4_Hearse_00_AlreadyAdd"
+                    },
+                    "CasterFilter": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    }
+                  },
+                  "MaxNumber": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.RemoveModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "Monster_W4_HearsePart_00_BlackBlood"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "DynamicKey": {
+                          "Value": "MDF_HPRatio"
+                        },
+                        "CompareType": "Greater",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0
+                          }
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "Monster_W4_HearsePart_00_BlackBlood"
+                          },
+                          "DynamicValues": {
+                            "MDF_DirtyHPRatio": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQABAQQR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  350792237,
+                                  -11934696
+                                ]
+                              }
+                            }
+                          },
+                          "CustomOffset": {
+                            "X": 0,
+                            "Y": 99,
+                            "Z": 0
+                          }
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -571,16 +694,6 @@
         {
           "Event": "OnBeforeDying",
           "CallbackConfig": [
-            {
-              "$type": "RPG.GameCore.RemoveModifier",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "AllLightTeamWithAllUnselectableLightTeam.RemoveServant"
-              },
-              "ModifierName": {
-                "Value": "Monster_W4_HearsePart_00_BlackBlood"
-              }
-            },
             {
               "$type": "RPG.GameCore.ChangeTargetModifierEffectState",
               "TargetType": {

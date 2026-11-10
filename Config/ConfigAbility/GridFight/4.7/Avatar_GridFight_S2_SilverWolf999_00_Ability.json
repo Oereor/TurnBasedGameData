@@ -1,0 +1,2417 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "MAvatar_GridFight_S2_SilverWolf999_PassivePC01": {
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.OverrideModifierName",
+                  "ModifierName": "_M_SilverWolf999_00_Ultra_ScoreManager",
+                  "OverrideName": "_M_GridFight_S2_SilverWolf999_00_Ultra_ScoreManager",
+                  "IsFullRedirect": true
+                }
+              ]
+            },
+            {
+              "Event": "OnBeforeSkillUse",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCurrentSkillName",
+                        "SkillName": "Skill11"
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MAvatar_SilverWolf999_00_Ultra"
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "_M_GridFight_S2_SilverWolf999_00_InInsertAction"
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAIR",
+                          "FixedValues": [
+                            {
+                              "Value": 1
+                            }
+                          ],
+                          "DynamicHashes": [
+                            -574157115
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "UltraAttackCount"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnEnterBattle",
+              "Priority": -80,
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareWaveCount",
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "SilverWolf999_00_ModifySP",
+                      "DynamicValues": {
+                        "Arg0_AddValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1285595543
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnInsertActionStart",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "_M_GridFight_S2_SilverWolf999_00_InInsertAction"
+                  }
+                }
+              ]
+            },
+            {
+              "Event": "OnInsertActionFinish",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.RemoveModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "_M_GridFight_S2_SilverWolf999_00_InInsertAction"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Name": "Avatar_GridFight_S2_SilverWolf999_00_PassiveSkillPC01",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_SilverWolf999_PassivePC01"
+          }
+        }
+      ]
+    },
+    {
+      "Modifiers": {
+        "MAvatar_GridFight_S2_SilverWolf999_00_GetAhaPropetyInNormalSkill": {
+          "_CallbackList": [
+            {
+              "Event": "OnBeforeSkillUse",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCurrentSkillType"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "GridFight_Elation_GetAhaProperty"
+                    },
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_SilverWolf999_00_AddPropertyInNormalSkill"
+                      },
+                      "DynamicValues": {
+                        "_ExtraFrontPowerAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -2054134781,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraBackPowerAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              327435981,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraLuckChance": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -673690042,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraLuckDamage": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              2132974327,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_BreakDamageAddedRatioBase": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              285063103,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_StanceBreakAddedRatio": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1011871345,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraAllDamageTypeAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              2086187651,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraUltraDamageAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1134824978,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraSkillDamageAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              103324063,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraNormalDamageAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1745468919,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraInsertDamageAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              206282513,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraDOTDamageAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -982599255,
+                              1936856701
+                            ]
+                          }
+                        },
+                        "_ExtraElementDamageAddedRatio1": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              1394637704,
+                              1936856701
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnAfterSkillUse",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCurrentSkillType"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.RemoveModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_SilverWolf999_00_AddPropertyInNormalSkill"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.RemoveModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "G_GridFight_Elation_GetAhaProperty_Tag"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "DynamicValues": {
+            "Floats": {
+              "-2054134781": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "327435981": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-673690042": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "2132974327": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "285063103": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-1011871345": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "2086187651": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-1134824978": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "103324063": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-1745468919": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "206282513": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-982599255": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1394637704": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        },
+        "MAvatar_GridFight_S2_SilverWolf999_00_AddPropertyInNormalSkill": {
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "GridFight_S2_Elation_StackAhaProperty"
+                },
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "G_GridFight_Elation_GetAhaProperty_Tag"
+                  }
+                }
+              ]
+            }
+          ],
+          "Stacking": "Replace"
+        }
+      },
+      "Name": "Avatar_GridFight_S2_SilverWolf999_00_PassiveSkillPC03",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_SilverWolf999_00_GetAhaPropetyInNormalSkill"
+          },
+          "DynamicValues": {
+            "MDF_PropertyExchangeRatio": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  158693014
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {
+    "_M_GridFight_S2_SilverWolf999_00_InInsertAction": {},
+    "_M_GridFight_S2_SilverWolf999_00_Ultra_ScoreManager": {
+      "OnDynamicValueChange": [
+        {
+          "Key": {
+            "Hash": 1414305234
+          },
+          "ContextScope": "ContextCaster",
+          "Ranges": [
+            {
+              "Min": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "Max": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -185165829
+                  ]
+                }
+              },
+              "OnEnterRange": [
+                {
+                  "$type": "EGKMFINAFHB",
+                  "MEPFOEEGBEA": "S",
+                  "KKCKMCDGCGK": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1414305234
+                      ]
+                    }
+                  },
+                  "BDEMOIAOHJC": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -185165829
+                      ]
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.RemoveModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                  }
+                }
+              ],
+              "OnChange": [
+                {
+                  "$type": "EGKMFINAFHB",
+                  "MEPFOEEGBEA": "S",
+                  "KKCKMCDGCGK": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1414305234
+                      ]
+                    }
+                  },
+                  "BDEMOIAOHJC": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -185165829
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "Min": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -185165829
+                  ]
+                }
+              },
+              "Max": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AAABAAQR",
+                  "FixedValues": [
+                    {
+                      "Value": 2
+                    }
+                  ],
+                  "DynamicHashes": [
+                    -185165829
+                  ]
+                }
+              },
+              "OnEnterRange": [
+                {
+                  "$type": "EGKMFINAFHB",
+                  "MEPFOEEGBEA": "SS",
+                  "KKCKMCDGCGK": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQABAQMR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1414305234,
+                        -185165829
+                      ]
+                    }
+                  },
+                  "BDEMOIAOHJC": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -185165829
+                      ]
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.RemoveModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                  }
+                }
+              ],
+              "OnChange": [
+                {
+                  "$type": "EGKMFINAFHB",
+                  "MEPFOEEGBEA": "SS",
+                  "KKCKMCDGCGK": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQABAQMR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1414305234,
+                        -185165829
+                      ]
+                    }
+                  },
+                  "BDEMOIAOHJC": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -185165829
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "Min": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AAABAAQR",
+                  "FixedValues": [
+                    {
+                      "Value": 2
+                    }
+                  ],
+                  "DynamicHashes": [
+                    -185165829
+                  ]
+                }
+              },
+              "Max": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    1326196218
+                  ]
+                }
+              },
+              "OnEnterRange": [
+                {
+                  "$type": "EGKMFINAFHB",
+                  "MEPFOEEGBEA": "SSS",
+                  "KKCKMCDGCGK": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAAAAEBBAMR",
+                      "FixedValues": [
+                        {
+                          "Value": 2
+                        }
+                      ],
+                      "DynamicHashes": [
+                        1414305234,
+                        -185165829
+                      ]
+                    }
+                  },
+                  "BDEMOIAOHJC": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAAAAEBBAMR",
+                      "FixedValues": [
+                        {
+                          "Value": 2
+                        }
+                      ],
+                      "DynamicHashes": [
+                        1326196218,
+                        -185165829
+                      ]
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.RemoveModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                  }
+                }
+              ],
+              "OnChange": [
+                {
+                  "$type": "EGKMFINAFHB",
+                  "MEPFOEEGBEA": "SSS",
+                  "KKCKMCDGCGK": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAAAAEBBAMR",
+                      "FixedValues": [
+                        {
+                          "Value": 2
+                        }
+                      ],
+                      "DynamicHashes": [
+                        1414305234,
+                        -185165829
+                      ]
+                    }
+                  },
+                  "BDEMOIAOHJC": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAAAAEBBAMR",
+                      "FixedValues": [
+                        {
+                          "Value": 2
+                        }
+                      ],
+                      "DynamicHashes": [
+                        1326196218,
+                        -185165829
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "Min": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    1326196218
+                  ]
+                }
+              },
+              "Max": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    975744600
+                  ]
+                }
+              },
+              "OnEnterRange": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAny",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS1",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1414305234,
+                            1326196218
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            975744600,
+                            1326196218
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS1",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAEBBAMR",
+                          "FixedValues": [
+                            {
+                              "Value": 2
+                            }
+                          ],
+                          "DynamicHashes": [
+                            1326196218,
+                            -185165829
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAEBBAMR",
+                          "FixedValues": [
+                            {
+                              "Value": 2
+                            }
+                          ],
+                          "DynamicHashes": [
+                            1326196218,
+                            -185165829
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                  },
+                  "DynamicValues": {
+                    "MDF_PropertyValue": {
+                      "IsDynamic": true,
+                      "PostfixExpr": {
+                        "OpCodes": "AQAR",
+                        "FixedValues": [],
+                        "DynamicHashes": [
+                          -1006978301
+                        ]
+                      }
+                    }
+                  }
+                }
+              ],
+              "OnChange": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAny",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS1",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1414305234,
+                            1326196218
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            975744600,
+                            1326196218
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS1",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAEBBAMR",
+                          "FixedValues": [
+                            {
+                              "Value": 2
+                            }
+                          ],
+                          "DynamicHashes": [
+                            1326196218,
+                            -185165829
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAEBBAMR",
+                          "FixedValues": [
+                            {
+                              "Value": 2
+                            }
+                          ],
+                          "DynamicHashes": [
+                            1326196218,
+                            -185165829
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Min": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    975744600
+                  ]
+                }
+              },
+              "Max": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    625166386
+                  ]
+                }
+              },
+              "OnEnterRange": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS2",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1414305234,
+                            975744600
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                      },
+                      "DynamicValues": {
+                        "MDF_PropertyValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              859838929
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS2",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                          },
+                          "DynamicValues": {
+                            "MDF_PropertyValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  859838929
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS1",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                          },
+                          "DynamicValues": {
+                            "MDF_PropertyValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  -1006978301
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "OnChange": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS2",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1414305234,
+                            975744600
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS2",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS1",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Min": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    625166386
+                  ]
+                }
+              },
+              "Max": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AAAR",
+                  "FixedValues": [
+                    {
+                      "Value": 78125000
+                    }
+                  ],
+                  "DynamicHashes": []
+                }
+              },
+              "OnEnterRange": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS3",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                      },
+                      "DynamicValues": {
+                        "MDF_PropertyValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              743483531
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS2",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                          },
+                          "DynamicValues": {
+                            "MDF_PropertyValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  859838929
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS1",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                          },
+                          "DynamicValues": {
+                            "MDF_PropertyValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  -1006978301
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "OnChange": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS3",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS2",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS1",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_CallbackList": [
+        {
+          "Event": "OnCreate",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.SwitchCaseByDynamicValue",
+              "Switch": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    1414305234
+                  ]
+                }
+              },
+              "CompareType": "Less",
+              "CaseTaskList": [
+                {
+                  "Case": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -185165829
+                      ]
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "S",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1414305234
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            -185165829
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Case": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AAABAAQR",
+                      "FixedValues": [
+                        {
+                          "Value": 2
+                        }
+                      ],
+                      "DynamicHashes": [
+                        -185165829
+                      ]
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "SS",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1414305234,
+                            -185165829
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            -185165829
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Case": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1326196218
+                      ]
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "SSS",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAEBBAMR",
+                          "FixedValues": [
+                            {
+                              "Value": 2
+                            }
+                          ],
+                          "DynamicHashes": [
+                            1414305234,
+                            -185165829
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAEBBAMR",
+                          "FixedValues": [
+                            {
+                              "Value": 2
+                            }
+                          ],
+                          "DynamicHashes": [
+                            1326196218,
+                            -185165829
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Case": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        975744600
+                      ]
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByAny",
+                        "PredicateList": [
+                          {
+                            "$type": "RPG.GameCore.ByIsContainModifier",
+                            "TargetType": {
+                              "$type": "RPG.GameCore.TargetAlias",
+                              "Alias": "ModifierOwnerEntity"
+                            },
+                            "ModifierName": {
+                              "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                            }
+                          },
+                          {
+                            "$type": "RPG.GameCore.ByIsContainModifier",
+                            "TargetType": {
+                              "$type": "RPG.GameCore.TargetAlias",
+                              "Alias": "ModifierOwnerEntity"
+                            },
+                            "ModifierName": {
+                              "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                            }
+                          }
+                        ]
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS1",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                1414305234,
+                                1326196218
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS1",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                      },
+                      "DynamicValues": {
+                        "MDF_PropertyValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1006978301
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Case": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        625166386
+                      ]
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS2",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                1414305234,
+                                975744600
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                625166386,
+                                975744600
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                          },
+                          "DynamicValues": {
+                            "MDF_PropertyValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  859838929
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "RPG.GameCore.PredicateTaskList",
+                          "Predicate": {
+                            "$type": "RPG.GameCore.ByIsContainModifier",
+                            "TargetType": {
+                              "$type": "RPG.GameCore.TargetAlias",
+                              "Alias": "ModifierOwnerEntity"
+                            },
+                            "ModifierName": {
+                              "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                            }
+                          },
+                          "SuccessTaskList": [
+                            {
+                              "$type": "EGKMFINAFHB",
+                              "MEPFOEEGBEA": "GridFightSSS2",
+                              "KKCKMCDGCGK": {
+                                "IsDynamic": true,
+                                "PostfixExpr": {
+                                  "OpCodes": "AQABAQMR",
+                                  "FixedValues": [],
+                                  "DynamicHashes": [
+                                    975744600,
+                                    1326196218
+                                  ]
+                                }
+                              },
+                              "BDEMOIAOHJC": {
+                                "IsDynamic": true,
+                                "PostfixExpr": {
+                                  "OpCodes": "AQABAQMR",
+                                  "FixedValues": [],
+                                  "DynamicHashes": [
+                                    975744600,
+                                    1326196218
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "$type": "RPG.GameCore.AddModifier",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ModifierOwnerEntity"
+                              },
+                              "ModifierName": {
+                                "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                              },
+                              "DynamicValues": {
+                                "MDF_PropertyValue": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      859838929
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "FailedTaskList": [
+                            {
+                              "$type": "EGKMFINAFHB",
+                              "MEPFOEEGBEA": "GridFightSSS1",
+                              "KKCKMCDGCGK": {
+                                "IsDynamic": true,
+                                "PostfixExpr": {
+                                  "OpCodes": "AQAAAAEBBAMR",
+                                  "FixedValues": [
+                                    {
+                                      "Value": 2
+                                    }
+                                  ],
+                                  "DynamicHashes": [
+                                    1326196218,
+                                    -185165829
+                                  ]
+                                }
+                              },
+                              "BDEMOIAOHJC": {
+                                "IsDynamic": true,
+                                "PostfixExpr": {
+                                  "OpCodes": "AQAAAAEBBAMR",
+                                  "FixedValues": [
+                                    {
+                                      "Value": 2
+                                    }
+                                  ],
+                                  "DynamicHashes": [
+                                    1326196218,
+                                    -185165829
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "$type": "RPG.GameCore.AddModifier",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ModifierOwnerEntity"
+                              },
+                              "ModifierName": {
+                                "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                              },
+                              "DynamicValues": {
+                                "MDF_PropertyValue": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      -1006978301
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "DefaultTaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MGridFight_Equipment_SilverWolf999_353404"
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "EGKMFINAFHB",
+                      "MEPFOEEGBEA": "GridFightSSS3",
+                      "KKCKMCDGCGK": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      },
+                      "BDEMOIAOHJC": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQMR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            625166386,
+                            975744600
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                      },
+                      "DynamicValues": {
+                        "MDF_PropertyValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              743483531
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MGridFight_Equipment_SilverWolf999_353304"
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS2",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                975744600,
+                                1326196218
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                          },
+                          "DynamicValues": {
+                            "MDF_PropertyValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  859838929
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "EGKMFINAFHB",
+                          "MEPFOEEGBEA": "GridFightSSS1",
+                          "KKCKMCDGCGK": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          },
+                          "BDEMOIAOHJC": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAEBBAMR",
+                              "FixedValues": [
+                                {
+                                  "Value": 2
+                                }
+                              ],
+                              "DynamicHashes": [
+                                1326196218,
+                                -185165829
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+                          },
+                          "DynamicValues": {
+                            "MDF_PropertyValue": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  -1006978301
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Event": "OnDestroy",
+          "CallbackConfig": [
+            {
+              "$type": "EGKMFINAFHB"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "ModifierName": {
+                "Value": "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "MGridFight_S2_SilverWolf999_00_Ultra_ScoreManager_AddExtraDamage": {
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.StackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Property": "ExtraAllDamageTypeAddedRatio1",
+              "PropertyValue": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    2128130574
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "Stacking": "Replace"
+    }
+  }
+}

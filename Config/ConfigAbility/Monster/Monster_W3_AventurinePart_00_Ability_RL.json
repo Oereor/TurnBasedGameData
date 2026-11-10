@@ -706,6 +706,23 @@
               "Visible": true
             },
             {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchUniqueNameEntity",
+                "UniqueName": "W3_Aventurine_00"
+              },
+              "ContextScope": "TargetEntity",
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "DynamicKey": {
+                "Value": "DiceDeathRattleInsertCheck"
+              }
+            },
+            {
               "$type": "RPG.GameCore.TriggerAnimStateWithMove",
               "TargetType": {
                 "$type": "RPG.GameCore.TargetAlias",
@@ -847,23 +864,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "$type": "RPG.GameCore.SetDynamicValue",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetFetchUniqueNameEntity",
-                "UniqueName": "W3_Aventurine_00"
-              },
-              "ContextScope": "TargetEntity",
-              "Value": {
-                "IsDynamic": false,
-                "FixedValue": {
-                  "Value": 0
-                }
-              },
-              "DynamicKey": {
-                "Value": "DiceDeathRattleInsertCheck"
-              }
             }
           ]
         },
@@ -967,14 +967,29 @@
                 "$type": "RPG.GameCore.ByAnd",
                 "PredicateList": [
                   {
-                    "$type": "RPG.GameCore.ByIsContainModifier",
-                    "TargetType": {
-                      "$type": "RPG.GameCore.TargetAlias",
-                      "Alias": "ParamEntity"
-                    },
-                    "ModifierName": {
-                      "Value": "Monster_W3_Aventurine_00_Gambling"
-                    }
+                    "$type": "RPG.GameCore.ByAny",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "Monster_W3_Aventurine_00_Gambling"
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "Monster_W3_Aventurine_00_Gambling_Servant"
+                        }
+                      }
+                    ]
                   },
                   {
                     "$type": "RPG.GameCore.ByCompareDynamicValue",
@@ -1057,21 +1072,53 @@
                   },
                   "SuccessTaskList": [
                     {
-                      "$type": "RPG.GameCore.TurnInsertAbility",
-                      "AbilityName": {
-                        "Value": "Monster_W3_AventurinePart_00_Skill02_Phase01"
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByTargetEntityType",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "EntityTypeMask": "Servant"
                       },
-                      "TargetType": {
-                        "$type": "RPG.GameCore.TargetAlias",
-                        "Alias": "Caster"
-                      },
-                      "AbilityTarget": {
-                        "$type": "RPG.GameCore.TargetAlias",
-                        "Alias": "ParamEntity"
-                      },
-                      "InsertAbilityPriority": "MonsterChangePhase",
-                      "CanRunOnUnselectableTarget": true,
-                      "ShowInActionBar": true
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.TurnInsertAbility",
+                          "AbilityName": {
+                            "Value": "Monster_W3_AventurinePart_00_Skill02_Phase01"
+                          },
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "Caster"
+                          },
+                          "AbilityTarget": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity.GetSummoner"
+                          },
+                          "InsertAbilityPriority": "MonsterChangePhase",
+                          "CanRunOnUnselectableTarget": true,
+                          "ShowInActionBar": true
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "RPG.GameCore.TurnInsertAbility",
+                          "AbilityName": {
+                            "Value": "Monster_W3_AventurinePart_00_Skill02_Phase01"
+                          },
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "Caster"
+                          },
+                          "AbilityTarget": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity"
+                          },
+                          "InsertAbilityPriority": "MonsterChangePhase",
+                          "CanRunOnUnselectableTarget": true,
+                          "ShowInActionBar": true
+                        }
+                      ]
                     },
                     {
                       "$type": "RPG.GameCore.SetDynamicValue",
@@ -1677,14 +1724,29 @@
                 "$type": "RPG.GameCore.ByAnd",
                 "PredicateList": [
                   {
-                    "$type": "RPG.GameCore.ByIsContainModifier",
-                    "TargetType": {
-                      "$type": "RPG.GameCore.TargetAlias",
-                      "Alias": "ParamEntity"
-                    },
-                    "ModifierName": {
-                      "Value": "Monster_W3_Aventurine_00_Gambling"
-                    }
+                    "$type": "RPG.GameCore.ByAny",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "Monster_W3_Aventurine_00_Gambling"
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "Monster_W3_Aventurine_00_Gambling_Servant"
+                        }
+                      }
+                    ]
                   },
                   {
                     "$type": "RPG.GameCore.ByCompareDynamicValue",
@@ -1728,16 +1790,43 @@
               },
               "SuccessTaskList": [
                 {
-                  "$type": "RPG.GameCore.TurnInsertAbility",
-                  "AbilityName": {
-                    "Value": "Monster_W3_AventurinePart_00_Skill02_Phase01_RL"
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByTargetEntityType",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "EntityTypeMask": "Servant"
                   },
-                  "AbilityTarget": {
-                    "$type": "RPG.GameCore.TargetAlias",
-                    "Alias": "ParamEntity"
-                  },
-                  "InsertAbilityPriority": "MonsterChangePhase",
-                  "CanRunOnUnselectableTarget": true
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TurnInsertAbility",
+                      "AbilityName": {
+                        "Value": "Monster_W3_AventurinePart_00_Skill02_Phase01_RL"
+                      },
+                      "AbilityTarget": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity.GetSummoner"
+                      },
+                      "InsertAbilityPriority": "MonsterChangePhase",
+                      "CanRunOnUnselectableTarget": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TurnInsertAbility",
+                      "AbilityName": {
+                        "Value": "Monster_W3_AventurinePart_00_Skill02_Phase01_RL"
+                      },
+                      "AbilityTarget": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "InsertAbilityPriority": "MonsterChangePhase",
+                      "CanRunOnUnselectableTarget": true
+                    }
+                  ]
                 },
                 {
                   "$type": "RPG.GameCore.SetDynamicValue",

@@ -1,0 +1,437 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "MAvatar_GridFight_S2_Anaxa_00_PC01": {
+          "BehaviorFlagList": [
+            "ListenBattleEventSkill"
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnAfterAttack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCurrentSkillType",
+                    "SkillType": "Skill"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQECBRABEQ==",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1776456860,
+                            -1581744091,
+                            -1943279159
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "Purse_Attack_Count"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.LoopExecuteTaskList",
+                      "MaxLoopCount": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            -372803990
+                          ]
+                        }
+                      },
+                      "TaskList": [
+                        {
+                          "$type": "RPG.GameCore.Retarget",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "AttackTargetList"
+                          },
+                          "ByRandom": true,
+                          "MaxNumber": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 1
+                            }
+                          },
+                          "TaskList": [
+                            {
+                              "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                              "Name": "PursuedDamage_PerformanceDelay",
+                              "ParamTarget": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ParamEntity"
+                              }
+                            },
+                            {
+                              "$type": "RPG.GameCore.DamageByAttackProperty",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ParamEntity"
+                              },
+                              "AttackProperty": {
+                                "$type": "RPG.GameCore.AttackData",
+                                "DamageType": {
+                                  "SourceType": "Random"
+                                },
+                                "DamagePercentage": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      1433167674
+                                    ]
+                                  }
+                                },
+                                "AttackType": "Pursued",
+                                "HitAnimation": "Hit",
+                                "HitEffect": "Effects/Eff_Prefab/Eff_Avatar/Eff_Anaxa_00/Eff_Avatar_Anaxa_00_Skill02_Hit_04.prefab",
+                                "HitEffectMinMutexTime": {
+                                  "IsDynamic": false,
+                                  "FixedValue": {
+                                    "Value": -1
+                                  }
+                                },
+                                "HitEffectMaxMutexCount": {
+                                  "IsDynamic": false,
+                                  "FixedValue": {
+                                    "Value": 2
+                                  }
+                                },
+                                "HitEffectHeight": 1,
+                                "HitPosHeight": 1.2,
+                                "RandomHitAngleHorizontal": 60
+                              },
+                              "CanTriggerLastKill": true,
+                              "PerformanceDelay": {
+                                "IsDynamic": true,
+                                "PostfixExpr": {
+                                  "OpCodes": "AQAR",
+                                  "FixedValues": [],
+                                  "DynamicHashes": [
+                                    1854514093
+                                  ]
+                                }
+                              },
+                              "IsHitAnimPerformanceDelay": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnBeforeSkillUse",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCurrentSkillType",
+                    "SkillType": "Skill"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAIR",
+                          "FixedValues": [
+                            {
+                              "Value": 1
+                            }
+                          ],
+                          "DynamicHashes": [
+                            -169675107
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "Skill_Count"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "DynamicKey": {
+                          "Value": "Skill_Count"
+                        },
+                        "CompareType": "GreaterEqual",
+                        "CompareValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              551330741
+                            ]
+                          }
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.SetDynamicValue",
+                          "Value": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                -169675107,
+                                551330741
+                              ]
+                            }
+                          },
+                          "DynamicKey": {
+                            "Value": "Skill_Count"
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.SetDynamicValue",
+                          "Value": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAAAAIR",
+                              "FixedValues": [
+                                {
+                                  "Value": 1
+                                }
+                              ],
+                              "DynamicHashes": [
+                                -1581744091
+                              ]
+                            }
+                          },
+                          "DynamicKey": {
+                            "Value": "GridFight_S2_Current_MagicLayer"
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.SetEnergyBarState",
+                          "Active": "True",
+                          "BarType": 4,
+                          "CurrentState": "Active",
+                          "IconPath": "SpriteOutput/GridFight/BattleIcon/BuffIcon/Icon_GridFight_1405Passive.png",
+                          "CurrentCount": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                -1581744091
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.ModifyGridFightCustomProperty",
+                          "CustomType": {
+                            "EnumIndex": 2,
+                            "Value": 108
+                          },
+                          "ModifyValue": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 1
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "AdditionConfig": {
+            "SubModifierList": [
+              {
+                "Name": "MAvatar_GridFight_S2_Anaxa_TeamBuff",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "AllLightTeamWithAllLightTeamUnselectable.RemoveBattleEvent + GridFight_AllBackEnd"
+                },
+                "IncludeBattleEvent": true,
+                "IsHaloStatus": true
+              }
+            ]
+          },
+          "DynamicValues": {
+            "Floats": {
+              "-169675107": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-372803990": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        },
+        "MAvatar_GridFight_S2_Anaxa_00_Buff": {
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.StackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "CriticalDamageBase",
+                  "PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        722348173
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "MAvatar_GridFight_S2_Anaxa_TeamBuff": {
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.StackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "AllDamageTypeAddedRatio",
+                  "PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -1774729065
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Name": "Avatar_GridFight_S2_Anaxa_00_SkillPC01",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Anaxa_00_PC01"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Anaxa_00_Buff"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetDynamicValueByGridFightCustomProperty",
+          "DynamicKey": "GridFight_S2_Current_MagicLayer",
+          "CustomType": {
+            "EnumIndex": 2,
+            "Value": 108
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "GridFight_S2_Current_MagicLayer"
+            },
+            "CompareType": "Greater",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 0
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetEnergyBarState",
+              "Active": "True",
+              "BarType": 4,
+              "CurrentState": "Active",
+              "IconPath": "SpriteOutput/GridFight/BattleIcon/BuffIcon/Icon_GridFight_1405Passive.png",
+              "CurrentCount": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -1581744091
+                  ]
+                }
+              }
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.SetEnergyBarState",
+              "Active": "True",
+              "BarType": 4,
+              "CurrentState": "Active",
+              "IconPath": "SpriteOutput/GridFight/BattleIcon/BuffIcon/Icon_GridFight_1405Passive.png",
+              "CurrentCount": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {}
+      }
+    }
+  ],
+  "GlobalTemplates": []
+}

@@ -1,0 +1,430 @@
+{
+  "GroupsMap": {
+    "Add_Pearl_EchoPoint": {
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAIAllTargetCombine",
+            "Evaluator": {
+              "$type": "RPG.GameCore.ComplexSkillAISourceDynamicValue",
+              "IsTarget": false,
+              "DynamicValueKey": "DV_EchoRatio"
+            },
+            "ListCombineType": "Min"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 1000
+                },
+                "xmax": {
+                  "Value": 0.1
+                },
+                "ymax": {
+                  "Value": 1000
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 0.1
+                },
+                "xmax": {
+                  "Value": 1
+                }
+              }
+            ]
+          },
+          "PostProcess": {
+            "$type": "RPG.GameCore.ComplexSkillAIPostProcessBreak",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "Value": 1
+            },
+            "IsOverrideFinalScore": true
+          }
+        }
+      ]
+    },
+    "Add_Pearl_Heal": {
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAIAllTargetCombine",
+            "Evaluator": {
+              "$type": "RPG.GameCore.ComplexSkillAISourcePropertyCompareRatio",
+              "PropertyTypeA": "CurrentHP",
+              "PropertyTypeB": "MaxHP"
+            },
+            "ListCombineType": "Min"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 1000
+                },
+                "xmax": {
+                  "Value": 0.5
+                },
+                "ymax": {
+                  "Value": 1000
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 0.5
+                },
+                "ymin": {
+                  "Value": 1
+                },
+                "xmax": {
+                  "Value": 1
+                },
+                "ymax": {
+                  "Value": 1
+                }
+              }
+            ]
+          },
+          "PostProcess": {
+            "$type": "RPG.GameCore.ComplexSkillAIPostProcessBreak",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "Value": 1
+            },
+            "IsOverrideFinalScore": true
+          }
+        }
+      ]
+    },
+    "Add_Pearl_BaseType": {
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAIGetAvatarBaseType"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "xmax": {
+                  "Value": 8.5
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 8.5
+                },
+                "ymin": {
+                  "Value": 500
+                },
+                "xmax": {
+                  "Value": 9.5
+                },
+                "ymax": {
+                  "Value": 500
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 9.5
+                },
+                "xmax": {
+                  "Value": 20
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "AddpP_Pearl_CompareDPTWithDamageCarry": {
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAISourceValueInTeamRatio",
+            "ValueType": "WeightedTotalPower"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 60
+                },
+                "xmax": {
+                  "Value": 100
+                },
+                "ymax": {
+                  "Value": 100
+                }
+              }
+            ]
+          }
+        },
+        {
+          "CombineOperator": "Mul",
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAISourceAITag",
+            "DynamicValueKey": "DamageCarry"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 0.01
+                },
+                "xmax": {
+                  "Value": 10
+                },
+                "ymax": {
+                  "Value": 1
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 10
+                },
+                "ymin": {
+                  "Value": 1
+                },
+                "xmax": {
+                  "Value": 100
+                },
+                "ymax": {
+                  "Value": 10
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "SkillMap": {
+    "Skill01": {
+      "ComplexSkillAIPreCheck": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill_PreCheck"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight"
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight",
+            "Weight": {
+              "Value": 0.2
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_SingleAttack",
+            "Weight": {
+              "Value": 0.5
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_WeakBreak",
+            "Weight": {
+              "Value": 0.3
+            }
+          }
+        ]
+      }
+    },
+    "Skill02": {
+      "ComplexSkillAIPreCheck": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill_PreCheck"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight",
+            "Weight": {
+              "Value": 0.5
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Add_Pearl_EchoPoint"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Add_Pearl_Heal"
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "SkillBasicPower": {
+          "Value": 0.1
+        },
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Add_Pearl_EchoPoint"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Add_Pearl_Heal"
+          }
+        ]
+      }
+    },
+    "Skill03": {
+      "AlwaysDoAutoLock": true,
+      "AutoLockType": "ScoreOfSource",
+      "AutoLockBySource": {
+        "SkillBasicPower": {
+          "Value": 60
+        },
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AutoLock_Default"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Ultra_Common_ImmediateRelease"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddpP_Pearl_CompareDPTWithDamageCarry",
+            "Weight": {
+              "Value": 1.2
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Add_Pearl_BaseType"
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "SkillBasicPower": {
+          "Value": 60
+        },
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultUltra"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Ultra_Common_ImmediateRelease"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddpP_Pearl_CompareDPTWithDamageCarry",
+            "Weight": {
+              "Value": 1.2
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Add_Pearl_BaseType"
+          }
+        ]
+      },
+      "AIUltraSkillPriority": "OnlyBuff"
+    },
+    "Skill11": {
+      "ComplexSkillAIPreCheck": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill_PreCheck"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight"
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_SingleAttack",
+            "Weight": {
+              "Value": 0.1
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_WeakBreak",
+            "Weight": {
+              "Value": 0.2
+            }
+          }
+        ]
+      }
+    },
+    "Skill12": {
+      "ComplexSkillAIPreCheck": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill_PreCheck"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight"
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_SingleAttack",
+            "Weight": {
+              "Value": 0.1
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_WeakBreak",
+            "Weight": {
+              "Value": 0.2
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -432,11 +432,65 @@
       ]
     },
     {
+      "Modifiers": {
+        "MGridFight_Equipment_Emblem_2012_SkillModelHidden": {
+          "BehaviorFlagList": [
+            "RemoveWhenCasterDead"
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnCreate",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetEntityVisible",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "UniqueKey": "GridFight_Equipment_Emblem_2012_SkillModelHidden"
+                }
+              ]
+            },
+            {
+              "Event": "OnDestroy",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetEntityVisible",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Visible": true,
+                  "UniqueKey": "GridFight_Equipment_Emblem_2012_SkillModelHidden"
+                }
+              ]
+            },
+            {
+              "Event": "OnListenElationTimeEnd",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.RemoveSelfModifier"
+                }
+              ]
+            }
+          ]
+        }
+      },
       "Name": "GridFight_Equipment_Emblem_2012_Insert",
       "TargetInfo": {
         "TargetType": "Caster"
       },
       "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MGridFight_Equipment_Emblem_2012_SkillModelHidden"
+          }
+        },
         {
           "$type": "RPG.GameCore.SetTeamFormation",
           "Team": "TeamDark",
@@ -711,6 +765,16 @@
                 -505927375
               ]
             }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.RemoveModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MGridFight_Equipment_Emblem_2012_SkillModelHidden"
           }
         }
       ],
@@ -1949,28 +2013,12 @@
           ],
           "_CallbackList": [
             {
-              "Event": "OnListenCharacterCreate",
+              "Event": "OnCreate",
               "CallbackConfig": [
                 {
-                  "$type": "RPG.GameCore.AddModifier",
-                  "TargetType": {
-                    "$type": "RPG.GameCore.TargetAlias",
-                    "Alias": "ModifierOwnerEntity"
-                  },
-                  "ModifierName": {
-                    "Value": "MGridFight_Equipment_SilverWolf999_3StarUltraMode_LoseHp"
-                  },
-                  "DynamicValues": {
-                    "MDF_LoseHPRatio": {
-                      "IsDynamic": true,
-                      "PostfixExpr": {
-                        "OpCodes": "AQAR",
-                        "FixedValues": [],
-                        "DynamicHashes": [
-                          -1247874036
-                        ]
-                      }
-                    }
+                  "$type": "RPG.GameCore.OwnerEntityAddAbility",
+                  "AbilityName": {
+                    "Value": "GridFight_Equipment_SilverWolf999_UltraMode_LoseHP"
                   }
                 }
               ]
@@ -2058,37 +2106,30 @@
                   },
                   "TaskList": [
                     {
-                      "$type": "RPG.GameCore.TriggerEffect",
-                      "TargetType": {
+                      "$type": "RPG.GameCore.TurnInsertAbility",
+                      "AbilityName": {
+                        "Value": "GridFight_Equipment_SilverWolf999_UltraMode_LoseHP"
+                      },
+                      "AbilityTarget": {
                         "$type": "RPG.GameCore.TargetAlias",
                         "Alias": "ParamEntity"
                       },
-                      "EffectPath": "Effects/Eff_Prefab/Eff_BattleEvent/Eff_Rogue_Ruin/Eff_BattleEvent_Rogue_Ruin_Hit01.prefab"
-                    },
-                    {
-                      "$type": "RPG.GameCore.LoseHPByRatio",
-                      "TargetType": {
-                        "$type": "RPG.GameCore.TargetAlias",
-                        "Alias": "ParamEntity"
-                      },
-                      "DamageType": "Imaginary",
-                      "RatioType": "MaxHP",
-                      "Ratio": {
-                        "IsDynamic": true,
-                        "PostfixExpr": {
-                          "OpCodes": "AQAR",
-                          "FixedValues": [],
-                          "DynamicHashes": [
-                            -1247874036
-                          ]
+                      "InsertAbilityPriority": "AvatarInsertAttackSelf",
+                      "DynamicValues": {
+                        "MDF_LoseHPRatio": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1247874036
+                            ]
+                          }
                         }
                       },
-                      "Floor": {
-                        "IsDynamic": false,
-                        "FixedValue": {
-                          "Value": 1
-                        }
-                      }
+                      "OwnerAliveState": "Anyone",
+                      "TargetAliveState": "Mask_AliveOrLimbo",
+                      "CanRunOnUnselectableTarget": true
                     }
                   ]
                 }
@@ -2113,14 +2154,15 @@
                   },
                   "SuccessTaskList": [
                     {
-                      "$type": "RPG.GameCore.AddModifier",
-                      "TargetType": {
+                      "$type": "RPG.GameCore.TurnInsertAbility",
+                      "AbilityName": {
+                        "Value": "GridFight_Equipment_SilverWolf999_UltraMode_LoseHP"
+                      },
+                      "AbilityTarget": {
                         "$type": "RPG.GameCore.TargetAlias",
-                        "Alias": "ModifierOwnerEntity"
+                        "Alias": "ParamEntity"
                       },
-                      "ModifierName": {
-                        "Value": "MGridFight_Equipment_SilverWolf999_3StarUltraMode_LoseHp"
-                      },
+                      "InsertAbilityPriority": "AvatarInsertAttackSelf",
                       "DynamicValues": {
                         "MDF_LoseHPRatio": {
                           "IsDynamic": true,
@@ -2132,7 +2174,10 @@
                             ]
                           }
                         }
-                      }
+                      },
+                      "OwnerAliveState": "Anyone",
+                      "TargetAliveState": "Mask_AliveOrLimbo",
+                      "CanRunOnUnselectableTarget": true
                     }
                   ]
                 }
@@ -2210,6 +2255,57 @@
           }
         }
       ]
+    },
+    {
+      "Name": "GridFight_Equipment_SilverWolf999_UltraMode_LoseHP",
+      "TargetInfo": {
+        "TargetType": "InherentTargetEntity"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_BattleEvent/Eff_Rogue_Ruin/Eff_BattleEvent_Rogue_Ruin_Hit01.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LoseHPByRatio",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "DamageType": "Imaginary",
+          "RatioType": "MaxHP",
+          "Ratio": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                -1247874036
+              ]
+            }
+          },
+          "Floor": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "-1247874036": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
     }
   ],
   "GlobalModifiers": {

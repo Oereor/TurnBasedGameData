@@ -1,0 +1,424 @@
+{
+  "$type": "RPG.GameCore.BattleEventConfig",
+  "DamageType": "Fire",
+  "AIPath": "Config/ConfigAI/Avatar_ComplexSkilll_AutoFight_AI.json",
+  "MaxSP": 130,
+  "ResourceLoadOption": "DynamicLoadOnAction",
+  "SomatoType": "MiddleAvatar",
+  "BuffPanelOffset": {
+    "X": "Infinity",
+    "Y": "Infinity",
+    "Z": "Infinity"
+  },
+  "HitBoxWidth": 0.3,
+  "HitBoxHeight": 1.5,
+  "Location": {
+    "Width": 0.8
+  },
+  "SaveModelWhenDead": true,
+  "AnimEventConfigList": [
+    "Config/ConfigAnimEvents/Avatar/Audio/Avatar_Constance_00_Audio_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Designer/Avatar_Constance_00_Designer_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/DesignerBaked/Avatar_Constance_00_Designer_AnimEvent_Baked.json",
+    "Config/ConfigAnimEvents/Avatar/Effect/Avatar_Constance_00_Effect_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Audio/Avatar_Common_ControllerVibration_AnimEvent.json"
+  ],
+  "SkillList": [
+    {
+      "Name": "Skill02",
+      "SkillType": "Skill",
+      "UseType": "SelectEntity",
+      "TargetInfo": {
+        "TargetType": "EnemySelect",
+        "SubTargetType": "TargetAdjoinEntity"
+      },
+      "UseReadyTransitAnim": true,
+      "ReadyAnimState": "Skill02_Ready_Loop",
+      "ReadyAnimWaitTime": 0.3,
+      "CameraConfig": {
+        "NormalConfig": {
+          "CameraState": "SelectDarkTeamEntity",
+          "IsLocalOffset": true,
+          "AnchorOffset": {
+            "X": -0.19,
+            "Y": -0.02,
+            "Z": -0.15
+          },
+          "AimOffset": {
+            "X": -3.05,
+            "Y": 0.7,
+            "Z": 0.01
+          },
+          "AnchorToAimAngle": 27
+        },
+        "BlendConfig": {
+          "BlendType": "Custom",
+          "CustomCurveName": "BlendCut_05to1",
+          "BlendTime": 1
+        }
+      },
+      "EntryAbility": "BattleEvent_GridFight_S2_Constance_00_Skill02_Phase01",
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddpP_Common_SelfNeighbour",
+            "Weight": {
+              "Value": 0.8
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Sam_SingleAttack",
+            "Weight": {
+              "Value": 0.2
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Skill03",
+      "SkillType": "Ultra",
+      "UseType": "SelectEntity",
+      "TargetInfo": {
+        "TargetType": "AllEnemy"
+      },
+      "SkillNameHUD": false,
+      "ReadyAnimState": "Skill03_Ready",
+      "EntryAbility": "BattleEvent_GridFight_S2_Constance_00_Skill03_Phase01",
+      "ComplexSkillAI": {
+        "SkillBasicPower": {
+          "Value": 90
+        },
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultUltra"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Ultra_Common_ImmediateRelease"
+          }
+        ]
+      },
+      "AIUltraSkillPriority": "DamageAndBuff"
+    },
+    {
+      "Name": "SkillP01",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "EntryAbility": "BattleEvent_GridFight_S2_Constance_00_PassiveSkill01"
+    },
+    {
+      "Name": "SkillPC01",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "EntryAbility": "BattleEvent_GridFight_S2_Constance_00_PC_PassiveSkill01"
+    },
+    {
+      "Name": "PassiveSkill02",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "EntryAbility": "BattleEvent_GridFight_Common_PassiveSkill"
+    }
+  ],
+  "AbilityList": [
+    "BattleEvent_GridFight_Common_PassiveSkill"
+  ],
+  "SkillAbilityList": [
+    {
+      "Skill": "Skill02",
+      "AbilityList": [
+        "Avatar_Constance_00_Skill02_Camera",
+        "BattleEvent_GridFight_S2_Constance_00_Skill02_Phase01",
+        "BattleEvent_GridFight_S2_Constance_00_Skill02_Phase02"
+      ]
+    },
+    {
+      "Skill": "Skill03",
+      "AbilityList": [
+        "Avatar_Constance_00_Skill03_Camera",
+        "BattleEvent_GridFight_S2_Constance_00_Skill03_Phase01",
+        "BattleEvent_GridFight_S2_Constance_00_Skill03_Phase02"
+      ]
+    },
+    {
+      "Skill": "SkillP01",
+      "AbilityList": [
+        "BattleEvent_GridFight_S2_Constance_00_PassiveSkill01",
+        "BattleEvent_GridFight_S2_Constance_00_Insert_SelectTarget",
+        "Avatar_Constance_00_Insert_Camera",
+        "BattleEvent_GridFight_S2_Constance_00_Insert_Phase01",
+        "BattleEvent_GridFight_S2_Constance_00_Insert_Phase02"
+      ]
+    },
+    {
+      "Skill": "SkillPC01",
+      "AbilityList": [
+        "BattleEvent_GridFight_S2_Constance_00_PC_PassiveSkill01"
+      ]
+    }
+  ],
+  "DynamicValues": {
+    "Floats": {
+      "582796324": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-1237070130": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-41349514": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-1373485657": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "1250303681": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-1847083384": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 0
+        }
+      },
+      "-640676555": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 1
+        }
+      },
+      "-56289053": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 0
+        }
+      },
+      "242054458": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 1
+        }
+      },
+      "122252817": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 2
+        }
+      },
+      "-1538135745": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 3
+        }
+      },
+      "1246667513": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 0
+        }
+      },
+      "591869258": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 1
+        }
+      },
+      "-516038353": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 2
+        }
+      },
+      "694609033": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 3
+        }
+      },
+      "-2132840273": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 4
+        }
+      },
+      "1510607124": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 5
+        }
+      },
+      "-918470521": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 6
+        }
+      },
+      "-1202365528": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 7
+        }
+      },
+      "366972335": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 8
+        }
+      },
+      "-784418151": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "135282512": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 0
+        }
+      },
+      "-1595347263": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 1
+        }
+      },
+      "1621543772": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 2
+        }
+      },
+      "-1339704277": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 3
+        }
+      },
+      "-1768248379": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank02",
+          "Index": 0
+        }
+      },
+      "-941000596": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank02",
+          "Index": 1
+        }
+      },
+      "90833091": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank04",
+          "Index": 0
+        }
+      },
+      "918233194": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank04",
+          "Index": 1
+        }
+      },
+      "-906831167": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank06",
+          "Index": 0
+        }
+      },
+      "-953908318": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank06",
+          "Index": 1
+        }
+      }
+    }
+  },
+  "WeaponType": "WP_Magic",
+  "DisableAnimEventLayers": [
+    "Riboon Layer"
+  ],
+  "AITagList": {
+    "Floats": {
+      "-447313187": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-2126289379": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "762466": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-2007610612": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      }
+    }
+  },
+  "CastShadow": "True"
+}

@@ -1,0 +1,345 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "Avatar_GridFight_S2_MortenaxBlade_00_SkillPC01_EquipStat": {
+          "_CallbackList": [
+            {
+              "Event": "OnEnterBattle",
+              "Priority": -90,
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "GridFight_S2_MortenaxBlade_00_ForgeReassign"
+                }
+              ]
+            }
+          ]
+        },
+        "Avatar_GridFight_S2_MortenaxBlade_00_SkillPC01_ForgeSword": {
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.ModifierAttachEffect",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Avatar/Eff_MortenaxBlade_00/Eff_GridFight_Avatar_Eff_MortenaxBlade_00_blade.prefab"
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValueByGridFightCustomProperty",
+                  "DynamicKey": "MDF_EquipCount",
+                  "CustomType": {
+                    "EnumIndex": 2,
+                    "Value": 103
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQABAQECBAIR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -835519204,
+                        1894233714,
+                        972448323
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "MDF_PropertyValue"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.StackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "AllDamageTypeAddedRatio",
+                  "PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        2128130574
+                      ]
+                    }
+                  },
+                  "IsRefresh": true
+                },
+                {
+                  "$type": "RPG.GameCore.InitGridFightStatisticsBinding",
+                  "OnDynamicEquipmentTrigger": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByChangeValue",
+                      "DynamicKey": "MDF_EquipDelta"
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQIR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            972448323,
+                            1313057482
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_EquipCount"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "DynamicKey": {
+                          "Value": "MDF_EquipDelta"
+                        },
+                        "CompareType": "Greater",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0
+                          }
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.SetDynamicValue",
+                          "Value": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQECBAIR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                -835519204,
+                                1894233714,
+                                972448323
+                              ]
+                            }
+                          },
+                          "DynamicKey": {
+                            "Value": "MDF_PropertyValue"
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.StackProperty",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          },
+                          "Property": "AllDamageTypeAddedRatio",
+                          "PropertyValue": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                2128130574
+                              ]
+                            }
+                          },
+                          "IsRefresh": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnAfterAttack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "PursuedDamage_PerformanceDelay",
+                  "ParamTarget": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AttackTargetList"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.Retarget",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AttackTargetList.GetAliveOnly"
+                  },
+                  "ByRandom": true,
+                  "MaxNumber": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.DamageByAttackProperty",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "AttackProperty": {
+                        "$type": "RPG.GameCore.AttackData",
+                        "DamageType": {
+                          "SourceType": "ReadTargetType",
+                          "ReadTargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ModifierOwnerEntity"
+                          }
+                        },
+                        "FormulaType": "ByMaxHP",
+                        "DamagePercentage": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQECBAIR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              2115417678,
+                              -1922558158,
+                              972448323
+                            ]
+                          }
+                        },
+                        "AttackType": "Pursued",
+                        "HitAnimation": "Hit",
+                        "HitEffect": "Effects/Eff_Prefab/Eff_GridFight/Eff_Avatar/Eff_MortenaxBlade_00/Eff_GridFight_Avatar_Eff_MortenaxBlade_00_blade_decline.prefab"
+                      },
+                      "CanTriggerLastKill": true,
+                      "DisplayData": {
+                        "DitherRangeX": 0,
+                        "DitherRangeY": 0,
+                        "AdditionalDisplay": {
+                          "UIMessageHeight": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0
+                            }
+                          },
+                          "DitherRangeX": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.05
+                            }
+                          },
+                          "DitherRangeY": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.05
+                            }
+                          }
+                        }
+                      },
+                      "PerformanceDelay": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1854514093
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "972448323": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1313057482": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "2128130574": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "Avatar_GridFight_S2_MortenaxBlade_00_SkillPC01",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnAdd": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "Avatar_GridFight_S2_MortenaxBlade_00_SkillPC01_EquipStat"
+          }
+        }
+      ]
+    }
+  ],
+  "GlobalTemplates": [
+    {
+      "Name": "GridFight_S2_MortenaxBlade_00_ForgeReassign",
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllLightTeam.RemoveServant.RemoveBattleEvent + GridFight_AllBackEnd.RemoveBEServant"
+          },
+          "Predicate": {
+            "$type": "RPG.GameCore.ByGridFightCompareRoleExtInfo",
+            "ExtInfoType": "MortenaxBlade",
+            "TargetEntity": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "ParamEntity"
+            }
+          },
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ModifierName": {
+                "Value": "Avatar_GridFight_S2_MortenaxBlade_00_SkillPC01_ForgeSword"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

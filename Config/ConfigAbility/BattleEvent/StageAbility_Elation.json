@@ -21,7 +21,8 @@
         {
           "$type": "RPG.GameCore.PreloadBattleEventByID",
           "BattleEventID": [
-            70001
+            70001,
+            70002
           ]
         }
       ]
@@ -582,8 +583,7 @@
           "$type": "RPG.GameCore.ShowFrameCaptureUI",
           "Type": "Dissolve",
           "Delay": 1.5,
-          "FadeDuration": 0.3,
-          "UseRecord": true
+          "FadeDuration": 0.3
         },
         {
           "$type": "RPG.GameCore.ShowUI",
@@ -626,6 +626,7 @@
             "$type": "RPG.GameCore.TargetAlias",
             "Alias": "ElationTime_AllLightTeamWithAllLightTeamUnselectablewithAllBackEnd"
           },
+          "ServantState": "DefaultFollow",
           "CustomCenterTargetType": {
             "$type": "RPG.GameCore.TargetAlias",
             "Alias": "Caster"
@@ -1491,14 +1492,30 @@
           ],
           "FailedTaskList": [
             {
-              "$type": "JDOLDFECMPL",
-              "AJHHCOHFIFA": {
-                "IsDynamic": false,
-                "FixedValue": {
-                  "Value": 0
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByIsContainModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "LevelEntity"
+                },
+                "ModifierName": {
+                  "Value": "MLevel_ElationTime_NoConsume"
                 }
               },
-              "FKCKKFALPBK": "DADCFBHGLOH"
+              "SuccessTaskList": [],
+              "FailedTaskList": [
+                {
+                  "$type": "JDOLDFECMPL",
+                  "AJHHCOHFIFA": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "FKCKKFALPBK": "DADCFBHGLOH"
+                }
+              ]
             }
           ]
         },
@@ -1564,10 +1581,8 @@
         },
         {
           "$type": "RPG.GameCore.ShowFrameCaptureUI",
-          "Type": "Default",
           "Delay": 2.46,
-          "FadeDuration": 0.2,
-          "UseRecord": true
+          "FadeDuration": 0.2
         },
         {
           "$type": "MFHGBPDJJPE",
@@ -1694,16 +1709,13 @@
                     "Alias": "AllLightTeam"
                   },
                   "Predicate": {
-                    "$type": "RPG.GameCore.ByCompareCharacterID",
+                    "$type": "RPG.GameCore.ByIsContainModifier",
                     "TargetType": {
                       "$type": "RPG.GameCore.TargetAlias",
-                      "Alias": "ParamEntity"
+                      "Alias": "LevelEntity"
                     },
-                    "TargetCharacterID": {
-                      "IsDynamic": false,
-                      "FixedValue": {
-                        "Value": 1511
-                      }
+                    "ModifierName": {
+                      "Value": "MAvatar_GlobalSkill_Nihilux_10_Main"
                     }
                   },
                   "MaxNumber": {
@@ -2332,12 +2344,7 @@
                   }
                 ]
               },
-              "SuccessTaskList": [
-                {
-                  "$type": "MFHGBPDJJPE",
-                  "FGFILICHKOH": true
-                }
-              ]
+              "SuccessTaskList": []
             }
           ]
         },
@@ -2385,12 +2392,30 @@
               "$type": "PCKCEGKJFAO"
             },
             {
-              "$type": "RPG.GameCore.ShowBattleScreenEffect",
-              "Type": "Common",
-              "Active": true,
-              "UniqueName": "ElationBattle_BE",
-              "Priority": "Activity",
-              "EffectPath": "UI/Battle/Widget/ScreenEffect/Screen_Joy.prefab"
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareBattleEventID",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ModifierOwnerEntity"
+                },
+                "TargetBattleEventID": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 70001
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.ShowBattleScreenEffect",
+                  "Type": "Common",
+                  "Active": true,
+                  "UniqueName": "ElationBattle_BE",
+                  "Priority": "Activity",
+                  "EffectPath": "UI/Battle/Widget/ScreenEffect/Screen_Joy.prefab"
+                }
+              ]
             },
             {
               "$type": "RPG.GameCore.GlobalModifyInsertAbilityPriority",
@@ -2528,14 +2553,30 @@
                   }
                 },
                 {
-                  "$type": "JDOLDFECMPL",
-                  "AJHHCOHFIFA": {
-                    "IsDynamic": false,
-                    "FixedValue": {
-                      "Value": 0
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "LevelEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MLevel_ElationTime_NoConsume"
                     }
                   },
-                  "FKCKKFALPBK": "DADCFBHGLOH"
+                  "SuccessTaskList": [],
+                  "FailedTaskList": [
+                    {
+                      "$type": "JDOLDFECMPL",
+                      "AJHHCOHFIFA": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      },
+                      "FKCKKFALPBK": "DADCFBHGLOH"
+                    }
+                  ]
                 }
               ]
             }
@@ -2545,28 +2586,44 @@
           "Event": "OnListenElationTimeWaitEnd",
           "CallbackConfig": [
             {
-              "$type": "RPG.GameCore.TurnInsertAbility",
-              "AbilityName": {
-                "Value": "BattleEventAbility_Elation_00_Skill42_EndElationTime"
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByIsContainModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "LevelEntity"
+                },
+                "ModifierName": {
+                  "Value": "MAvatar_GlobalSkill_Nihilux_10_Main"
+                }
               },
-              "AbilityTarget": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "ModifierOwnerEntity"
-              },
-              "InsertAbilityPriority": "LevelPerformAvatarInsert",
-              "CanRunOnUnselectableTarget": true,
-              "CanRunAfterFightFinish": true,
-              "Silence": true,
-              "IgnoreMuteAction": true,
-              "CustomFlags": [
+              "SuccessTaskList": [],
+              "FailedTaskList": [
                 {
-                  "EnumIndex": 9,
-                  "Value": 2
+                  "$type": "RPG.GameCore.TurnInsertAbility",
+                  "AbilityName": {
+                    "Value": "BattleEventAbility_Elation_00_Skill42_EndElationTime"
+                  },
+                  "AbilityTarget": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "InsertAbilityPriority": "LevelPerformAvatarInsert",
+                  "CanRunOnUnselectableTarget": true,
+                  "CanRunAfterFightFinish": true,
+                  "Silence": true,
+                  "IgnoreMuteAction": true,
+                  "CustomFlags": [
+                    {
+                      "EnumIndex": 9,
+                      "Value": 2
+                    }
+                  ]
+                },
+                {
+                  "$type": "FCCIDFIMONC"
                 }
               ]
-            },
-            {
-              "$type": "FCCIDFIMONC"
             }
           ]
         }
@@ -2803,7 +2860,9 @@
               "$type": "RPG.GameCore.PredicateTaskList",
               "Predicate": {
                 "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                "ModifierName": "MBattleEvent_Elation_BaseSpeedNeedRefresh"
+                "ModifierName": {
+                  "Value": "MBattleEvent_Elation_BaseSpeedNeedRefresh"
+                }
               },
               "SuccessTaskList": [
                 {
@@ -3220,7 +3279,9 @@
               "$type": "RPG.GameCore.PredicateTaskList",
               "Predicate": {
                 "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                "ModifierName": "MBattleEvent_Elation_BaseSpeedNeedRefresh"
+                "ModifierName": {
+                  "Value": "MBattleEvent_Elation_BaseSpeedNeedRefresh"
+                }
               },
               "SuccessTaskList": [
                 {
@@ -4160,12 +4221,6 @@
               "Type": "None",
               "Index": 0
             }
-          },
-          "-1814063556": {
-            "ReadInfo": {
-              "Type": "None",
-              "Index": 0
-            }
           }
         }
       }
@@ -4626,6 +4681,9 @@
           }
         }
       ]
+    },
+    "MLevel_ElationTime_NoConsume": {
+      "Stacking": "ReplaceByCaster"
     }
   },
   "GlobalTemplates": [],
@@ -4911,17 +4969,35 @@
         {
           "$type": "RPG.GameCore.TargetFilter",
           "Predicate": {
-            "$type": "RPG.GameCore.ByCompareBattleEventID",
-            "TargetType": {
-              "$type": "RPG.GameCore.TargetAlias",
-              "Alias": "ParamEntity"
-            },
-            "TargetBattleEventID": {
-              "IsDynamic": false,
-              "FixedValue": {
-                "Value": 70001
+            "$type": "RPG.GameCore.ByAny",
+            "PredicateList": [
+              {
+                "$type": "RPG.GameCore.ByCompareBattleEventID",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                },
+                "TargetBattleEventID": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 70001
+                  }
+                }
+              },
+              {
+                "$type": "RPG.GameCore.ByCompareBattleEventID",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                },
+                "TargetBattleEventID": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 70002
+                  }
+                }
               }
-            }
+            ]
           }
         }
       ]
@@ -4999,6 +5075,17 @@
                 "ModifierName": {
                   "Value": "MGridFight_Equipment_Emblem_2012_ExtraElationSkill"
                 }
+              },
+              {
+                "$type": "RPG.GameCore.ByAvatarBaseType",
+                "BaseTypeList": [
+                  "Elation"
+                ],
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                },
+                "Inverse": true
               },
               {
                 "$type": "RPG.GameCore.ByIsContainModifier",

@@ -279,34 +279,6 @@
           ]
         },
         {
-          "$type": "RPG.GameCore.PredicateTaskList",
-          "Predicate": {
-            "$type": "RPG.GameCore.ByCompareMonsterID",
-            "TargetType": {
-              "$type": "RPG.GameCore.TargetAlias",
-              "Alias": "Caster"
-            },
-            "TargetMonsterID": {
-              "IsDynamic": false,
-              "FixedValue": {
-                "Value": 4014022
-              }
-            }
-          },
-          "SuccessTaskList": [
-            {
-              "$type": "RPG.GameCore.AddModifier",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "Caster"
-              },
-              "ModifierName": {
-                "Value": "Monster_W4_Hearse_00_NikadoryLifeLink"
-              }
-            }
-          ]
-        },
-        {
           "$type": "RPG.GameCore.SetComfortZoneWidthOverride",
           "Value": {
             "IsDynamic": false,
@@ -6625,53 +6597,6 @@
         }
       ]
     },
-    "Monster_W4_Hearse_00_NikadoryLifeLink": {
-      "BehaviorFlagList": [
-        "KeepOnDeathrattle"
-      ],
-      "_CallbackList": [
-        {
-          "Event": "OnCreate",
-          "CallbackConfig": [
-            {
-              "$type": "RPG.GameCore.LockTargetHP",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "Monster_W4_Nikadory_00_Self"
-              },
-              "LockKey": "Monster_W4_Hearse_00_NikadoryLifeLink",
-              "Threshold": {
-                "IsDynamic": false,
-                "FixedValue": {
-                  "Value": 0
-                }
-              }
-            }
-          ]
-        },
-        {
-          "Event": "OnBeforeDying",
-          "CallbackConfig": [
-            {
-              "$type": "RPG.GameCore.UnlockTargetHP",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "Monster_W4_Nikadory_00_Self"
-              },
-              "LockKey": "Monster_W4_Hearse_00_NikadoryLifeLink"
-            },
-            {
-              "$type": "RPG.GameCore.ForceKill",
-              "TargetType": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "Monster_W4_Nikadory_00_Self"
-              },
-              "CanOverkill": false
-            }
-          ]
-        }
-      ]
-    },
     "Monster_W4_Hearse_00_Passive": {
       "BehaviorFlagList": [
         "KeepOnDeathrattle"
@@ -7234,6 +7159,16 @@
           "Event": "OnBeforeDying",
           "CallbackConfig": [
             {
+              "$type": "RPG.GameCore.RemoveModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllLightTeamWithAllUnselectableLightTeam.RemoveServant"
+              },
+              "ModifierName": {
+                "Value": "Monster_W4_HearsePart_00_BlackBlood"
+              }
+            },
+            {
               "$type": "RPG.GameCore.Retarget",
               "TargetType": {
                 "$type": "RPG.GameCore.TargetAlias",
@@ -7361,7 +7296,9 @@
               "$type": "RPG.GameCore.PredicateTaskList",
               "Predicate": {
                 "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                "ModifierName": "Monster_W4_Hearse_00_ChangeDelayEffect"
+                "ModifierName": {
+                  "Value": "Monster_W4_Hearse_00_ChangeDelayEffect"
+                }
               },
               "SuccessTaskList": [
                 {
@@ -9818,7 +9755,9 @@
               "$type": "RPG.GameCore.PredicateTaskList",
               "Predicate": {
                 "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                "ModifierName": "Monster_W4_Hearse_00_BattleScore1Count"
+                "ModifierName": {
+                  "Value": "Monster_W4_Hearse_00_BattleScore1Count"
+                }
               },
               "SuccessTaskList": [
                 {
@@ -9859,7 +9798,9 @@
                 "PredicateList": [
                   {
                     "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                    "ModifierName": "Monster_W4_Hearse_00_BattleScore2Count"
+                    "ModifierName": {
+                      "Value": "Monster_W4_Hearse_00_BattleScore2Count"
+                    }
                   },
                   {
                     "$type": "RPG.GameCore.ByCompareModifierValue",

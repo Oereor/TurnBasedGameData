@@ -1,0 +1,175 @@
+{
+  "GroupsMap": {
+    "AddpP_GridFight_S2_Mar_7th_10_CompareFrontPower": {
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAISourcePropertyFormation",
+            "ValueList": [
+              {
+                "ValueName": "FrontPower",
+                "Property": "ExtraTotalFrontPower"
+              }
+            ],
+            "Expression": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  1609173678
+                ]
+              }
+            }
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "xmax": {
+                  "Value": 1000000
+                },
+                "ymax": {
+                  "Value": 1000000
+                }
+              }
+            ]
+          }
+        },
+        {
+          "CombineOperator": "Mul",
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAISourceAITag",
+            "DynamicValueKey": "DamageCarry"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 0.01
+                },
+                "xmax": {
+                  "Value": 0.5
+                },
+                "ymax": {
+                  "Value": 0.01
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 0.5
+                },
+                "ymin": {
+                  "Value": 1
+                },
+                "xmax": {
+                  "Value": 5
+                },
+                "ymax": {
+                  "Value": 1
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 5
+                },
+                "ymin": {
+                  "Value": 10
+                },
+                "xmax": {
+                  "Value": 50
+                },
+                "ymax": {
+                  "Value": 10
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 50
+                },
+                "ymin": {
+                  "Value": 20
+                },
+                "xmax": {
+                  "Value": 1000
+                },
+                "ymax": {
+                  "Value": 20
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Mul_GridFight_S2_Mar_7th_10_AvoidServant": {
+      "CombineOperator": "Mul",
+      "Factors": [
+        {
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAISourceValueEvaluator",
+            "Value": {
+              "$type": "RPG.GameCore.VE_Group",
+              "ComputeType": "Max",
+              "Values": [
+                {
+                  "$type": "RPG.GameCore.VE_Predicate",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByTargetEntityType",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "EntityTypeMask": "Servant"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.VE_Predicate",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsBattleEventEntity",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "ExpectSubType": "BEServant"
+                  }
+                }
+              ]
+            }
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 1
+                },
+                "xmax": {
+                  "Value": 0.5
+                },
+                "ymax": {
+                  "Value": 1
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 0.5
+                },
+                "ymin": {
+                  "Value": 0.00010000006
+                },
+                "xmax": {
+                  "Value": 1
+                },
+                "ymax": {
+                  "Value": 0.00010000006
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

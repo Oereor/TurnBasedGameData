@@ -1,0 +1,547 @@
+{
+  "$type": "RPG.GameCore.BattleEventConfig",
+  "DamageType": "Physical",
+  "AIPath": "Config/ConfigAI/Avatar_ComplexSkilll_AutoFight_AI.json",
+  "MaxSP": 180,
+  "ResourceLoadOption": "DynamicLoadOnAction",
+  "SomatoType": "MiddleAvatar",
+  "BuffPanelOffset": {
+    "X": "Infinity",
+    "Y": "Infinity",
+    "Z": "Infinity"
+  },
+  "HitBoxWidth": 0.3,
+  "HitBoxHeight": 1.5,
+  "Location": {
+    "Width": 0.8,
+    "DisableEnemyFaceTo": true
+  },
+  "SaveModelWhenDead": true,
+  "AnimEventConfigList": [
+    "Config/ConfigAnimEvents/Avatar/DesignerBaked/Avatar_YaoGuang_00_Designer_AnimEvent_Baked.json",
+    "Config/ConfigAnimEvents/Avatar/Designer/Avatar_YaoGuang_00_Designer_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Effect/Avatar_YaoGuang_00_Effect_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Audio/Avatar_YaoGuang_00_Audio_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Designer/Avatar_Common_Designer_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Audio/Avatar_Common_ControllerVibration_AnimEvent.json"
+  ],
+  "SkillList": [
+    {
+      "Name": "Skill01",
+      "UseType": "SelectEntity",
+      "TargetInfo": {
+        "TargetType": "EnemySelect",
+        "SubTargetType": "TargetAdjoinEntity"
+      },
+      "UseReadyTransitAnim": true,
+      "ReadyAnimState": "Skill01_Ready",
+      "ReadyAnimWaitTime": 0.3,
+      "CameraConfig": {
+        "NormalConfig": {
+          "CameraState": "SelectDarkTeamEntity",
+          "IsLocalOffset": true,
+          "AnchorOffset": {
+            "X": 0.4,
+            "Y": 0.24,
+            "Z": -0.56
+          },
+          "AimOffset": {
+            "X": -2.8,
+            "Y": 0.45,
+            "Z": 0
+          },
+          "FollowRadius": 3,
+          "AnchorToAimAngle": 30,
+          "Dutch": 2
+        },
+        "BlendConfig": {
+          "BlendType": "Cut"
+        }
+      },
+      "CameraConfigAdded": {
+        "NormalConfig": {
+          "CameraState": "SelectDarkTeamEntity",
+          "IsLocalOffset": true,
+          "AnchorOffset": {
+            "X": 0.09,
+            "Y": 0.07,
+            "Z": -0.15
+          },
+          "AimOffset": {
+            "X": -1.82,
+            "Y": 0.42,
+            "Z": -0.12
+          },
+          "FollowRadius": 2.65,
+          "AnchorToAimAngle": 21.65
+        },
+        "BlendConfig": {
+          "BlendType": "Custom",
+          "CustomCurveName": "BlendCut_00to1",
+          "BlendTime": 1
+        }
+      },
+      "FormationType": "LightTeamSelectTarget",
+      "EntryAbility": "BattleEvent_GridFight_S2_YaoGuang_00_Skill01_Phase01",
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultNormalSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddpP_Common_SelfNeighbour",
+            "Weight": {
+              "Value": 10
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_StrongEnemiyPriority",
+            "Weight": {
+              "Value": 0.1
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_WeakBreak",
+            "Weight": {
+              "Value": 0.01
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Skill02",
+      "SkillType": "Skill",
+      "UseType": "SelectEntity",
+      "AlwaysDoAutoLock": true,
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "UseReadyTransitAnim": true,
+      "ReadyAnimState": "Skill02_Ready_Loop",
+      "ReadyAnimWaitTime": 0.3,
+      "CameraConfig": {
+        "NormalConfig": {
+          "CameraState": "SelectLightTeamEntity",
+          "AnchorOffset": {
+            "X": 0,
+            "Y": 1,
+            "Z": 0.5
+          },
+          "FollowDamp": 0.65,
+          "NeedCutBlending": true
+        },
+        "CloseupShotConfig": {},
+        "ShowEntityConfig": {
+          "ShowTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllTeamMember"
+          },
+          "IsAliveOnly": false
+        }
+      },
+      "FormationType": "LightTeamNormal",
+      "TeamFormationConfigTemplateName": "LowSpacing",
+      "EntryAbility": "BattleEvent_GridFight_S2_YaoGuang_00_Skill02_Phase01",
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight",
+            "Weight": {
+              "Value": 0.4
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Name": "Skill03",
+      "SkillType": "Ultra",
+      "UseType": "SelectEntity",
+      "TargetInfo": {
+        "TargetType": "AllTeamMember"
+      },
+      "SkillNameHUD": false,
+      "ReadyAnimState": "Skill03_Ready",
+      "TeamFormationConfigTemplateName": "LowSpacing",
+      "EntryAbility": "BattleEvent_GridFight_S2_YaoGuang_00_Skill03_Phase01",
+      "ComplexSkillAI": {
+        "SkillBasicPower": {
+          "Value": 100
+        },
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultUltra"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Ultra_Common_ImmediateRelease"
+          }
+        ]
+      },
+      "AIUltraSkillPriority": "InsertActionAndBuff"
+    },
+    {
+      "Name": "Skill04",
+      "SkillType": "Elation",
+      "UseType": "AutoUse",
+      "Tags": [
+        {
+          "EnumIndex": 8,
+          "Value": 1
+        }
+      ],
+      "TargetInfo": {
+        "TargetType": "AllEnemy"
+      },
+      "EntryAbility": "BattleEvent_GridFight_S2_YaoGuang_00_Skill04_Phase01"
+    },
+    {
+      "Name": "SkillP01",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "EntryAbility": "BattleEvent_GridFight_S2_YaoGuang_00_PassiveSkill01"
+    },
+    {
+      "Name": "SkillAha",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "SkillNameHUD": false,
+      "EntryAbility": "BattleEvent_GridFight_S2_YaoGuang_00_SkillAha"
+    },
+    {
+      "Name": "PassiveSkill02",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "EntryAbility": "BattleEvent_GridFight_Common_PassiveSkill"
+    }
+  ],
+  "AbilityList": [
+    "BattleEvent_GridFight_Common_PassiveSkill"
+  ],
+  "SkillAbilityList": [
+    {
+      "Skill": "Skill01",
+      "AbilityList": [
+        "Avatar_YaoGuang_00_Skill01_Camera",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill01_Phase01",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill01_Phase02"
+      ]
+    },
+    {
+      "Skill": "Skill02",
+      "AbilityList": [
+        "Avatar_YaoGuang_00_Skill02_Camera",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill02_Phase01",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill02_Phase02"
+      ]
+    },
+    {
+      "Skill": "Skill03",
+      "AbilityList": [
+        "Avatar_YaoGuang_00_Skill03_Camera",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill03_Phase01",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill03_Phase02"
+      ]
+    },
+    {
+      "Skill": "Skill04",
+      "AbilityList": [
+        "Avatar_YaoGuang_00_Skill04_Camera",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill04_Phase01",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Skill04_Phase02"
+      ]
+    },
+    {
+      "Skill": "SkillP01",
+      "AbilityList": [
+        "BattleEvent_GridFight_S2_YaoGuang_00_PassiveSkill01"
+      ]
+    },
+    {
+      "Skill": "SkillAha",
+      "AbilityList": [
+        "BattleEvent_GridFight_S2_YaoGuang_00_SkillAha",
+        "BattleEvent_GridFight_S2_YaoGuang_00_Nihilux_AhaArrival"
+      ]
+    }
+  ],
+  "DynamicValues": {
+    "Floats": {
+      "2113380857": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-1126825319": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill01",
+          "Index": 0
+        }
+      },
+      "-335668838": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill01",
+          "Index": 1
+        }
+      },
+      "74410599": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill01",
+          "Index": 2
+        }
+      },
+      "-1827730811": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 0
+        }
+      },
+      "-1283476204": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 1
+        }
+      },
+      "1091439654": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 0
+        }
+      },
+      "-1604553103": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 1
+        }
+      },
+      "238783065": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 2
+        }
+      },
+      "-1393817439": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 3
+        }
+      },
+      "-1888528088": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 4
+        }
+      },
+      "1072548578": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 5
+        }
+      },
+      "-1166503693": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill03",
+          "Index": 6
+        }
+      },
+      "1432123205": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 0
+        }
+      },
+      "683381255": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 1
+        }
+      },
+      "300245757": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 2
+        }
+      },
+      "400213120": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 3
+        }
+      },
+      "1900094277": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 4
+        }
+      },
+      "-234089861": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill04",
+          "Index": 0
+        }
+      },
+      "44875215": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill04",
+          "Index": 1
+        }
+      },
+      "896418039": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill04",
+          "Index": 2
+        }
+      },
+      "1400046584": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill04",
+          "Index": 3
+        }
+      },
+      "-81247018": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill04",
+          "Index": 4
+        }
+      },
+      "-1418453531": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill04",
+          "Index": 5
+        }
+      },
+      "-167704018": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "1544249947": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillAha",
+          "Index": 0
+        }
+      },
+      "1171845984": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillAha",
+          "Index": 1
+        }
+      },
+      "1947750702": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillAha",
+          "Index": 3
+        }
+      },
+      "1590397771": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 0
+        }
+      },
+      "1930102916": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 1
+        }
+      },
+      "-1845958681": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank04",
+          "Index": 0
+        }
+      },
+      "293474059": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank06",
+          "Index": 0
+        }
+      },
+      "924154113": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank06",
+          "Index": 1
+        }
+      }
+    }
+  },
+  "WeaponType": "WP_Magic",
+  "DisableAnimEventLayers": [
+    "Riboon Layer"
+  ],
+  "ElationConfigPath": "Config/ConfigCharacter/BattleEvent/GridFight/4.0/AvatarConfig/Avatar_GridFight_YaoGuang_00_ElationConfig.json",
+  "AITagList": {
+    "Floats": {
+      "-2126289379": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-2136914891": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      }
+    }
+  },
+  "CastShadow": "True"
+}

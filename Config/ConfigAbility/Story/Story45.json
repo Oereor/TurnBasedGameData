@@ -1,0 +1,638 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "Modifier_StageAbility_20551080": {
+          "_CallbackList": [
+            {
+              "Event": "OnListenTurnEnd",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCompareWaveCount",
+                        "CompareType": "Equal",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 2
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareTurnActionEntityTeamType",
+                        "Team": "TeamDark"
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.DeferCreateTrialPlayer",
+                      "SpecialPlayerIDList": [
+                        1011512
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                        "AvatarID": 1512
+                      },
+                      "ModifierName": {
+                        "Value": "Modifier_StageAbility_20551080_RobinS_AutoUltra"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.ModifySPNew",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                        "AvatarID": 1512
+                      },
+                      "FixedAddMaxSPRatio": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0.8
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.RemoveModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "Caster"
+                      },
+                      "ModifierName": {
+                        "Value": "Modifier_StageAbility_20551080"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnEnterBattle",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCompareWaveCount",
+                        "CompareType": "Equal",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.ModifySPNew",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetConcat",
+                        "Targets": [
+                          {
+                            "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                            "AvatarID": 1513
+                          }
+                        ]
+                      },
+                      "FixedAddMaxSPRatio": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0.65
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.ModifySPNew",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetConcat",
+                        "Targets": [
+                          {
+                            "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                            "AvatarID": 8009
+                          },
+                          {
+                            "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                            "AvatarID": 8010
+                          }
+                        ]
+                      },
+                      "FixedAddMaxSPRatio": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0.4
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Name": "StageAbility_20551080",
+      "OnAdd": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "Modifier_StageAbility_20551080"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Avatar_RobinS_00_Skill03_Insert_Phase01",
+      "TargetInfo": {
+        "TargetType": "InherentTargetEntity"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AlignTargetToTeamCenter",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "UseNormalFormation": true
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAnimState",
+          "AnimStateName": "Skill03"
+        },
+        {
+          "$type": "RPG.GameCore.ShowBattleUI"
+        },
+        {
+          "$type": "RPG.GameCore.HideLevelStage",
+          "IsHide": true
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityInherentTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "AbilityName": {
+            "Value": "Avatar_RobinS_00_Skill03_Insert_Camera"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityInherentTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "AbilityName": {
+            "Value": "Avatar_RobinS_00_Skill03_Insert_Phase02"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "AnimStateName": "Skill03",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.HideLevelStage"
+        },
+        {
+          "$type": "RPG.GameCore.ShowBattleUI",
+          "IsShow": true
+        }
+      ]
+    },
+    {
+      "Name": "Avatar_RobinS_00_Skill03_Insert_Phase02",
+      "TargetInfo": {
+        "TargetType": "InherentTargetEntity"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.SetEntityPosition",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "PosTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "OffsetX": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": -8.73
+            }
+          },
+          "OffsetY": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          },
+          "OffsetZ": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": -2.08
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "AnimStateName": "Skill03",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.693
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerUINotify",
+          "NotifyTypeName": "BattleTryShowAvatarPanel"
+        },
+        {
+          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+          "Name": "ReduceActionDelay",
+          "DynamicValues": {
+            "Arg0_NormalizedValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  -272421990
+                ]
+              }
+            }
+          },
+          "ParamTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_RobinS_00_Skill03_SpecialGuest"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.RemoveModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllLightTeam"
+          },
+          "ModifierName": {
+            "Value": "Modifier_Monster_W4_Claymore_04_Confine"
+          }
+        },
+        {
+          "$type": "CLMMOEFOCNP",
+          "OLOKHEMMGOH": {
+            "$type": "MBFDBNPKBBM",
+            "CFNAKPADAEB": "FFEPLIHOFLA",
+            "EIBLNHPLJIG": {
+              "HODEGKDKNIM": {
+                "Hash": 3753177872372648483
+              }
+            }
+          },
+          "JGMFFAEKMBP": {
+            "$type": "FKNPFPOFKPI",
+            "KIPAGNCANAJ": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 2
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_RobinS_00/Eff_Avatar_RobinS_00_Buff_03_02.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.ModifySPNew",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "Tag": {
+            "EnumIndex": 6,
+            "Value": 1
+          },
+          "FixedAddMaxSPRatio": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                -675219110
+              ]
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ModifySPNew",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AddRatio": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "AnimStateName": "Skill03",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.729
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AbilityTargetEntity"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_RobinS_00/Eff_Avatar_RobinS_00_Buff_03_01.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "AnimStateName": "Skill03",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.9
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TryStartConnectUltraSkillFrameCapture"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "AnimStateName": "Skill03",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.9625
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Avatar_RobinS_00_Skill03_Insert_Camera",
+      "TargetInfo": {
+        "TargetType": "InherentTargetEntity"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Camera/TimeLine/Avatar/Character_RobinS_00_Skill03_TimeLine.playable",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AbilityTargetEntity"
+              },
+              "Override": true
+            },
+            "BlendConfig": {
+              "BlendType": "Cut"
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "Skill03",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.47
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "CasterWithAbilityTargetEntity"
+              },
+              "IsTargetIgnoreCameraDither": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {
+    "Modifier_StageAbility_20551080_RobinS_AutoUltra": {
+      "_CallbackList": [
+        {
+          "Event": "OnCreate",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.OwnerEntityAddAbility",
+              "AbilityName": {
+                "Value": "Avatar_RobinS_00_Skill03_Insert_Phase01"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.OwnerEntityAddAbility",
+              "AbilityName": {
+                "Value": "Avatar_RobinS_00_Skill03_Insert_Phase02"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.OwnerEntityAddAbility",
+              "AbilityName": {
+                "Value": "Avatar_RobinS_00_Skill03_Insert_Camera"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByAny",
+                "PredicateList": [
+                  {
+                    "$type": "RPG.GameCore.ByIsTargetValid",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                      "AvatarID": 8009
+                    },
+                    "AliveOnly": true
+                  },
+                  {
+                    "$type": "RPG.GameCore.ByIsTargetValid",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                      "AvatarID": 8010
+                    },
+                    "AliveOnly": true
+                  }
+                ]
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TurnInsertAbility",
+                  "AbilityName": {
+                    "Value": "Avatar_RobinS_00_Skill03_Insert_Phase01"
+                  },
+                  "AbilityTarget": {
+                    "$type": "RPG.GameCore.TargetConcat",
+                    "Targets": [
+                      {
+                        "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                        "AvatarID": 8009
+                      },
+                      {
+                        "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                        "AvatarID": 8010
+                      }
+                    ]
+                  },
+                  "InsertAbilityPriority": "LevelPerformAvatar",
+                  "ShowInActionBar": true,
+                  "IgnoreMuteAction": true
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.TurnInsertAbility",
+                  "AbilityName": {
+                    "Value": "Avatar_RobinS_00_Skill03_Insert_Phase01"
+                  },
+                  "AbilityTarget": {
+                    "$type": "RPG.GameCore.TargetConcat",
+                    "Targets": [
+                      {
+                        "$type": "RPG.GameCore.TargetFetchAvatarByID",
+                        "AvatarID": 1513
+                      }
+                    ]
+                  },
+                  "InsertAbilityPriority": "LevelPerformAvatar",
+                  "ShowInActionBar": true,
+                  "IgnoreMuteAction": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Event": "OnInsertAbilityFinish",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareParamString",
+                "CompareValue": {
+                  "Value": "Avatar_RobinS_00_Skill03_Insert_Phase01"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerAllEnemy"
+                  },
+                  "ModifierName": {
+                    "Value": "Modifier_Monster_W4_Claymore_04_ExitCharge"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.OwnerEntityRemoveAbility",
+                  "AbilityName": {
+                    "Value": "Avatar_RobinS_00_Skill03_Insert_Phase01"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.OwnerEntityRemoveAbility",
+                  "AbilityName": {
+                    "Value": "Avatar_RobinS_00_Skill03_Insert_Phase02"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.OwnerEntityRemoveAbility",
+                  "AbilityName": {
+                    "Value": "Avatar_RobinS_00_Skill03_Insert_Camera"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.RemoveModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "Modifier_StageAbility_20551080_RobinS_AutoUltra"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

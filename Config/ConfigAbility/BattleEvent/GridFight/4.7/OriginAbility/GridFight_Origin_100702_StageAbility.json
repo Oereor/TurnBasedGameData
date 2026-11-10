@@ -1,0 +1,2403 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "MGridFight_Origin_100702_BE_Basic": {
+          "_CallbackList": [
+            {
+              "Event": "OnCreate",
+              "CallbackConfig": []
+            },
+            {
+              "Event": "OnPhase1",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "_GridFightTraitLv"
+                    },
+                    "CompareType": "GreaterEqual",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 4
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TurnInsertAbility",
+                      "AbilityName": {
+                        "Value": "StageAbility_GridFight_Origin_100702_BE_Insert"
+                      },
+                      "AbilityTarget": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "AllDarkTeam"
+                      },
+                      "DynamicValues": {
+                        "_GridFightTraitLv": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              1332264807
+                            ]
+                          }
+                        },
+                        "_LevelBaseAttack": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              1189762890
+                            ]
+                          }
+                        },
+                        "_DamagePercentage": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              866240523
+                            ]
+                          }
+                        },
+                        "ADF_6": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              2029039937
+                            ]
+                          }
+                        }
+                      },
+                      "CanRunOnUnselectableTarget": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "DynamicKey": {
+                          "Value": "_GridFightTraitLv"
+                        },
+                        "CompareType": "Greater",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0
+                          }
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.TurnInsertAbility",
+                          "AbilityName": {
+                            "Value": "StageAbility_GridFight_Origin_100702_BE_Insert_Normal"
+                          },
+                          "AbilityTarget": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "AllDarkTeam"
+                          },
+                          "DynamicValues": {
+                            "_GridFightTraitLv": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  1332264807
+                                ]
+                              }
+                            },
+                            "_LevelBaseAttack": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  1189762890
+                                ]
+                              }
+                            },
+                            "_DamagePercentage": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  866240523
+                                ]
+                              }
+                            },
+                            "ADF_6": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  2029039937
+                                ]
+                              }
+                            }
+                          },
+                          "CanRunOnUnselectableTarget": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValueByCopying",
+                  "FromTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
+                  },
+                  "FromDynamicKey": {
+                    "Value": "LevelBaseAttack"
+                  },
+                  "ToTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "ToDynamicKey": {
+                    "Value": "_LevelBaseAttack"
+                  }
+                }
+              ]
+            },
+            {
+              "Event": "OnListenAfterAction",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAny",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCompareCharacterID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetCharacterID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1414
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareCharacterID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetCharacterID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1213
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareCharacterID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetCharacterID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1204
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareCharacterID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetCharacterID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1205
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareCharacterID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetCharacterID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1212
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareCharacterID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetCharacterID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1211
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.Retarget",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "BattleEventEntityList"
+                      },
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareBattleEventID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetBattleEventID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 62607
+                          }
+                        }
+                      },
+                      "TaskList": [
+                        {
+                          "$type": "RPG.GameCore.ModifyActionDelay",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity"
+                          },
+                          "AddNormalizedValue": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAOEQ==",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                1625755410
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnEnterBattle",
+              "Priority": -90,
+              "CallbackConfig": []
+            }
+          ],
+          "DynamicValues": {
+            "Floats": {
+              "1332264807": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1189762890": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "StageAbility_GridFight_Origin_100702",
+      "OnAdd": [
+        {
+          "$type": "RPG.GameCore.SetDynamicValue",
+          "Value": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                1332264807
+              ]
+            }
+          },
+          "DynamicKey": {
+            "Value": "_TraitLevel"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.CreateBattleEvent",
+          "EventID": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 62607
+            }
+          },
+          "DynamicValues": {
+            "_GridFightTraitLv": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  -838414901
+                ]
+              }
+            }
+          },
+          "Team": "TeamNeutral",
+          "OnBattleEventCreate": [
+            {
+              "$type": "RPG.GameCore.AddModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ModifierName": {
+                "Value": "MGridFight_Origin_100702_BE_Basic"
+              },
+              "DynamicValues": {
+                "_GridFightTraitLv": {
+                  "IsDynamic": true,
+                  "PostfixExpr": {
+                    "OpCodes": "AQAR",
+                    "FixedValues": [],
+                    "DynamicHashes": [
+                      -838414901
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareDynamicValue",
+                "DynamicKey": {
+                  "Value": "#ADF_5"
+                },
+                "CompareType": "Greater",
+                "CompareValue": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "MGridFight_Common_BEBaseSpeed"
+                  },
+                  "DynamicValues": {
+                    "_Speed": {
+                      "IsDynamic": true,
+                      "PostfixExpr": {
+                        "OpCodes": "AQAR",
+                        "FixedValues": [],
+                        "DynamicHashes": [
+                          -1862642832
+                        ]
+                      }
+                    }
+                  }
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ParamEntity"
+                  },
+                  "ModifierName": {
+                    "Value": "MGridFight_Common_BEBaseSpeed"
+                  },
+                  "DynamicValues": {
+                    "_Speed": {
+                      "IsDynamic": true,
+                      "PostfixExpr": {
+                        "OpCodes": "AQAR",
+                        "FixedValues": [],
+                        "DynamicHashes": [
+                          59671469
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "IsDynamicPreload": true
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "-838414901": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Modifiers": {},
+      "Name": "StageAbility_GridFight_Origin_100702_BE_Basic",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [],
+      "DynamicValues": {
+        "Floats": {}
+      }
+    },
+    {
+      "Modifiers": {
+        "MGridFight_Origin_100702_BE_Debuff": {}
+      },
+      "Name": "StageAbility_GridFight_Origin_100702_BE_Insert",
+      "TargetInfo": {
+        "TargetType": "AllDarkTeamMember"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.SetSimulationSpeedEnable"
+        },
+        {
+          "$type": "HCEAOCCCDIB",
+          "BBDBJODPHOK": "Origin_100702",
+          "BLOIGELEBPJ": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                1332264807
+              ]
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetSimulationSpeedEnable",
+          "Enable": true
+        },
+        {
+          "$type": "RPG.GameCore.HideLevelStage",
+          "IsHide": true
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityVisible",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllLightTeam"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityVisible",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LookAt",
+          "TargetType": "DarkTeamCenter"
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "Team": "TeamDark",
+          "FormationType": "DarkTeamNormal",
+          "RemoveDying": true
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityInherentTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "StageAbility_GridFight_Origin_100702_BE_Insert_Effect_Ability"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.ResetAbilityStartTimeStamp",
+          "ResetTo": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "StageAbility_GridFight_Origin_100702_BE_Insert_Camera"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.SetBattleUIPanelState",
+          "AllPanel": true,
+          "UniqueKey": "GridFight_Origin_100702"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 255
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "FormationTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "CustomFormationName": "GridFight_Origin_100702_BE",
+          "CustomCenterTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "CustomFormationIgnoreDying": false
+        },
+        {
+          "$type": "RPG.GameCore.ScaleCharacterModel",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AliveOnly": false,
+          "ModelScaleBase": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.1
+            }
+          },
+          "OutlineWidthScale": 0.05,
+          "Multiplier": {
+            "0": 1,
+            "2": 0.8,
+            "4": 0.5,
+            "5": 0.3,
+            "8": 0.2
+          },
+          "SaveTargetToCaster": true
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityVisible",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "Visible": true
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 320
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Imaginary"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Imaginary"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 0.5,
+            "AttachPoint": "Origin",
+            "Duration": 0.6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 330
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Thunder"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.1
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.1
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Thunder"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 1,
+            "AttachPoint": "Origin",
+            "Duration": 0.8
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 360
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Wind"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.05
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.05
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Wind"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 3,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 0.6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 380
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Wind"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Wind"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 3,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 0.4,
+            "Scale": 1.2
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 390
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Ice"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.05
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.05
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Ice"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 4,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 0.3,
+            "Scale": 1.2
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 410
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Ice"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Ice"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 4,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 0.2,
+            "Scale": 1.6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 440
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "FormationTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "CustomFormationName": "GridFight_Origin_100702_BE_2",
+          "CustomCenterTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "CustomFormationIgnoreDying": false
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 450
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Imaginary"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.35
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.35
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Ice"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 0.8,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Scale": 2
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "FormationTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "CustomFormationName": "GridFight_Origin_100702_BE_2",
+          "CustomCenterTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "CustomFormationIgnoreDying": false
+        },
+        {
+          "$type": "RPG.GameCore.DamagePerformFinish"
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "GridFight_S2_CloudKnight_TeamBuff_Host"
+          },
+          "LayerAddWhenStack": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "DynamicValues": {
+            "MDF_Value": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  909827946
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "BattleEventEntityList"
+          },
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareBattleEventID",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "ParamEntity"
+            },
+            "TargetBattleEventID": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 62607
+              }
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.WaitTimelineFinish",
+              "TimelineName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_03_TimeLine.playable"
+            },
+            {
+              "$type": "RPG.GameCore.HideLevelStage"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_040_Scene.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_040_Boom.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Message": "==============0622 Listen======================"
+            },
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllLightTeam"
+              },
+              "Visible": true
+            },
+            {
+              "$type": "RPG.GameCore.SetBattleUIPanelState",
+              "UniqueKey": "GridFight_Origin_100702",
+              "IsRevert": true
+            },
+            {
+              "$type": "RPG.GameCore.SetTeamFormation",
+              "Team": "TeamDark",
+              "FormationType": "DarkTeamNormal"
+            },
+            {
+              "$type": "RPG.GameCore.ScaleCharacterModel",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam"
+              },
+              "AliveOnly": false,
+              "ModelScaleBase": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.MoveTeam",
+              "Team": "TeamDark",
+              "RevertLastRecordOffset": true
+            }
+          ]
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "1332264807": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      },
+      "TaskListTemplate": []
+    },
+    {
+      "Name": "StageAbility_GridFight_Origin_100702_BE_Insert_Camera",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_01_TimeLine.playable",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Override": true
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam + Caster"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitTimelineFinish",
+          "TimelineName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_01_TimeLine.playable",
+          "TriggerBeforeFinish": true
+        },
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_010_Scene.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_010_JS.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_02_TimeLine.playable",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Override": true
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam + Caster"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitTimelineFinish",
+          "TimelineName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_02_TimeLine.playable"
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_03_TimeLine.playable",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Override": true
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam + Caster"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Modifiers": {
+        "MGridFight_Origin_100702_BE_Debuff": {}
+      },
+      "Name": "StageAbility_GridFight_Origin_100702_BE_Insert_Normal",
+      "TargetInfo": {
+        "TargetType": "AllDarkTeamMember"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.SetSimulationSpeedEnable"
+        },
+        {
+          "$type": "HCEAOCCCDIB",
+          "BBDBJODPHOK": "Origin_100702",
+          "BLOIGELEBPJ": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                1332264807
+              ]
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetSimulationSpeedEnable",
+          "Enable": true
+        },
+        {
+          "$type": "RPG.GameCore.HideLevelStage",
+          "IsHide": true
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityVisible",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllLightTeam"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityVisible",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LookAt",
+          "TargetType": "DarkTeamCenter"
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "Team": "TeamDark",
+          "FormationType": "DarkTeamNormal",
+          "RemoveDying": true
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityInherentTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "StageAbility_GridFight_Origin_100702_BE_Insert_Normal_Effect_Ability"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.ResetAbilityStartTimeStamp",
+          "ResetTo": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAbility",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbilityName": {
+            "Value": "StageAbility_GridFight_Origin_100702_BE_Insert_Normal_Camera"
+          },
+          "IsSkillPerform": true
+        },
+        {
+          "$type": "RPG.GameCore.SetBattleUIPanelState",
+          "AllPanel": true,
+          "UniqueKey": "GridFight_Origin_100702"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 115
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ScaleCharacterModel",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AliveOnly": false,
+          "ModelScaleBase": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.1
+            }
+          },
+          "OutlineWidthScale": 0.05,
+          "Multiplier": {
+            "0": 1,
+            "2": 0.8,
+            "4": 0.5,
+            "5": 0.3,
+            "8": 0.2
+          },
+          "SaveTargetToCaster": true
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "FormationTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "CustomFormationName": "GridFight_Origin_100702_BE",
+          "CustomCenterTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "CustomFormationIgnoreDying": false
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityVisible",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "Visible": true
+        },
+        {
+          "$type": "RPG.GameCore.SetEntityVisible",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "Visible": true
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 180
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Imaginary"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Imaginary"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 0.5,
+            "AttachPoint": "Origin",
+            "Duration": 0.6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 190
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Thunder"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.1
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.1
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Thunder"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 1,
+            "AttachPoint": "Origin",
+            "Duration": 0.8
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 210
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Wind"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.05
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.05
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Wind"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 3,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 0.6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 230
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Wind"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.15
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Wind"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 3,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 0.4,
+            "Scale": 1.2
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 275
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Ice"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.2
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.05
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Ice"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 4,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 0.3,
+            "Scale": 1.6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitAbilityStartTimeStamp",
+          "WaitTime": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAAAQUR",
+              "FixedValues": [
+                {
+                  "Value": 303
+                },
+                {
+                  "Value": 60
+                }
+              ],
+              "DynamicHashes": []
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamageByAttackProperty",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "AttackProperty": {
+            "$type": "RPG.GameCore.AttackData",
+            "DamageType": {
+              "DamageType": "Imaginary"
+            },
+            "DamageValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQABAQQAAAQR",
+                "FixedValues": [
+                  {
+                    "Value": 0.35
+                  }
+                ],
+                "DynamicHashes": [
+                  1189762890,
+                  1042669966
+                ]
+              }
+            },
+            "StanceValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AAAAAQQR",
+                "FixedValues": [
+                  {
+                    "Value": 120
+                  },
+                  {
+                    "Value": 0.5
+                  }
+                ],
+                "DynamicHashes": []
+              }
+            },
+            "StanceDamageType": {
+              "DamageType": "Ice"
+            },
+            "AttackType": "Insert",
+            "CustomName": {
+              "Value": "Origin_100702"
+            },
+            "FinalFormulaType": "ByBaseDamage",
+            "HitAnimation": "Hit_H"
+          },
+          "CanTriggerLastKill": true,
+          "DisplayData": {
+            "UIMessageHeight": 4,
+            "DitherRangeX": 0.1,
+            "DitherRangeY": 0.1,
+            "AttachPoint": "Origin",
+            "Duration": 1,
+            "Scale": 2
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DamagePerformFinish"
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "GridFight_S2_CloudKnight_TeamBuff_Host"
+          },
+          "LayerAddWhenStack": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "DynamicValues": {
+            "MDF_Value": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  909827946
+                ]
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "BattleEventEntityList"
+          },
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareBattleEventID",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "ParamEntity"
+            },
+            "TargetBattleEventID": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 62607
+              }
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.WaitTimelineFinish",
+              "TimelineName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_05_TimeLine.playable"
+            },
+            {
+              "$type": "RPG.GameCore.SetTeamFormation",
+              "Team": "TeamDark",
+              "FormationType": "DarkTeamNormal"
+            },
+            {
+              "$type": "RPG.GameCore.TriggerSkipDeadHandler"
+            },
+            {
+              "$type": "RPG.GameCore.ScaleCharacterModel",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam"
+              },
+              "AliveOnly": false,
+              "ModelScaleBase": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_010_Scene.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_020_Scene.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_030_Dimian.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_030_Start02.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_020_Scene_Normal.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "EffectPath": "Effects/Eff_Prefab/Eff_GridFight/Eff_Origin/Eff_CloudKnights_S2/Eff_GridFight_Origin_CloudKnights_S2_030_HitGround01_Normal.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllLightTeam"
+              },
+              "Visible": true
+            },
+            {
+              "$type": "RPG.GameCore.HideLevelStage"
+            },
+            {
+              "$type": "RPG.GameCore.SetBattleUIPanelState",
+              "UniqueKey": "GridFight_Origin_100702",
+              "IsRevert": true
+            },
+            {
+              "$type": "RPG.GameCore.MoveTeam",
+              "Team": "TeamDark",
+              "RevertLastRecordOffset": true
+            }
+          ]
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "1332264807": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      },
+      "TaskListTemplate": []
+    },
+    {
+      "Name": "StageAbility_GridFight_Origin_100702_BE_Insert_Normal_Camera",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_04_TimeLine.playable",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Override": true
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam + Caster"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitTimelineFinish",
+          "TimelineName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_04_TimeLine.playable"
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Camera/TimeLine/BattleEvent/GridFight/4.7/BattleEvent_GridFight_Origin_CloudKnights_00_Ani_05_TimeLine.playable",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Override": true
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam + Caster"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {
+    "MGridFight_Origin_100702_Mark": {},
+    "GridFight_S2_DanhengIL_Assist_Mark": {},
+    "GridFight_S2_CloudKnight_TeamBuff_Host": {
+      "LayerAddWhenStack": {
+        "IsDynamic": false,
+        "FixedValue": {
+          "Value": 1
+        }
+      },
+      "AdditionConfig": {
+        "SubModifierList": [
+          {
+            "Name": "GridFight_S2_CloudKnight_TeamBuff",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AllLightTeamWithAllLightTeamUnselectable.RemoveBattleEvent + GridFight_AllBackEnd"
+            },
+            "IncludeBattleEvent": true,
+            "DynamicValues": {
+              "MDF_Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -1920033213
+                  ]
+                }
+              }
+            },
+            "IsHaloStatus": true,
+            "SyncLayerFromParent": true
+          }
+        ]
+      },
+      "Stacking": "Replace",
+      "DynamicValues": {
+        "Floats": {
+          "-1920033213": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    "GridFight_S2_CloudKnight_TeamBuff": {
+      "LayerAddWhenStack": {
+        "IsDynamic": false,
+        "FixedValue": {
+          "Value": 1
+        }
+      },
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByModifierValue",
+              "ReadTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "ModifierName": "GridFight_S2_CloudKnight_TeamBuff",
+              "ValueType": "Layer",
+              "Multiplier": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              },
+              "DynamicKey": "_Layer"
+            },
+            {
+              "$type": "RPG.GameCore.StackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Property": "ExtraAllDamageTypeAddedRatio1",
+              "PropertyValue": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQABAQQR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -1920033213,
+                    1912601768
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "Stacking": "Replace",
+      "DynamicValues": {
+        "Floats": {
+          "-1920033213": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "1912601768": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "GlobalTemplates": []
+}

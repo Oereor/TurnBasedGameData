@@ -1,0 +1,1337 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "M_GridFight_Origin_100602": {
+          "_CallbackList": [
+            {
+              "Event": "OnListenCharacterCreate",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByGridFightHasTrait",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TeamTrait": {
+                          "Value": "Origin_100602"
+                        },
+                        "IncludeInactiveTrait": false
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareGridFightProperty",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "CompareType": "GreaterEqual",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 3
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAIR",
+                          "FixedValues": [
+                            {
+                              "Value": 1
+                            }
+                          ],
+                          "DynamicHashes": [
+                            -1794026573
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "QianXing_3_Count"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnEnterBattle",
+              "Priority": -90,
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.DebugLog",
+                  "Message": "==============0722 QianXing_3_Count {QianXing_3_Count}======================"
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCompareWaveCount",
+                        "CompareType": "Equal",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 1
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "DynamicKey": {
+                          "Value": "QianXing_3_Count"
+                        },
+                        "CompareType": "GreaterEqual",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 6
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.ShowBattleUI"
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetSimulationSpeedEnable"
+                    },
+                    {
+                      "$type": "RPG.GameCore.ShowSkillCutIn",
+                      "Type": "Custom",
+                      "ParamStr": "UI/GridFight/Battle/CutIn/BattleGridFightTraitSkillCutIn_100602.prefab",
+                      "ParamFloat": 3
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetSimulationSpeedEnable",
+                      "Enable": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.ResetAbilityStartTimeStamp",
+                      "ResetTo": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.TriggerCustomString",
+                      "CustomString": {
+                        "Value": "GridFight_S2_QianXing"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.WaitCustomString",
+                      "CustomString": {
+                        "Value": "GridFight_S2_QianXing_TalkFinished"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.ForceKill",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "AllDarkTeam"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.ShowBattleUI",
+                      "IsShow": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.WaitFor",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByDieAnimFinished",
+                        "TeamTypeMask": "TeamDark",
+                        "EntityTypeMask": "Mask_TeamCharacters"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.CreateBattleEvent",
+                      "EventID": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 62620
+                        }
+                      },
+                      "Team": "TeamNeutral",
+                      "OnBattleEventCreate": [
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity"
+                          },
+                          "ModifierName": {
+                            "Value": "MGridFight_Common_BEBaseSpeed"
+                          },
+                          "DynamicValues": {
+                            "_Speed": {
+                              "IsDynamic": false,
+                              "FixedValue": {
+                                "Value": 0
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.SetActionDelay",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity"
+                          },
+                          "Value": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0
+                            }
+                          }
+                        }
+                      ],
+                      "IsDynamicPreload": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnListenBattleEventCreate",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByGridFightHasTrait",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TeamTrait": {
+                          "Value": "Origin_100602"
+                        },
+                        "IncludeInactiveTrait": false
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareGridFightProperty",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "CompareType": "GreaterEqual",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 3
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAAAAIR",
+                          "FixedValues": [
+                            {
+                              "Value": 1
+                            }
+                          ],
+                          "DynamicHashes": [
+                            -1794026573
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "QianXing_3_Count"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "DynamicValues": {
+            "Floats": {
+              "-1794026573": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "StageAbility_GridFight_Origin_100602",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnAdd": [
+        {
+          "$type": "RPG.GameCore.SetDynamicValue",
+          "Value": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                1332264807
+              ]
+            }
+          },
+          "DynamicKey": {
+            "Value": "_TraitLevel"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.DefineDynamicValue",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "DynamicKey": {
+            "Value": "100602_ADF7"
+          },
+          "ResetValue": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                -699843418
+              ]
+            }
+          },
+          "ContextScope": "TargetEntity"
+        },
+        {
+          "$type": "RPG.GameCore.OwnerEntityAddAbility",
+          "AbilityName": {
+            "Value": "StageAbility_GridFight_Origin_100602_Cutin"
+          }
+        }
+      ],
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "M_GridFight_Origin_100602"
+          }
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "-838414901": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "StageAbility_GridFight_Origin_100602_Cutin",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnAdd": [],
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.ShowBattleUI"
+        },
+        {
+          "$type": "RPG.GameCore.SetSimulationSpeedEnable"
+        },
+        {
+          "$type": "RPG.GameCore.ShowSkillCutIn",
+          "Type": "Custom",
+          "ParamStr": "UI/GridFight/Battle/CutIn/BattleGridFightTraitSkillCutIn_100602.prefab",
+          "ParamFloat": 3
+        },
+        {
+          "$type": "RPG.GameCore.SetSimulationSpeedEnable",
+          "Enable": true
+        },
+        {
+          "$type": "RPG.GameCore.ResetAbilityStartTimeStamp",
+          "ResetTo": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "GridFight_S2_QianXing"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "GridFight_S2_QianXing_TalkFinished"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ForceKill",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ShowBattleUI",
+          "IsShow": true
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {}
+      }
+    },
+    {
+      "Modifiers": {
+        "MStageAbility_GridFight_Origin_100602_Laser_Trigger": {
+          "_CallbackList": [
+            {
+              "Event": "OnPhase1",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.TurnInsertAbility",
+                  "AbilityName": {
+                    "Value": "StageAbility_GridFight_Origin_100602_Laser"
+                  },
+                  "AbilityTarget": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllDarkTeam"
+                  },
+                  "InsertAbilityPriority": "Highest",
+                  "DynamicValues": {
+                    "LoopDamageRatio": {
+                      "IsDynamic": true,
+                      "PostfixExpr": {
+                        "OpCodes": "AAAR",
+                        "FixedValues": [
+                          {
+                            "Value": 0.5
+                          }
+                        ],
+                        "DynamicHashes": []
+                      }
+                    },
+                    "MDF_Damage": {
+                      "IsDynamic": true,
+                      "PostfixExpr": {
+                        "OpCodes": "AQAR",
+                        "FixedValues": [],
+                        "DynamicHashes": [
+                          909827947
+                        ]
+                      }
+                    },
+                    "BE_LoopNum": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 3
+                      }
+                    }
+                  },
+                  "CanRunOnUnselectableTarget": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Name": "StageAbility_GridFight_Origin_100602_BE_Basic",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnAdd": [],
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.SetDynamicValueByCopying",
+          "FromTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "LevelEntity"
+          },
+          "FromDynamicKey": {
+            "Value": "100602_ADF7"
+          },
+          "ToDynamicKey": {
+            "Value": "ADF_7"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MStageAbility_GridFight_Origin_100602_Laser_Trigger"
+          },
+          "DynamicValues": {
+            "ADF_7": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  909827947
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "909827947": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "Modifiers": {},
+      "Name": "StageAbility_GridFight_Origin_100602_Laser",
+      "TargetInfo": {
+        "TargetType": "AllDarkTeamMember"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.GridFightShowRightCutIn",
+          "UIPrefabPath": "UI/GridFight/Battle/SpecialAction/SpecialAction_GridFight_TraitIcon.prefab",
+          "TitleTextID": {
+            "Hash": 8294522529703174479
+          },
+          "TraitSearchKey": "Origin_100602",
+          "Quality": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AAAR",
+              "FixedValues": [
+                {
+                  "Value": 4
+                }
+              ],
+              "DynamicHashes": []
+            }
+          },
+          "TraitShowImgType": "NoImg"
+        },
+        {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "Team": "TeamDark",
+          "FormationType": "DarkTeamNormal"
+        },
+        {
+          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+          "Name": "VS_PFM_CameraDarkTeamNear"
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetDynamicValue",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          },
+          "DynamicKey": {
+            "Value": "BE_Element"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetDynamicValue",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          },
+          "DynamicKey": {
+            "Value": "BE_LoopCount"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "BE_StartDir"
+            },
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 0
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "DarkTeamCenter"
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_Ready_01.prefab",
+              "ForceSimulateImmediately": false
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "DarkTeamCenter"
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_Ready_02.prefab",
+              "ForceSimulateImmediately": false
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ConditionLoopExecuteTaskListWithInterval",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "BE_LoopCount"
+            },
+            "CompareType": "LessEqual",
+            "CompareValue": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAAAAIR",
+                "FixedValues": [
+                  {
+                    "Value": 1
+                  }
+                ],
+                "DynamicHashes": [
+                  -631786670
+                ]
+              }
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareDynamicValue",
+                "DynamicKey": {
+                  "Value": "BE_LoopCount"
+                },
+                "CompareType": "GreaterEqual",
+                "CompareValue": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 2
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        -1442906348
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "CurrDamageRatio"
+                  }
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByAddValue",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Key": {
+                "Value": "BE_LoopCount"
+              },
+              "AddValue": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              },
+              "Min": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "Max": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 100
+                }
+              },
+              "ContextScope": "ContextAbility"
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareDynamicValue",
+                "DynamicKey": {
+                  "Value": "BE_StartDir"
+                },
+                "CompareType": "Equal",
+                "CompareValue": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 0
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "BE_Element"
+                    },
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TriggerEffect",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "DarkTeamCenter"
+                      },
+                      "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_fire_01.prefab",
+                      "ForceSimulateImmediately": false
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TriggerEffect",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "DarkTeamCenter"
+                      },
+                      "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_ice_01.prefab",
+                      "ForceSimulateImmediately": false
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.WaitSecond",
+                  "WaitTime": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0.1
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "BE_StartDir"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.LoopExecuteTaskListWithInterval",
+                  "MaxLoopCount": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 5
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.Retarget",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetSequence",
+                        "Sequence": [
+                          {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "AllDarkTeam"
+                          },
+                          {
+                            "$type": "RPG.GameCore.TargetSortByFormation",
+                            "HighestFirst": true
+                          }
+                        ]
+                      },
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MStageAbility_GridFight_Origin_100602_Laser_Mark"
+                        },
+                        "Inverse": true
+                      },
+                      "IncludeLimbo": true,
+                      "MaxNumber": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 1
+                        }
+                      },
+                      "TaskList": [
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity"
+                          },
+                          "AliveOnly": false,
+                          "ModifierName": {
+                            "Value": "MStageAbility_GridFight_Origin_100602_Laser_Mark"
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "VS_PFM_CameraShakeSmall"
+                        },
+                        {
+                          "$type": "RPG.GameCore.PredicateTaskList",
+                          "Predicate": {
+                            "$type": "RPG.GameCore.ByCompareDynamicValue",
+                            "DynamicKey": {
+                              "Value": "BE_Element"
+                            },
+                            "CompareType": "Equal",
+                            "CompareValue": {
+                              "IsDynamic": false,
+                              "FixedValue": {
+                                "Value": 0
+                              }
+                            }
+                          },
+                          "SuccessTaskList": [
+                            {
+                              "$type": "RPG.GameCore.TriggerEffect",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ParamEntity"
+                              },
+                              "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_fire_Hit.prefab",
+                              "ForceSimulateImmediately": false
+                            },
+                            {
+                              "$type": "RPG.GameCore.DamageByAttackProperty",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "AllDarkTeam"
+                              },
+                              "AttackProperty": {
+                                "$type": "RPG.GameCore.AttackData",
+                                "DamageType": {
+                                  "DamageType": "Physical"
+                                },
+                                "FormulaType": "ByMaxHP",
+                                "DamagePercentage": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      991190183
+                                    ]
+                                  }
+                                },
+                                "AttackType": "TrueDamage",
+                                "CustomName": {
+                                  "Value": "Origin_100602"
+                                },
+                                "FinalFormulaType": "ByBaseDamage",
+                                "HitAnimation": "Hit_H"
+                              },
+                              "CanTriggerLastKill": true,
+                              "DisplayData": {
+                                "UIMessageHeight": 0.2,
+                                "DitherRangeX": 0.1
+                              }
+                            }
+                          ],
+                          "FailedTaskList": [
+                            {
+                              "$type": "RPG.GameCore.TriggerEffect",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ParamEntity"
+                              },
+                              "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_ice_Hit.prefab",
+                              "ForceSimulateImmediately": false
+                            },
+                            {
+                              "$type": "RPG.GameCore.DamageByAttackProperty",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "AllDarkTeam"
+                              },
+                              "AttackProperty": {
+                                "$type": "RPG.GameCore.AttackData",
+                                "DamageType": {
+                                  "DamageType": "Physical"
+                                },
+                                "FormulaType": "ByMaxHP",
+                                "DamagePercentage": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      991190183
+                                    ]
+                                  }
+                                },
+                                "AttackType": "TrueDamage",
+                                "CustomName": {
+                                  "Value": "Origin_100602"
+                                },
+                                "FinalFormulaType": "ByBaseDamage",
+                                "HitAnimation": "Hit_H"
+                              },
+                              "CanTriggerLastKill": true,
+                              "DisplayData": {
+                                "UIMessageHeight": 0.2,
+                                "DitherRangeX": 0.1
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$type": "RPG.GameCore.WaitSecond",
+                          "WaitTime": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.12
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareDynamicValue",
+                    "DynamicKey": {
+                      "Value": "BE_Element"
+                    },
+                    "CompareType": "Equal",
+                    "CompareValue": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 0
+                      }
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TriggerEffect",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "DarkTeamCenter"
+                      },
+                      "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_fire_02.prefab",
+                      "ForceSimulateImmediately": false
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TriggerEffect",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "DarkTeamCenter"
+                      },
+                      "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_ice_02.prefab",
+                      "ForceSimulateImmediately": false
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.WaitSecond",
+                  "WaitTime": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0.1
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "BE_StartDir"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.LoopExecuteTaskListWithInterval",
+                  "MaxLoopCount": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 5
+                    }
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.Retarget",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetSequence",
+                        "Sequence": [
+                          {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "AllDarkTeam"
+                          },
+                          {
+                            "$type": "RPG.GameCore.TargetSortByFormation"
+                          }
+                        ]
+                      },
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByIsContainModifier",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "ModifierName": {
+                          "Value": "MStageAbility_GridFight_Origin_100602_Laser_Mark"
+                        },
+                        "Inverse": true
+                      },
+                      "IncludeLimbo": true,
+                      "MaxNumber": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 1
+                        }
+                      },
+                      "TaskList": [
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "ParamEntity"
+                          },
+                          "AliveOnly": false,
+                          "ModifierName": {
+                            "Value": "MStageAbility_GridFight_Origin_100602_Laser_Mark"
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                          "Name": "VS_PFM_CameraShakeSmall"
+                        },
+                        {
+                          "$type": "RPG.GameCore.PredicateTaskList",
+                          "Predicate": {
+                            "$type": "RPG.GameCore.ByCompareDynamicValue",
+                            "DynamicKey": {
+                              "Value": "BE_Element"
+                            },
+                            "CompareType": "Equal",
+                            "CompareValue": {
+                              "IsDynamic": false,
+                              "FixedValue": {
+                                "Value": 0
+                              }
+                            }
+                          },
+                          "SuccessTaskList": [
+                            {
+                              "$type": "RPG.GameCore.TriggerEffect",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ParamEntity"
+                              },
+                              "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_fire_Hit.prefab",
+                              "ForceSimulateImmediately": false
+                            },
+                            {
+                              "$type": "RPG.GameCore.DamageByAttackProperty",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "AllDarkTeam"
+                              },
+                              "AttackProperty": {
+                                "$type": "RPG.GameCore.AttackData",
+                                "DamageType": {
+                                  "DamageType": "Physical"
+                                },
+                                "FormulaType": "ByMaxHP",
+                                "DamagePercentage": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      991190183
+                                    ]
+                                  }
+                                },
+                                "AttackType": "TrueDamage",
+                                "CustomName": {
+                                  "Value": "Origin_100602"
+                                },
+                                "FinalFormulaType": "ByBaseDamage",
+                                "HitAnimation": "Hit_H"
+                              },
+                              "CanTriggerLastKill": true,
+                              "DisplayData": {
+                                "UIMessageHeight": 0.2,
+                                "DitherRangeX": 0.1
+                              }
+                            }
+                          ],
+                          "FailedTaskList": [
+                            {
+                              "$type": "RPG.GameCore.TriggerEffect",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ParamEntity"
+                              },
+                              "EffectPath": "Effects/Eff_Prefab/Eff_ActivityProp/Eff_EvolveBuild_01/Eff_ActivityProp_EvolveBuild_EvolveBuild_FireBlast_ice_Hit.prefab",
+                              "ForceSimulateImmediately": false
+                            },
+                            {
+                              "$type": "RPG.GameCore.DamageByAttackProperty",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "AllDarkTeam"
+                              },
+                              "AttackProperty": {
+                                "$type": "RPG.GameCore.AttackData",
+                                "DamageType": {
+                                  "DamageType": "Physical"
+                                },
+                                "FormulaType": "ByMaxHP",
+                                "DamagePercentage": {
+                                  "IsDynamic": true,
+                                  "PostfixExpr": {
+                                    "OpCodes": "AQAR",
+                                    "FixedValues": [],
+                                    "DynamicHashes": [
+                                      991190183
+                                    ]
+                                  }
+                                },
+                                "AttackType": "TrueDamage",
+                                "CustomName": {
+                                  "Value": "Origin_100602"
+                                },
+                                "FinalFormulaType": "ByBaseDamage",
+                                "HitAnimation": "Hit_H"
+                              },
+                              "CanTriggerLastKill": true,
+                              "DisplayData": {
+                                "UIMessageHeight": 0.2,
+                                "DitherRangeX": 0.1
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "$type": "RPG.GameCore.WaitSecond",
+                          "WaitTime": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.12
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.RemoveModifier",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AllDarkTeam"
+              },
+              "ModifierName": {
+                "Value": "MStageAbility_GridFight_Origin_100602_Laser_Mark"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AAABAAMR",
+                  "FixedValues": [
+                    {
+                      "Value": 1
+                    }
+                  ],
+                  "DynamicHashes": [
+                    523318668
+                  ]
+                }
+              },
+              "DynamicKey": {
+                "Value": "BE_Element"
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.8
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetDieImmediately",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ForceKill",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AbortUnusedInsertAbility": true,
+          "MuteHpChange": true,
+          "MuteAllTriggerDeath": true
+        },
+        {
+          "$type": "RPG.GameCore.DamagePerformFinish"
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "991190183": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "-631786670": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "981004587": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "1320437747": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "523318668": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "-1442906348": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "-1092657378": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "GlobalModifiers": {
+    "MStageAbility_GridFight_Origin_100602_Laser_Mark": {
+      "Stacking": "Replace"
+    }
+  },
+  "GlobalTemplates": []
+}

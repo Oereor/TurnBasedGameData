@@ -1,0 +1,326 @@
+{
+  "AnimatorStateEvents": [
+    {
+      "AnimatorStateName": "Die",
+      "NormalizedTime": 0.9,
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.TriggerDeadHandler"
+        }
+      ]
+    },
+    {
+      "AnimatorStateName": "Die_Fly",
+      "NormalizedTime": 0.9,
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.TriggerDeadHandler"
+        }
+      ]
+    },
+    {
+      "AnimatorStateName": "Die_Hit",
+      "NormalizedTime": 0.9,
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.TriggerDeadHandler"
+        }
+      ]
+    },
+    {
+      "AnimatorStateName": "Hit",
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMonsterPhase",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerSoundInAnim",
+              "SoundName": "Ev_vo_monster_hit_light_w5_fallenpart_00"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerSoundInAnim",
+              "SoundName": "Ev_vo_monster_hit_light_w5_fallen_00"
+            }
+          ]
+        }
+      ],
+      "ForceTrigger": true
+    },
+    {
+      "AnimatorStateName": "Hit_H",
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMonsterPhase",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerSoundInAnim",
+              "SoundName": "Ev_vo_monster_hit_heavy_w5_fallenpart_00"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerSoundInAnim",
+              "SoundName": "Ev_vo_monster_hit_heavy_w5_fallen_00"
+            }
+          ]
+        }
+      ],
+      "ForceTrigger": true
+    },
+    {
+      "AnimatorStateName": "Hit_H_Break",
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMonsterPhase",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerSoundInAnim",
+              "SoundName": "Ev_vo_monster_hit_heavy_w5_fallenpart_00"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerSoundInAnim",
+              "SoundName": "Ev_vo_monster_hit_heavy_w5_fallen_00"
+            }
+          ]
+        }
+      ],
+      "ForceTrigger": true
+    }
+  ],
+  "AnimatorStateGroupEvents": [
+    {
+      "States": [
+        {
+          "Name": "Hit"
+        },
+        {
+          "Name": "Hit_H"
+        },
+        {
+          "Name": "Confine_Hit"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.SetBaseHitStateSpeed",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.8
+            }
+          }
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "RPG.GameCore.SetBaseHitStateSpeed",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Value": 1
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Stagger_Loop"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.5
+            }
+          }
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Die_Hit",
+          "NormalizedTime": 0.1
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Die",
+          "NormalizedTime": 0.1
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Die_Limbo",
+          "NormalizedTime": 0.1
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Die_Fly",
+          "NormalizedTime": 0.1
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "RingSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Skill02"
+        },
+        {
+          "Name": "Skill03"
+        },
+        {
+          "Name": "Skill04"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "RingLayer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "RingLayer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

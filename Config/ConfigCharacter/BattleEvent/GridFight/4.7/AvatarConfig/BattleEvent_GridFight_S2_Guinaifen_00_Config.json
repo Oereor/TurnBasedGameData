@@ -1,0 +1,337 @@
+{
+  "$type": "RPG.GameCore.BattleEventConfig",
+  "DamageType": "Fire",
+  "AIPath": "Config/ConfigAI/Avatar_ComplexSkilll_AutoFight_AI.json",
+  "MaxSP": 120,
+  "ResourceLoadOption": "DynamicLoadOnAction",
+  "SomatoType": "MiddleAvatar",
+  "BuffPanelOffset": {
+    "X": "Infinity",
+    "Y": "Infinity",
+    "Z": "Infinity"
+  },
+  "HitBoxWidth": 0.3,
+  "HitBoxHeight": 1.5,
+  "Location": {
+    "Width": 0.8
+  },
+  "SaveModelWhenDead": true,
+  "AnimEventConfigList": [
+    "Config/ConfigAnimEvents/Avatar/Designer/Avatar_Guinaifen_00_Designer_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/DesignerBaked/Avatar_Guinaifen_00_Designer_AnimEvent_Baked.json",
+    "Config/ConfigAnimEvents/Avatar/Effect/Avatar_Guinaifen_00_Effect_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Audio/Avatar_Guinaifen_00_Audio_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Designer/Avatar_Common_Designer_AnimEvent.json",
+    "Config/ConfigAnimEvents/Avatar/Audio/Avatar_Common_ControllerVibration_AnimEvent.json"
+  ],
+  "SkillList": [
+    {
+      "Name": "Skill02",
+      "SkillType": "Skill",
+      "UseType": "SelectEntity",
+      "AutoLockType": "AdjoinDefault",
+      "TargetInfo": {
+        "TargetType": "EnemySelect",
+        "SubTargetType": "TargetAdjoinEntity"
+      },
+      "UseReadyTransitAnim": true,
+      "ReadyAnimState": "Skill02_Ready_Loop",
+      "ReadyAnimWaitTime": 0.3,
+      "CameraConfig": {
+        "NormalConfig": {
+          "CameraState": "SelectDarkTeamEntity",
+          "IsLocalOffset": true,
+          "AnchorOffset": {
+            "X": 0.5,
+            "Y": 0.24,
+            "Z": -0.56
+          },
+          "AimOffset": {
+            "X": -2.8,
+            "Y": 0.45,
+            "Z": 0
+          },
+          "FollowRadius": 3,
+          "AnchorToAimAngle": 30,
+          "Dutch": 2
+        },
+        "BlendConfig": {
+          "BlendType": "Cut"
+        }
+      },
+      "CameraConfigAdded": {
+        "NormalConfig": {
+          "CameraState": "SelectDarkTeamEntity",
+          "IsLocalOffset": true,
+          "AnchorOffset": {
+            "X": 0.1,
+            "Y": 0,
+            "Z": -0.2
+          },
+          "AimOffset": {
+            "X": -3.2,
+            "Y": 0.5,
+            "Z": 0
+          },
+          "FollowRadius": 2.6,
+          "AnchorToAimAngle": 27
+        },
+        "BlendConfig": {
+          "BlendType": "Custom",
+          "CustomCurveName": "BlendCut_00to1",
+          "BlendTime": 1
+        }
+      },
+      "EntryAbility": "BattleEvent_GridFight_S2_Guinaifen_00_Skill02_Phase01",
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasePp_Common_WeakBreak",
+            "Weight": {
+              "Value": 0.2
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddpP_Common_SelfNeighbour",
+            "Weight": {
+              "Value": 0.5
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddNP_Common_BPSkill",
+            "Weight": {
+              "Value": 0.3
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Name": "SkillP01",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "SkillNameHUD": false,
+      "EntryAbility": "BattleEvent_GridFight_S2_Guinaifen_00_PassiveSkill01"
+    },
+    {
+      "Name": "SkillPC01",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "SkillNameHUD": false,
+      "EntryAbility": "BattleEvent_GridFight_S2_Guinaifen_00_PassiveSkillPC01"
+    },
+    {
+      "Name": "PassiveSkill02",
+      "SkillType": "Passive",
+      "UseType": "Passive",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "EntryAbility": "BattleEvent_GridFight_Common_PassiveSkill"
+    }
+  ],
+  "AbilityList": [
+    "BattleEvent_GridFight_Common_PassiveSkill"
+  ],
+  "SkillAbilityList": [
+    {
+      "Skill": "Skill02",
+      "AbilityList": [
+        "Avatar_Guinaifen_00_Skill02_Camera",
+        "BattleEvent_GridFight_S2_Guinaifen_00_Skill02_Phase01",
+        "BattleEvent_GridFight_S2_Guinaifen_00_Skill02_Phase02"
+      ]
+    },
+    {
+      "Skill": "SkillP01",
+      "AbilityList": [
+        "BattleEvent_GridFight_S2_Guinaifen_00_PassiveSkill01"
+      ]
+    },
+    {
+      "Skill": "SkillPC01",
+      "AbilityList": [
+        "BattleEvent_GridFight_S2_Guinaifen_00_PassiveSkillPC01"
+      ]
+    }
+  ],
+  "DynamicValues": {
+    "Floats": {
+      "-1847083384": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 0
+        }
+      },
+      "2004444791": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 1
+        }
+      },
+      "242174909": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 2
+        }
+      },
+      "-883252236": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 3
+        }
+      },
+      "-54087786": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 4
+        }
+      },
+      "1966237692": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "Skill02",
+          "Index": 5
+        }
+      },
+      "674451867": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 0
+        }
+      },
+      "-26169913": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 3
+        }
+      },
+      "-156957008": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 4
+        }
+      },
+      "-545598557": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillP01",
+          "Index": 5
+        }
+      },
+      "581193356": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillPC01",
+          "Index": 0
+        }
+      },
+      "1145529650": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillPC01",
+          "Index": 1
+        }
+      },
+      "-1859262236": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillPC01",
+          "Index": 2
+        }
+      },
+      "-1109329981": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillPC01",
+          "Index": 3
+        }
+      },
+      "-461702452": {
+        "ReadInfo": {
+          "Type": "SkillParam",
+          "TriggerKey": "SkillPC01",
+          "Index": 4
+        }
+      },
+      "-1346502313": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 0
+        }
+      },
+      "-318621151": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 1
+        }
+      },
+      "-1118347224": {
+        "ReadInfo": {
+          "Type": "SkillRank",
+          "TriggerKey": "Rank01",
+          "Index": 2
+        }
+      }
+    }
+  },
+  "WeaponType": "WP_Magic",
+  "SkillReadyTransits": [
+    {
+      "From": 2,
+      "To": 1,
+      "AnimStateName": "Skill02toSkill01",
+      "TransitionInTime": 0,
+      "ReverseOutroTime": 0.3
+    },
+    {
+      "From": 1,
+      "To": 2,
+      "AnimStateName": "Skill01toSkill02",
+      "TransitionInTime": 0,
+      "ReverseOutroTime": 0.15
+    }
+  ],
+  "DisableAnimEventLayers": [
+    "Riboon Layer"
+  ],
+  "AITagList": {
+    "Floats": {
+      "-2126289379": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      },
+      "-2136914891": {
+        "ReadInfo": {
+          "Type": "None",
+          "Index": 0
+        }
+      }
+    }
+  }
+}

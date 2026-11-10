@@ -1,0 +1,415 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "MGridFight_Origin_201102_Halo": {
+          "AdditionConfig": {
+            "SubModifierList": [
+              {
+                "Name": "MGridFight_Origin_201102_CrusaderHeal",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetSequence",
+                  "Sequence": [
+                    {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "AllLightTeam"
+                    },
+                    {
+                      "$type": "RPG.GameCore.TargetFilter",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByGridFightHasTrait",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TeamTrait": {
+                          "Value": "Origin_201102"
+                        },
+                        "IncludeInactiveTrait": false
+                      }
+                    }
+                  ]
+                },
+                "DynamicValues": {
+                  "MDF_HPRatio": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        462955996
+                      ]
+                    }
+                  },
+                  "MDF_DefRatio": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        59671469
+                      ]
+                    }
+                  }
+                },
+                "IsHaloStatus": true
+              }
+            ]
+          },
+          "Stacking": "EntityUnique",
+          "DynamicValues": {
+            "Floats": {
+              "-1689991331": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        },
+        "MGridFight_Origin_201102_CrusaderHeal": {
+          "_CallbackList": [
+            {
+              "Event": "OnBeforeSkillUse",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCurrentSkillType",
+                    "SkillType": "Ultra"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                      "DynamicKey": "MDF_Defence",
+                      "ReadTargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "Value": "Defence"
+                    },
+                    {
+                      "$type": "RPG.GameCore.HealHP",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "AllLightTeam"
+                      },
+                      "HealerTargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "FormulaType": "HealByHealerMaxHP",
+                      "HealPercentage": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            350792237
+                          ]
+                        }
+                      },
+                      "ModifyValue": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQQR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1410813624,
+                            1067932670
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Stacking": "EntityUnique",
+          "DynamicValues": {
+            "Floats": {
+              "350792237": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1067932670": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1410813624": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "StageAbility_GridFight_Origin_201102",
+      "OnAdd": [
+        {
+          "$type": "RPG.GameCore.SetDynamicValue",
+          "Value": {
+            "IsDynamic": true,
+            "PostfixExpr": {
+              "OpCodes": "AQAR",
+              "FixedValues": [],
+              "DynamicHashes": [
+                1332264807
+              ]
+            }
+          },
+          "DynamicKey": {
+            "Value": "_GridFightTraitLv"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MGridFight_Origin_201102_Halo"
+          }
+        }
+      ],
+      "DynamicValues": {
+        "Floats": {
+          "1332264807": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      },
+      "TaskListTemplate": []
+    }
+  ],
+  "GlobalModifiers": {
+    "MGridFight_S2_Guardian_HealPowerSync": {
+      "OnAbilityPropertyChange": [
+        {
+          "Property": "ExtraTotalShieldPower",
+          "Ranges": [
+            {
+              "OnChange": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "GridFight_S2_Guardian_SyncHealPowerToShield"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Property": "ExtraTotalHealPower",
+          "Ranges": [
+            {
+              "OnChange": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "GridFight_S2_Guardian_SyncHealPowerToShield"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "_CallbackList": [
+        {
+          "Event": "OnStack",
+          "CallbackConfig": [
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "DynamicKey": {
+                "Value": "MDF_HealBaseAdd"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "DynamicKey": {
+                "Value": "MDF_HealRatioAdd"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.IncludeTaskListTemplate",
+              "Name": "GridFight_S2_Guardian_SyncHealPowerToShield"
+            }
+          ]
+        }
+      ],
+      "Stacking": "EntityUnique",
+      "DynamicValues": {
+        "Floats": {
+          "1965143238": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "142646284": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "2126266902": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          },
+          "1276127143": {
+            "ReadInfo": {
+              "Type": "None",
+              "Index": 0
+            }
+          }
+        }
+      },
+      "TaskListTemplate": [
+        {
+          "Name": "GridFight_S2_Guardian_SyncHealPowerToShield",
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByProperty",
+              "DynamicKey": "MDF_ShieldValue",
+              "ContextScope": "ContextModifier",
+              "ReadTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Value": "ExtraShieldBase"
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByProperty",
+              "DynamicKey": "MDF_HealValue",
+              "ContextScope": "ContextModifier",
+              "ReadTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Value": "ExtraHealBase"
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQABAQIBAgMR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    1965143238,
+                    2126266902,
+                    1276127143
+                  ]
+                }
+              },
+              "DynamicKey": {
+                "Value": "MDF_HealBaseAdd"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.StackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Property": "ExtraHealBase",
+              "PropertyValue": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    1965143238
+                  ]
+                }
+              },
+              "IsRefresh": true
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByProperty",
+              "DynamicKey": "MDF_ShieldValue",
+              "ContextScope": "ContextModifier",
+              "ReadTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Value": "ExtraShieldAddedRatio"
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValueByProperty",
+              "DynamicKey": "MDF_HealValue",
+              "ContextScope": "ContextModifier",
+              "ReadTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Value": "ExtraHealAddedRatio"
+            },
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQABAQIBAgMR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    142646284,
+                    2126266902,
+                    1276127143
+                  ]
+                }
+              },
+              "DynamicKey": {
+                "Value": "MDF_HealRatioAdd"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.StackProperty",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "Property": "ExtraHealAddedRatio",
+              "PropertyValue": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    142646284
+                  ]
+                }
+              },
+              "IsRefresh": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "GlobalTemplates": []
+}

@@ -1,0 +1,968 @@
+{
+  "AbilityList": [
+    {
+      "Modifiers": {
+        "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01": {
+          "_CallbackList": [
+            {
+              "Event": "OnEnterBattle",
+              "Priority": -80,
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "TAvatar_GridFight_S2_Evernight_00_PC_PS01_Refresh"
+                }
+              ]
+            },
+            {
+              "Event": "OnListenModifierAdd",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCheckModifierCallBackName",
+                        "ModifierName": {
+                          "Value": "MAvatar_Evernight_00_UltraMode"
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareTarget",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "CompareType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01_Halo"
+                      },
+                      "DynamicValues": {
+                        "MDF_PropertyValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -619133685
+                            ]
+                          }
+                        }
+                      },
+                      "InheritCaster": "TargetSelf"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnListenModifierRemove",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCheckModifierCallBackName",
+                        "ModifierName": {
+                          "Value": "MAvatar_Evernight_00_UltraMode"
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareTarget",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "CompareType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.RemoveModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01_Halo"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "TaskListTemplate": [
+            {
+              "Name": "TAvatar_GridFight_S2_Evernight_00_PC_PS01_Refresh",
+              "TaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByIsContainModifier",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ModifierOwnerEntity"
+                    },
+                    "ModifierName": {
+                      "Value": "MAvatar_Evernight_00_UltraMode"
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AddModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01_Halo"
+                      },
+                      "DynamicValues": {
+                        "MDF_PropertyValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -619133685
+                            ]
+                          }
+                        }
+                      },
+                      "InheritCaster": "TargetSelf"
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.RemoveModifier",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "ModifierName": {
+                        "Value": "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01_Halo"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01_Halo": {
+          "AdditionConfig": {
+            "SubModifierList": [
+              {
+                "Name": "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01_Debuff",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "AllEnemyWithUnSelectable"
+                },
+                "DynamicValues": {
+                  "MDF_PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        2128130574
+                      ]
+                    }
+                  }
+                },
+                "IsHaloStatus": true,
+                "AliveOnly": "True"
+              }
+            ]
+          },
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "2128130574": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        },
+        "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01_Debuff": {
+          "BehaviorFlagList": [
+            "RemoveWhenCasterDead"
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.StackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "AllDamageTypeTakenRatio",
+                  "PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        2128130574
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "2128130574": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "Avatar_GridFight_S2_Evernight_00_PC_PassiveSkill01",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill01"
+          }
+        }
+      ]
+    },
+    {
+      "Modifiers": {
+        "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill02": {
+          "OnDynamicValueChange": [
+            {
+              "Key": {
+                "Hash": 1934422157
+              },
+              "ContextScope": "ContextOwner",
+              "Ranges": [
+                {
+                  "Min": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": -999
+                    }
+                  },
+                  "Max": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 99999
+                    }
+                  },
+                  "OnChange": [
+                    {
+                      "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                      "Name": "TAvatar_GridFight_S2_Evernight_00_PC_PS02_OnEnergyChange"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnListenTurnBegin",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "MDF_SummonTurnCounted"
+                  }
+                }
+              ]
+            },
+            {
+              "Event": "OnListenAfterAction",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByGridFightHasTrait",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "TeamTrait": {
+                          "Value": "Origin_200602"
+                        },
+                        "IncludeInactiveTrait": false
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByAny",
+                        "PredicateList": [
+                          {
+                            "$type": "RPG.GameCore.ByAnd",
+                            "PredicateList": [
+                              {
+                                "$type": "RPG.GameCore.ByTargetTeam",
+                                "TargetType": {
+                                  "$type": "RPG.GameCore.TargetAlias",
+                                  "Alias": "ParamEntity"
+                                },
+                                "Team": "TeamLight"
+                              },
+                              {
+                                "$type": "RPG.GameCore.ByAny",
+                                "PredicateList": [
+                                  {
+                                    "$type": "RPG.GameCore.ByTargetEntityType",
+                                    "TargetType": {
+                                      "$type": "RPG.GameCore.TargetAlias",
+                                      "Alias": "ParamEntity"
+                                    },
+                                    "EntityTypeMask": "Servant"
+                                  },
+                                  {
+                                    "$type": "RPG.GameCore.ByIsBattleEventEntity",
+                                    "TargetType": {
+                                      "$type": "RPG.GameCore.TargetAlias",
+                                      "Alias": "ParamEntity"
+                                    },
+                                    "ExpectSubType": "BEServant"
+                                  },
+                                  {
+                                    "$type": "RPG.GameCore.ByIsBattleEventEntity",
+                                    "TargetType": {
+                                      "$type": "RPG.GameCore.TargetAlias",
+                                      "Alias": "ParamEntity"
+                                    },
+                                    "ExpectSubType": "DummyCharacter"
+                                  }
+                                ]
+                              },
+                              {
+                                "$type": "RPG.GameCore.ByCompareTarget",
+                                "TargetType": {
+                                  "$type": "RPG.GameCore.TargetAlias",
+                                  "Alias": "ParamEntity"
+                                },
+                                "CompareType": {
+                                  "$type": "RPG.GameCore.TargetAlias",
+                                  "Alias": "CasterServant"
+                                },
+                                "Inverse": true
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 1
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_SummonTurnCounted"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_ExtraSummonPower"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByGridFightCustomProperty",
+                      "DynamicKey": "MDF_ExtraSummonPower",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "CustomType": {
+                        "EnumIndex": 2,
+                        "Value": 113
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByAddValue",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "Key": {
+                        "Value": "_Partner_Count_Show"
+                      },
+                      "AddValue": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQECBAIBAwIR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1812281431,
+                            1272510881,
+                            1353286002,
+                            -1276824278
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByAddValue",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "CasterServant"
+                      },
+                      "Key": {
+                        "Value": "_Partner_Count"
+                      },
+                      "AddValue": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQECBAIBAwIR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1812281431,
+                            1272510881,
+                            1353286002,
+                            -1276824278
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Event": "OnEnterBattle",
+              "Priority": -80,
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "TAvatar_GridFight_S2_Evernight_00_PC_PS02_CacheServantMaxHP"
+                }
+              ]
+            },
+            {
+              "Event": "OnListenInsertAbilityFinish",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByGridFightHasTrait",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "TeamTrait": {
+                          "Value": "Origin_200602"
+                        },
+                        "IncludeInactiveTrait": false
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByAny",
+                        "PredicateList": [
+                          {
+                            "$type": "RPG.GameCore.ByCompareParamString",
+                            "CompareValue": {
+                              "Value": "Avatar_GridFight_S2_JingYuan_00_Passive_Insert"
+                            },
+                            "ParamIndex": 0
+                          },
+                          {
+                            "$type": "RPG.GameCore.ByCompareParamString",
+                            "CompareValue": {
+                              "Value": "Avatar_JingYuan_00_ExRank01_Insert_SelectTarget"
+                            },
+                            "ParamIndex": 0
+                          },
+                          {
+                            "$type": "RPG.GameCore.ByCompareParamString",
+                            "CompareValue": {
+                              "Value": "BE_GridFight_S2_JingYuan_00_Passive_Insert"
+                            },
+                            "ParamIndex": 0
+                          },
+                          {
+                            "$type": "RPG.GameCore.ByCompareParamString",
+                            "CompareValue": {
+                              "Value": "BE_GridFight_S2_JingYuan_00_ExRank01_Insert_SelectTarget"
+                            },
+                            "ParamIndex": 0
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.DebugLog",
+                      "Level": "Warn",
+                      "Message": "==============长夜月 景元获得忆质======================"
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_ExtraSummonPower"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByGridFightCustomProperty",
+                      "DynamicKey": "MDF_ExtraSummonPower",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "CustomType": {
+                        "EnumIndex": 2,
+                        "Value": 113
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByAddValue",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "Key": {
+                        "Value": "_Partner_Count_Show"
+                      },
+                      "AddValue": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQECBAIBAwIR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1812281431,
+                            1272510881,
+                            1353286002,
+                            -1276824278
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByAddValue",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "CasterServant"
+                      },
+                      "Key": {
+                        "Value": "_Partner_Count"
+                      },
+                      "AddValue": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQECBAIBAwIR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1812281431,
+                            1272510881,
+                            1353286002,
+                            -1276824278
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "DynamicValues": {
+            "Floats": {
+              "1531328453": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-1274849102": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "640563041": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-478185549": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "-615281839": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1353286002": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              },
+              "1644732978": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          },
+          "TaskListTemplate": [
+            {
+              "Name": "TAvatar_GridFight_S2_Evernight_00_PC_PS02_CacheServantMaxHP",
+              "TaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareTargetCount",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "CasterServant"
+                    },
+                    "AliveOnly": true,
+                    "Number": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 0
+                      }
+                    },
+                    "CompareType": "Greater"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                      "DynamicKey": "MDF_ServantMaxHP",
+                      "ReadTargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "CasterServant"
+                      },
+                      "Value": "MaxHP"
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            -615281839
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "_Evernight_00_GridFight_ServantMaxHP"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Name": "TAvatar_GridFight_S2_Evernight_00_PC_PS02_OnEnergyChange",
+              "TaskList": [
+                {
+                  "$type": "RPG.GameCore.IncludeTaskListTemplate",
+                  "Name": "TAvatar_GridFight_S2_Evernight_00_PC_PS02_CacheServantMaxHP"
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQABAQMR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1934422157,
+                        1531328453
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "MDF_Delta"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1934422157
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "MDF_LastCount"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByAnd",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByGridFightHasTrait",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ModifierOwnerEntity"
+                        },
+                        "TeamTrait": {
+                          "Value": "Origin_200602"
+                        },
+                        "IncludeInactiveTrait": false
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "DynamicKey": {
+                          "Value": "MDF_Delta"
+                        },
+                        "CompareType": "Greater",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQIR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            640563041,
+                            -1274849102
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_Progress"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValue",
+                      "Value": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQABAQECBRABEQ==",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1776456860,
+                            640563041,
+                            2086906241
+                          ]
+                        }
+                      },
+                      "DynamicKey": {
+                        "Value": "MDF_HealCount"
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareDynamicValue",
+                        "DynamicKey": {
+                          "Value": "MDF_HealCount"
+                        },
+                        "CompareType": "Greater",
+                        "CompareValue": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 0
+                          }
+                        }
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.SetDynamicValue",
+                          "Value": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQABAQECBAMR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                640563041,
+                                -478185549,
+                                2086906241
+                              ]
+                            }
+                          },
+                          "DynamicKey": {
+                            "Value": "MDF_Progress"
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.LoopExecuteTaskList",
+                          "MaxLoopCount": {
+                            "IsDynamic": true,
+                            "PostfixExpr": {
+                              "OpCodes": "AQAR",
+                              "FixedValues": [],
+                              "DynamicHashes": [
+                                -478185549
+                              ]
+                            }
+                          },
+                          "TaskList": [
+                            {
+                              "$type": "RPG.GameCore.HealHP",
+                              "TargetType": {
+                                "$type": "RPG.GameCore.TargetSequence",
+                                "Sequence": [
+                                  {
+                                    "$type": "RPG.GameCore.TargetAlias",
+                                    "Alias": "AllLightTeam"
+                                  },
+                                  {
+                                    "$type": "RPG.GameCore.TargetFilterAliveState",
+                                    "Mask": "Mask_AliveOnly"
+                                  },
+                                  {
+                                    "$type": "RPG.GameCore.TargetFilter",
+                                    "Predicate": {
+                                      "$type": "RPG.GameCore.ByCompareHP",
+                                      "TargetType": {
+                                        "$type": "RPG.GameCore.TargetAlias",
+                                        "Alias": "ParamEntity"
+                                      },
+                                      "CompareType": "Greater",
+                                      "CompareValue": {
+                                        "IsDynamic": false,
+                                        "FixedValue": {
+                                          "Value": 0
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              "HealerTargetType": {
+                                "$type": "RPG.GameCore.TargetAlias",
+                                "Alias": "ModifierOwnerEntity"
+                              },
+                              "FormulaType": "HealByBaseValue",
+                              "ModifyValue": {
+                                "IsDynamic": true,
+                                "PostfixExpr": {
+                                  "OpCodes": "AQABAQQR",
+                                  "FixedValues": [],
+                                  "DynamicHashes": [
+                                    528063065,
+                                    -2058086743
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Name": "Avatar_GridFight_S2_Evernight_00_PC_PassiveSkill02",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_GridFight_S2_Evernight_00_PC_PassiveSkill02"
+          }
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {},
+  "GlobalTemplates": []
+}

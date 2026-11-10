@@ -1,0 +1,673 @@
+{
+  "AnimatorStateEvents": [
+    {
+      "AnimatorStateName": "Die",
+      "NormalizedTime": 0.9,
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.TriggerDeadHandler"
+        }
+      ]
+    },
+    {
+      "AnimatorStateName": "Die_Fly",
+      "NormalizedTime": 0.9,
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.TriggerDeadHandler"
+        }
+      ]
+    },
+    {
+      "AnimatorStateName": "Die_Hit",
+      "NormalizedTime": 0.9,
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.TriggerDeadHandler"
+        }
+      ]
+    },
+    {
+      "AnimatorStateName": "Skill07_01",
+      "NormalizedTime": 0.999,
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.SetDynamicValueByAddValue",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Key": {
+            "Value": "#CL_Skill07IdleTime"
+          },
+          "AddValue": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 2.65
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.AnimSetParameter",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ParameterName": "Skill07IdleTime",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -146781952
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "AnimatorStateName": "Skill07_IdleShow",
+      "EventList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByHaveUniqueNameEffect",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetFetchUniqueNameEntity",
+              "UniqueName": "W5_Gluttony_00"
+            },
+            "EffectUniqueName": {
+              "Value": "W5_Gluttony_00_Skill07_Weapon"
+            },
+            "IncludeUnprepared": true
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetEffectAnimatorState",
+              "UniqueEffectName": "W5_Gluttony_00_Skill07_Weapon",
+              "StateName": "Eff_Monster_W5_Gluttony_00_Skill07_IdleShow_Weapon_01_Ani"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "AnimatorStateGroupEvents": [
+    {
+      "States": [
+        {
+          "Name": "Hit"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.SetBaseHitStateSpeed",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          }
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "RPG.GameCore.SetBaseHitStateSpeed",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Value": 1
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Appear"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAdditiveAnimState",
+          "LayerIndex": 2,
+          "AnimStateName": "Hat_Rot"
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "HatLayer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face01Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "FaceSpeed"
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAdditiveAnimState",
+          "LayerIndex": 2,
+          "AnimStateName": "Hat_Rot"
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "HatLayer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAdditiveAnimState",
+          "AnimStateName": "StandBy"
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face01Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "FaceSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "ChangePhase"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Monster/Eff_W5_Gluttony_00/Eff_Monster_W5_Gluttony_00_StandBy_Shade01.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "HatLayer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed"
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face01Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "FaceSpeed"
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "HatLayer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAdditiveAnimState",
+          "LayerIndex": 2,
+          "AnimStateName": "Hat_Rot"
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face02Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "FaceSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerAdditiveAnimState",
+          "LayerIndex": 4,
+          "AnimStateName": "StandBy"
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "StandBy"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareDynamicValue",
+            "DynamicKey": {
+              "Value": "#CL_ShadeCheck"
+            },
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 0
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetDynamicValue",
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              },
+              "DynamicKey": {
+                "Value": "#CL_ShadeCheck"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "StandBy02_BP"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "EONGCCMIMIJ",
+          "HILNFHCPEAD": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AOCGPGMHMEP": "Main/Root_M/Face_JNT",
+          "NNACFJKJOHO": {
+            "X": -210,
+            "Y": 0,
+            "Z": 90
+          },
+          "BMALIACHMOO": "Camera/BlendCurve/Blend_SlowToFast.asset"
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Skill07_BackToStandBy"
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "EONGCCMIMIJ",
+          "HILNFHCPEAD": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AOCGPGMHMEP": "Main/Root_M/Face_JNT",
+          "NNACFJKJOHO": {
+            "X": -210,
+            "Y": 0,
+            "Z": 90
+          },
+          "BMALIACHMOO": "Camera/BlendCurve/Blend_SlowToFast.asset"
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Skill02"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face01Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face01_Skill02Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        }
+      ],
+      "OnExit": [
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face01Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetLayerWeight",
+          "LayerName": "Face01_Skill02Layer",
+          "Weight": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Skill07_02"
+        },
+        {
+          "Name": "Skill07_03"
+        },
+        {
+          "Name": "Skill07_IdleShow"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.SetDynamicValue",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          },
+          "DynamicKey": {
+            "Value": "#CL_Skill07IdleTime"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AllDarkTeam"
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.AnimSetParameter",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ParamEntity"
+              },
+              "ParameterName": "Skill07IdleTime",
+              "Value": {
+                "IsDynamic": true,
+                "PostfixExpr": {
+                  "OpCodes": "AQAR",
+                  "FixedValues": [],
+                  "DynamicHashes": [
+                    -146781952
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Stagger"
+        },
+        {
+          "Name": "Confine"
+        },
+        {
+          "Name": "Stun_Occur"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMonsterPhase",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.MappingAttachPoint",
+              "SourcePointName": "SelectRoot",
+              "MappingTo": "SelectRoot4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Stagger_Recover"
+        },
+        {
+          "Name": "Stun_Recover"
+        },
+        {
+          "Name": "Confine_Recover"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMonsterPhase",
+            "CompareType": "Equal",
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.MappingAttachPoint",
+              "SourcePointName": "SelectRoot",
+              "IsReset": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Stun_Occur"
+        },
+        {
+          "Name": "Stagger"
+        },
+        {
+          "Name": "Confine"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Monster/Eff_W5_Gluttony_00/Eff_Monster_W5_Gluttony_00_Break_Smoke.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "ChangePhase_Start"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Monster/Eff_W5_Gluttony_00/Eff_Monster_W5_Gluttony_00_Break_Smoke.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "Name": "Stun_Recover"
+        },
+        {
+          "Name": "Stagger_Recover"
+        },
+        {
+          "Name": "Confine_Recover"
+        }
+      ],
+      "OnEnter": [
+        {
+          "$type": "RPG.GameCore.AnimSetParameter",
+          "ParameterName": "HatRotSpeed",
+          "Value": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

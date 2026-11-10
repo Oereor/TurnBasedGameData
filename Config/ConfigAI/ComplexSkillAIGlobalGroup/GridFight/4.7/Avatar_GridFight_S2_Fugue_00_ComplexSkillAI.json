@@ -1,0 +1,105 @@
+{
+  "GroupsMap": {
+    "Fugue_GridFight_S2_BuffBPSkill": {
+      "CombineOperator": "Mul",
+      "Factors": [
+        {
+          "CombineOperator": "Mul",
+          "Source": {
+            "$type": "RPG.GameCore.ComplexSkillAIContainModifier",
+            "IsTarget": false,
+            "ModifilerName": "MAvatar_GridFight_S2_Fugue_00_BPSkillBuffListen"
+          },
+          "Mapper": {
+            "$type": "RPG.GameCore.ComplexSkillAIMapperMultiRange",
+            "Ranges": [
+              {
+                "ymin": {
+                  "Value": 100
+                },
+                "xmax": {
+                  "Value": 0.5
+                },
+                "ymax": {
+                  "Value": 100
+                }
+              },
+              {
+                "xmin": {
+                  "Value": 0.5
+                },
+                "xmax": {
+                  "Value": 1
+                }
+              }
+            ]
+          },
+          "PostProcess": {
+            "$type": "RPG.GameCore.ComplexSkillAIPostProcessBreak",
+            "CompareType": "Equal",
+            "IsOverrideFinalScore": true
+          }
+        }
+      ]
+    }
+  },
+  "SkillMap": {
+    "Skill02": {
+      "AlwaysDoAutoLock": true,
+      "AutoLockType": "ScoreOfSource",
+      "AutoLockBySource": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AutoLock_Default"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasepP_Fugue_Skill02_BreakDamage"
+          }
+        ]
+      },
+      "ComplexSkillAIPreCheck": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill_PreCheck"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BaseWeight",
+            "Weight": {
+              "Value": 0.7
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "AddNP_Common_BPSkill",
+            "Weight": {
+              "Value": 0.2
+            }
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "Fugue_GridFight_S2_BuffBPSkill",
+            "Weight": {
+              "Value": 0.1
+            }
+          }
+        ]
+      },
+      "ComplexSkillAI": {
+        "Groups": [
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "DefaultBPSkill"
+          },
+          {
+            "$type": "RPG.GameCore.ComplexSkillAIFactorGroupWeight",
+            "GroupName": "BasepP_Fugue_Skill02_BreakDamage"
+          }
+        ]
+      }
+    }
+  }
+}

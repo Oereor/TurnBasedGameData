@@ -1179,6 +1179,18 @@
           "IsHide": true
         },
         {
+          "$type": "RPG.GameCore.SetTeamFormation",
+          "FormationTarget": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "CustomFormationName": "1502_00_Skill04_SelfPos",
+          "CustomCenterTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "LevelEntity"
+          }
+        },
+        {
           "$type": "RPG.GameCore.TriggerAbility",
           "TargetType": {
             "$type": "RPG.GameCore.TargetAlias",
@@ -1199,18 +1211,6 @@
             "Value": "Avatar_YaoGuang_00_Skill04_Camera"
           },
           "IsSkillPerform": true
-        },
-        {
-          "$type": "RPG.GameCore.SetTeamFormation",
-          "FormationTarget": {
-            "$type": "RPG.GameCore.TargetAlias",
-            "Alias": "Caster"
-          },
-          "CustomFormationName": "1502_00_Skill04_SelfPos",
-          "CustomCenterTargetType": {
-            "$type": "RPG.GameCore.TargetAlias",
-            "Alias": "LevelEntity"
-          }
         },
         {
           "$type": "RPG.GameCore.TriggerAnimState",
@@ -1742,6 +1742,154 @@
         },
         {
           "$type": "RPG.GameCore.SkillPerformFinish"
+        }
+      ]
+    },
+    {
+      "Name": "Avatar_YaoGuang_00_SkillAha",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": []
+    },
+    {
+      "Modifiers": {
+        "MAvatar_YaoGuang_00_Nihilux_AhaArrival": {
+          "BehaviorFlagList": [
+            "RemoveWhenCasterDead"
+          ],
+          "_CallbackList": [
+            {
+              "Event": "OnDestroy",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "Nihilux_AhaArrival_HongBaoExtraPercentage"
+                  }
+                }
+              ]
+            },
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.SetDynamicValue",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Value": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1856375314
+                      ]
+                    }
+                  },
+                  "DynamicKey": {
+                    "Value": "Nihilux_AhaArrival_HongBaoExtraPercentage"
+                  }
+                }
+              ]
+            },
+            {
+              "Event": "OnAfterSkillUse",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCurrentSkillName",
+                    "SkillName": "Skill03"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.ModifySPNew",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ModifierOwnerEntity"
+                      },
+                      "FixedAddValue": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1171845984
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "$type": "JDOLDFECMPL",
+                      "AJHHCOHFIFA": {
+                        "IsDynamic": true,
+                        "PostfixExpr": {
+                          "OpCodes": "AQAR",
+                          "FixedValues": [],
+                          "DynamicHashes": [
+                            1947750702
+                          ]
+                        }
+                      },
+                      "FKCKKFALPBK": "EGFCFCBHJJP"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster",
+          "DynamicValues": {
+            "Floats": {
+              "1856375314": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "Name": "Avatar_YaoGuang_00_Nihilux_AhaArrival",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "MAvatar_YaoGuang_00_Nihilux_AhaArrival"
+          },
+          "DynamicValues": {
+            "MDF_HongBaoExtraPercentage": {
+              "IsDynamic": true,
+              "PostfixExpr": {
+                "OpCodes": "AQAR",
+                "FixedValues": [],
+                "DynamicHashes": [
+                  1544249947
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -2863,10 +3011,15 @@
                         "ElationDamagePercentage": {
                           "IsDynamic": true,
                           "PostfixExpr": {
-                            "OpCodes": "AQAR",
-                            "FixedValues": [],
+                            "OpCodes": "AQAAAAEBAgQR",
+                            "FixedValues": [
+                              {
+                                "Value": 1
+                              }
+                            ],
                             "DynamicHashes": [
-                              2128130574
+                              2128130574,
+                              -167704018
                             ]
                           }
                         },
@@ -2973,10 +3126,15 @@
                             "ElationDamagePercentage": {
                               "IsDynamic": true,
                               "PostfixExpr": {
-                                "OpCodes": "AQAR",
-                                "FixedValues": [],
+                                "OpCodes": "AQAAAAEBAgQR",
+                                "FixedValues": [
+                                  {
+                                    "Value": 1
+                                  }
+                                ],
                                 "DynamicHashes": [
-                                  2128130574
+                                  2128130574,
+                                  -167704018
                                 ]
                               }
                             },

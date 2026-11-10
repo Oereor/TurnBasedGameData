@@ -17816,17 +17816,35 @@
                 {
                   "$type": "RPG.GameCore.PredicateTaskList",
                   "Predicate": {
-                    "$type": "RPG.GameCore.ByCompareBattleEventID",
-                    "TargetType": {
-                      "$type": "RPG.GameCore.TargetAlias",
-                      "Alias": "ParamEntity"
-                    },
-                    "TargetBattleEventID": {
-                      "IsDynamic": false,
-                      "FixedValue": {
-                        "Value": 70001
+                    "$type": "RPG.GameCore.ByAny",
+                    "PredicateList": [
+                      {
+                        "$type": "RPG.GameCore.ByCompareBattleEventID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetBattleEventID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 70001
+                          }
+                        }
+                      },
+                      {
+                        "$type": "RPG.GameCore.ByCompareBattleEventID",
+                        "TargetType": {
+                          "$type": "RPG.GameCore.TargetAlias",
+                          "Alias": "ParamEntity"
+                        },
+                        "TargetBattleEventID": {
+                          "IsDynamic": false,
+                          "FixedValue": {
+                            "Value": 70002
+                          }
+                        }
                       }
-                    }
+                    ]
                   },
                   "SuccessTaskList": [
                     {
@@ -19579,6 +19597,119 @@
           }
         }
       }
+    },
+    {
+      "Modifiers": {
+        "StageAbility_661511_Modifier": {
+          "AdditionConfig": {
+            "SubModifierList": [
+              {
+                "Name": "StageAbility_Rogue_S7_AvatarUp_Base",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetConcat",
+                  "Targets": [
+                    {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "Caster"
+                    },
+                    {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "CasterServant"
+                    }
+                  ]
+                },
+                "DynamicValues": {
+                  "MDF_1": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        462955996
+                      ]
+                    }
+                  },
+                  "MDF_2": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        59671469
+                      ]
+                    }
+                  },
+                  "MDF_3": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        1625755410
+                      ]
+                    }
+                  }
+                },
+                "IsHaloStatus": true
+              },
+              {
+                "Name": "StageAbility_661511_Modifier_Sub",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetConcat",
+                  "Targets": [
+                    {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "AllLightTeamWithAllLightTeamUnselectable.RemoveBattleEvent"
+                    }
+                  ]
+                },
+                "IsHaloStatus": true
+              }
+            ]
+          }
+        },
+        "StageAbility_661511_Modifier_Sub": {
+          "_CallbackList": [
+            {
+              "Event": "OnStack",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.StackProperty",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ModifierOwnerEntity"
+                  },
+                  "Property": "ElationDamageAddedRatioBase",
+                  "PropertyValue": {
+                    "IsDynamic": true,
+                    "PostfixExpr": {
+                      "OpCodes": "AQAR",
+                      "FixedValues": [],
+                      "DynamicHashes": [
+                        866240523
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "Stacking": "ReplaceByCaster"
+        }
+      },
+      "Name": "StageAbility_661511",
+      "OnAdd": [
+        {
+          "$type": "RPG.GameCore.AddModifier",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ModifierName": {
+            "Value": "StageAbility_661511_Modifier"
+          }
+        }
+      ]
     }
   ],
   "GlobalModifiers": {

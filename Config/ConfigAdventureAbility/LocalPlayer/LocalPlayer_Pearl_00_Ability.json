@@ -1,0 +1,724 @@
+{
+  "AbilityList": [
+    {
+      "OnAbort": [
+        {
+          "$type": "RPG.GameCore.RadialBlurEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Active": false
+        }
+      ],
+      "Name": "LocalPlayer_Pearl_NormalAtk01",
+      "TargetInfo": {
+        "TargetType": "SkillPointEntityOrNone"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "Freelook3rdConfig": {
+              "DampChangeParam": {
+                "TargetValue": {
+                  "X": 1,
+                  "Y": 1,
+                  "Z": 1
+                },
+                "ChangeCurvePath": "Camera/BlendCurve/AttackDampCurve.asset",
+                "RecoveryTime": 0.25,
+                "RecoveryCurvePath": "Camera/BlendCurve/AttackDampRecoverCurve.asset"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByHaveAbilityTarget"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.LookAt",
+              "TargetType": "AbilityTargetEntity",
+              "Duration": 0.1
+            },
+            {
+              "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AdvLocalPlayer"
+              },
+              "AnimLogicState": "NormalAtk",
+              "AnimStateName": "Attack_1"
+            },
+            {
+              "$type": "RPG.GameCore.WaitAnimState",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AnimStateName": "Attack_1",
+              "NormalizedTimeEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.055
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.RadialBlurEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Duration": 0.1,
+              "BlurY": 0.4,
+              "BlurRadius": 1,
+              "Iteration": 4,
+              "BlurStart": 0.005,
+              "BlurFeather": 0.01
+            },
+            {
+              "$type": "RPG.GameCore.VCameraConfigChange",
+              "CameraConfig": {
+                "ShakeTemplateName": "Common_Rapid_Light",
+                "OverrideShakeConfigV2": {
+                  "ShakeScale": 1,
+                  "ShakeTime": 0.06,
+                  "ShakeDir": {
+                    "X": 0,
+                    "Y": 0,
+                    "Z": -0.8
+                  },
+                  "RangeAttenuationDelay": 999,
+                  "RangeAttenuationTarget": 0
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.AdventureFireProjectile",
+              "Projectile": {
+                "ColliderTemplate": "CapsuleZ_Pearl_MazeBullet",
+                "Behavior": "LinearWithHitDetect",
+                "FlySpeed": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 16
+                  }
+                },
+                "EnableRayCast": true,
+                "Gravity": 0,
+                "MaxLifeTime": 0.7,
+                "AttachPoint": "Origin",
+                "AttachOffset": {
+                  "X": -0.15,
+                  "Y": 0.45,
+                  "Z": 2.95
+                },
+                "TargetAttachPoint": "Origin",
+                "FlyEffect": "Effects/Eff_Prefab/Eff_Avatar/Eff_Pearl_00/Eff_Avatar_Pearl_00_NormalAtk_bullet.prefab",
+                "HitEffect": "Effects/Eff_Prefab/Eff_Avatar/Eff_Pearl_00/Eff_Avatar_Pearl_00_NormalAtk_hit.prefab",
+                "FlyEffectFadeOut": true
+              },
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AbilityTargetEntity"
+              },
+              "OnProjectileHit": [
+                {
+                  "$type": "RPG.GameCore.AdventureTriggerAttack",
+                  "AttackTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllEnemy"
+                  },
+                  "AttackRootTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ProjectileHitPos"
+                  },
+                  "TriggerBattleDelay": 0.1,
+                  "AttackDetectConfig": {
+                    "$type": "RPG.GameCore.AdventureAttackDetectCircleConfig",
+                    "MaxRadius": 2,
+                    "FanAngle": 360,
+                    "Hight": 2,
+                    "Offset": {
+                      "X": 0,
+                      "Y": -1,
+                      "Z": 0.5
+                    }
+                  },
+                  "HitConfig": {
+                    "HitAnimation": "Hit"
+                  }
+                }
+              ],
+              "OnProjectileLifetimeFinish": [
+                {
+                  "$type": "RPG.GameCore.AdventureTriggerAttack",
+                  "AttackTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllEnemy"
+                  },
+                  "AttackRootTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ProjectileHitPos"
+                  },
+                  "TriggerBattleDelay": 0.1,
+                  "AttackDetectConfig": {
+                    "$type": "RPG.GameCore.AdventureAttackDetectCircleConfig",
+                    "MaxRadius": 2,
+                    "FanAngle": 360,
+                    "Hight": 2,
+                    "Offset": {
+                      "X": 0,
+                      "Y": -1,
+                      "Z": 0.5
+                    }
+                  },
+                  "HitConfig": {
+                    "HitAnimation": "Hit"
+                  }
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.WaitAnimState",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AnimStateName": "Attack_1",
+              "NormalizedTimeEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.117
+                }
+              }
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AdvLocalPlayer"
+              },
+              "AnimLogicState": "NormalAtk",
+              "AnimStateName": "Attack_1"
+            },
+            {
+              "$type": "RPG.GameCore.WaitAnimState",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AnimStateName": "Attack_1",
+              "NormalizedTimeEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.055
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.RadialBlurEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "Duration": 0.1,
+              "BlurY": 0.4,
+              "BlurRadius": 1,
+              "Iteration": 4,
+              "BlurStart": 0.005,
+              "BlurFeather": 0.01
+            },
+            {
+              "$type": "RPG.GameCore.AdventureFireProjectile",
+              "Projectile": {
+                "ColliderTemplate": "CapsuleZ_Pearl_MazeBullet",
+                "Behavior": "ClimbableLinearWithHitDetect",
+                "FlySpeed": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 16
+                  }
+                },
+                "EnableRayCast": true,
+                "Gravity": 0,
+                "MaxLifeTime": 0.7,
+                "AttachPoint": "Origin",
+                "AttachOffset": {
+                  "X": -0.15,
+                  "Y": 0.45,
+                  "Z": 2.95
+                },
+                "TargetAttachPoint": "Origin",
+                "FlyEffect": "Effects/Eff_Prefab/Eff_Avatar/Eff_Pearl_00/Eff_Avatar_Pearl_00_NormalAtk_bullet.prefab",
+                "HitEffect": "Effects/Eff_Prefab/Eff_Avatar/Eff_Pearl_00/Eff_Avatar_Pearl_00_NormalAtk_hit.prefab",
+                "FlyEffectFadeOut": true
+              },
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AbilityTargetEntity"
+              },
+              "OnProjectileHit": [
+                {
+                  "$type": "RPG.GameCore.AdventureTriggerAttack",
+                  "AttackTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllEnemy"
+                  },
+                  "AttackRootTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ProjectileHitPos"
+                  },
+                  "TriggerBattleDelay": 0.1,
+                  "AttackDetectConfig": {
+                    "$type": "RPG.GameCore.AdventureAttackDetectCircleConfig",
+                    "MaxRadius": 2,
+                    "FanAngle": 360,
+                    "Hight": 2,
+                    "Offset": {
+                      "X": 0,
+                      "Y": -1,
+                      "Z": 0.5
+                    }
+                  },
+                  "HitConfig": {
+                    "HitAnimation": "Hit"
+                  }
+                }
+              ],
+              "OnProjectileLifetimeFinish": [
+                {
+                  "$type": "RPG.GameCore.AdventureTriggerAttack",
+                  "AttackTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllEnemy"
+                  },
+                  "AttackRootTargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "ProjectileHitPos"
+                  },
+                  "TriggerBattleDelay": 0.1,
+                  "AttackDetectConfig": {
+                    "$type": "RPG.GameCore.AdventureAttackDetectCircleConfig",
+                    "MaxRadius": 2,
+                    "FanAngle": 360,
+                    "Hight": 2,
+                    "Offset": {
+                      "X": 0,
+                      "Y": -1,
+                      "Z": 0.5
+                    }
+                  },
+                  "HitConfig": {
+                    "HitAnimation": "Hit"
+                  }
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.WaitAnimState",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "AnimStateName": "Attack_1",
+              "NormalizedTimeEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.117
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "OnAbort": [
+        {
+          "$type": "RPG.GameCore.RadialBlurEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "Active": false
+        }
+      ],
+      "Name": "LocalPlayer_Pearl_MazeSkill",
+      "TargetInfo": {
+        "TargetType": "Caster"
+      },
+      "OnStart": [
+        {
+          "$type": "RPG.GameCore.AdventureTriggerAnimStateWithMove",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimLogicState": "MazeSkill",
+          "AnimStateName": "MazeSkill"
+        },
+        {
+          "$type": "RPG.GameCore.WaitAnimState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "AnimStateName": "MazeSkill",
+          "NormalizedTimeEnd": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.225
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.AddMazeBuff",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Caster"
+          },
+          "ID": 150301
+        },
+        {
+          "$type": "RPG.GameCore.AdventureSubmitSkill"
+        }
+      ]
+    }
+  ],
+  "GlobalModifiers": {
+    "ADV_StageAbility_Maze_Pearl": {
+      "OnStack": [
+        {
+          "$type": "RPG.GameCore.RemoveMazeBuff",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvTeamMembers"
+          },
+          "ID": 150302
+        },
+        {
+          "$type": "RPG.GameCore.AddMazeBuff",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "ID": 150302
+        },
+        {
+          "$type": "RPG.GameCore.ModifierAttachEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Pearl_00/Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com.prefab",
+          "UniqueEffectName": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareTarget",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "CompareType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "Inverse": true
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareTeamLeaderPath",
+                "PathType": "Elation"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.DebugLog",
+                  "Level": "Warn",
+                  "Message": "==============YELLOW======================"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Yellow",
+                  "ParameterType": "Bool",
+                  "BoolValue": true
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Blue",
+                  "ParameterType": "Bool"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "White",
+                  "ParameterType": "Bool"
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.DebugLog",
+                  "Level": "Warn",
+                  "Message": "==============BLUE======================"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Yellow",
+                  "ParameterType": "Bool"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Blue",
+                  "ParameterType": "Bool",
+                  "BoolValue": true
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "White",
+                  "ParameterType": "Bool"
+                }
+              ]
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Level": "Warn",
+              "Message": "==============GREY======================"
+            },
+            {
+              "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+              "UniqueEffectName": {
+                "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+              },
+              "ParameterName": "Yellow",
+              "ParameterType": "Bool"
+            },
+            {
+              "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+              "UniqueEffectName": {
+                "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+              },
+              "ParameterName": "Blue",
+              "ParameterType": "Bool"
+            },
+            {
+              "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+              "UniqueEffectName": {
+                "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+              },
+              "ParameterName": "White",
+              "ParameterType": "Bool",
+              "BoolValue": true
+            }
+          ]
+        }
+      ],
+      "OnTeamLeaderChange": [
+        {
+          "$type": "RPG.GameCore.RemoveMazeBuff",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvTeamMembers"
+          },
+          "ID": 150302
+        },
+        {
+          "$type": "RPG.GameCore.AddMazeBuff",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "ID": 150302
+        },
+        {
+          "$type": "RPG.GameCore.ModifierReattachEffect",
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Pearl_00/Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com.prefab",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareTarget",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "CompareType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "Inverse": true
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareTeamLeaderPath",
+                "PathType": "Elation"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.DebugLog",
+                  "Level": "Warn",
+                  "Message": "==============YELLOW======================"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Yellow",
+                  "ParameterType": "Bool",
+                  "BoolValue": true
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Blue",
+                  "ParameterType": "Bool"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "White",
+                  "ParameterType": "Bool"
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.DebugLog",
+                  "Level": "Warn",
+                  "Message": "==============BLUE======================"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Yellow",
+                  "ParameterType": "Bool"
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "Blue",
+                  "ParameterType": "Bool",
+                  "BoolValue": true
+                },
+                {
+                  "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+                  "UniqueEffectName": {
+                    "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+                  },
+                  "ParameterName": "White",
+                  "ParameterType": "Bool"
+                }
+              ]
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Level": "Warn",
+              "Message": "==============GREY======================"
+            },
+            {
+              "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+              "UniqueEffectName": {
+                "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+              },
+              "ParameterName": "Yellow",
+              "ParameterType": "Bool"
+            },
+            {
+              "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+              "UniqueEffectName": {
+                "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+              },
+              "ParameterName": "Blue",
+              "ParameterType": "Bool"
+            },
+            {
+              "$type": "RPG.GameCore.SetEffectAnimatorParameter",
+              "UniqueEffectName": {
+                "RawString": "Eff_Avatar_Pearl_00_MazeSkill01_Loop_Com"
+              },
+              "ParameterName": "White",
+              "ParameterType": "Bool",
+              "BoolValue": true
+            }
+          ]
+        }
+      ],
+      "Count": 1,
+      "Stacking": "Refresh"
+    },
+    "ADV_StageAbility_Maze_Pearl_T": {
+      "OnStack": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareTarget",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "ModifierOwnerEntity"
+            },
+            "CompareType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            }
+          },
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.RemoveMazeBuff",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "ModifierOwnerEntity"
+              },
+              "ID": 150302
+            }
+          ]
+        }
+      ],
+      "Count": 1,
+      "Stacking": "Replace"
+    }
+  }
+}

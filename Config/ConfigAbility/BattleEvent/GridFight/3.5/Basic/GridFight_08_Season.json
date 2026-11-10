@@ -66,73 +66,153 @@
               "Event": "OnEnterBattle",
               "CallbackConfig": [
                 {
+                  "$type": "RPG.GameCore.Retarget",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "AllDarkTeam"
+                  },
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                      "DynamicKey": "_MaxHP",
+                      "ReadTargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Value": "MaxHP"
+                    },
+                    {
+                      "$type": "RPG.GameCore.DamageByAttackProperty",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "AttackProperty": {
+                        "$type": "RPG.GameCore.AttackData",
+                        "DamageType": {},
+                        "DamageValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1309867853,
+                              462955996
+                            ]
+                          }
+                        },
+                        "AttackType": "TrueDamage",
+                        "FinalFormulaType": "ByBaseDamage",
+                        "IsNonlethal": true
+                      },
+                      "IsConvert": true,
+                      "DisplayData": {
+                        "UIMessageHeight": 0.75
+                      },
+                      "PerformanceDelay": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0.05
+                        }
+                      },
+                      "IsHitAnimPerformanceDelay": false
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.AddModifier",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "Caster"
+                  },
+                  "ModifierName": {
+                    "Value": "MStageAbility_GridFight_Season_35602061_Listener"
+                  }
+                }
+              ]
+            }
+          ],
+          "DynamicValues": {
+            "Floats": {
+              "-1309867853": {
+                "ReadInfo": {
+                  "Type": "None",
+                  "Index": 0
+                }
+              }
+            }
+          }
+        },
+        "MStageAbility_GridFight_Season_35602061_Listener": {
+          "_CallbackList": [
+            {
+              "Event": "OnListenCharacterCreate",
+              "CallbackConfig": [
+                {
                   "$type": "RPG.GameCore.PredicateTaskList",
                   "Predicate": {
-                    "$type": "RPG.GameCore.ByCompareWaveCount",
-                    "CompareType": "Equal",
-                    "CompareValue": {
-                      "IsDynamic": false,
-                      "FixedValue": {
-                        "Value": 1
-                      }
-                    }
+                    "$type": "RPG.GameCore.ByTargetTeam",
+                    "TargetType": {
+                      "$type": "RPG.GameCore.TargetAlias",
+                      "Alias": "ParamEntity"
+                    },
+                    "Team": "TeamDark"
                   },
                   "SuccessTaskList": [
                     {
-                      "$type": "RPG.GameCore.Retarget",
+                      "$type": "RPG.GameCore.SetDynamicValueByProperty",
+                      "DynamicKey": "_MaxHP",
+                      "ReadTargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "Value": "MaxHP"
+                    },
+                    {
+                      "$type": "RPG.GameCore.DamageByAttackProperty",
                       "TargetType": {
                         "$type": "RPG.GameCore.TargetAlias",
-                        "Alias": "AllDarkTeam"
+                        "Alias": "ParamEntity"
                       },
-                      "TaskList": [
-                        {
-                          "$type": "RPG.GameCore.SetDynamicValueByProperty",
-                          "DynamicKey": "_MaxHP",
-                          "ReadTargetType": {
-                            "$type": "RPG.GameCore.TargetAlias",
-                            "Alias": "ParamEntity"
-                          },
-                          "Value": "MaxHP"
+                      "AttackProperty": {
+                        "$type": "RPG.GameCore.AttackData",
+                        "DamageType": {},
+                        "DamageValue": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQABAQQR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -1309867853,
+                              462955996
+                            ]
+                          }
                         },
-                        {
-                          "$type": "RPG.GameCore.DamageByAttackProperty",
-                          "TargetType": {
-                            "$type": "RPG.GameCore.TargetAlias",
-                            "Alias": "ParamEntity"
-                          },
-                          "AttackProperty": {
-                            "$type": "RPG.GameCore.AttackData",
-                            "DamageType": {},
-                            "DamageValue": {
-                              "IsDynamic": true,
-                              "PostfixExpr": {
-                                "OpCodes": "AQABAQQR",
-                                "FixedValues": [],
-                                "DynamicHashes": [
-                                  -1309867853,
-                                  462955996
-                                ]
-                              }
-                            },
-                            "AttackType": "TrueDamage",
-                            "FinalFormulaType": "ByBaseDamage"
-                          },
-                          "CanTriggerLastKill": true,
-                          "IsConvert": true,
-                          "DisplayData": {
-                            "UIMessageHeight": 0.75
-                          },
-                          "PerformanceDelay": {
-                            "IsDynamic": false,
-                            "FixedValue": {
-                              "Value": 0.05
-                            }
-                          },
-                          "IsHitAnimPerformanceDelay": false
+                        "AttackType": "TrueDamage",
+                        "FinalFormulaType": "ByBaseDamage",
+                        "IsNonlethal": true
+                      },
+                      "IsConvert": true,
+                      "DisplayData": {
+                        "UIMessageHeight": 0.75
+                      },
+                      "PerformanceDelay": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0.05
                         }
-                      ]
+                      },
+                      "IsHitAnimPerformanceDelay": false
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "Event": "OnBeforeWaveMonster",
+              "CallbackConfig": [
+                {
+                  "$type": "RPG.GameCore.RemoveSelfModifier"
                 }
               ]
             }

@@ -1,0 +1,229 @@
+{
+  "AIName": "MazeMonster_Tracked",
+  "VariableList": [],
+  "DecisionList": [
+    {
+      "$type": "RPG.GameCore.AIDecisionConfig",
+      "DecisionName": "Idle",
+      "RootTask": {
+        "$type": "RPG.GameCore.SequenceConfig",
+        "TaskList": [
+          {
+            "$type": "RPG.GameCore.AnimSetParameter",
+            "ParameterName": "IsAlert",
+            "ParameterType": "Bool"
+          },
+          {
+            "$type": "RPG.GameCore.AdvNPCIdle"
+          }
+        ]
+      },
+      "ScoreEvaluatorType": "AdventureDefaultDSE",
+      "ConsiderAxisList": [
+        {
+          "$type": "RPG.GameCore.CheckPredicateAxis",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByNPCStatus"
+          },
+          "SuccessScore": {
+            "Value": 1
+          }
+        }
+      ]
+    },
+    {
+      "$type": "RPG.GameCore.AIDecisionConfig",
+      "DecisionName": "Patrol",
+      "RootTask": {
+        "$type": "RPG.GameCore.SequenceConfig",
+        "TaskList": [
+          {
+            "$type": "RPG.GameCore.AdvSetNpcVisionsConfig",
+            "VisionsByName": [
+              "GlobalVisionConfig_TrackedNpc_FrontVision",
+              "GlobalVisionConfig_TrackedNpc_AlertVisionLv1",
+              "GlobalVisionConfig_TrackedNpc_AlertVisionLv2"
+            ]
+          },
+          {
+            "$type": "RPG.GameCore.AnimSetParameter",
+            "ParameterName": "IsAlert",
+            "ParameterType": "Bool"
+          },
+          {
+            "$type": "RPG.GameCore.AdvNPCPatrol",
+            "TaskMode": "PerWaypointTask",
+            "StayOnWaypoint": true,
+            "StayOnWaypointDuration": 1,
+            "OnWaypointTask": {
+              "$type": "RPG.GameCore.CharacterTriggerAnimState",
+              "AnimStateName": "StandBy",
+              "NormalizedTransitionDuration": 0.25
+            },
+            "PerWaypointTask": {
+              "2": {
+                "$type": "RPG.GameCore.SequenceConfig",
+                "TaskList": [
+                  {
+                    "$type": "RPG.GameCore.AnimSetParameter",
+                    "ParameterName": "IsAlert",
+                    "ParameterType": "Bool",
+                    "Value": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1
+                      }
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.WaitSecond",
+                    "WaitTime": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 5
+                      }
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.AnimSetParameter",
+                    "ParameterName": "IsAlert",
+                    "ParameterType": "Bool"
+                  }
+                ]
+              },
+              "5": {
+                "$type": "RPG.GameCore.SequenceConfig",
+                "TaskList": [
+                  {
+                    "$type": "RPG.GameCore.AnimSetParameter",
+                    "ParameterName": "IsAlert",
+                    "ParameterType": "Bool",
+                    "Value": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1
+                      }
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.WaitSecond",
+                    "WaitTime": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 5
+                      }
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.AnimSetParameter",
+                    "ParameterName": "IsAlert",
+                    "ParameterType": "Bool"
+                  }
+                ]
+              },
+              "7": {
+                "$type": "RPG.GameCore.SequenceConfig",
+                "TaskList": [
+                  {
+                    "$type": "RPG.GameCore.AnimSetParameter",
+                    "ParameterName": "IsAlert",
+                    "ParameterType": "Bool",
+                    "Value": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 1
+                      }
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.WaitSecond",
+                    "WaitTime": {
+                      "IsDynamic": false,
+                      "FixedValue": {
+                        "Value": 5
+                      }
+                    }
+                  },
+                  {
+                    "$type": "RPG.GameCore.AnimSetParameter",
+                    "ParameterName": "IsAlert",
+                    "ParameterType": "Bool"
+                  }
+                ]
+              },
+              "9": {
+                "$type": "RPG.GameCore.SequenceConfig",
+                "TaskList": []
+              }
+            },
+            "OverrideMotionFlag": {}
+          }
+        ]
+      },
+      "ScoreEvaluatorType": "AdventureDefaultDSE",
+      "ConsiderAxisList": [
+        {
+          "$type": "RPG.GameCore.CheckPredicateAxis",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByNPCStatus",
+            "NPCStatus": "Patrol"
+          },
+          "SuccessScore": {
+            "Value": 1
+          }
+        }
+      ]
+    },
+    {
+      "$type": "RPG.GameCore.AIDecisionConfig",
+      "DecisionName": "TrackedSearch",
+      "RootTask": {
+        "$type": "RPG.GameCore.SequenceConfig",
+        "TaskList": [
+          {
+            "$type": "RPG.GameCore.AnimSetParameter",
+            "ParameterName": "IsAlert",
+            "ParameterType": "Bool",
+            "Value": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          }
+        ]
+      },
+      "ScoreEvaluatorType": "AdventureDefaultDSE",
+      "ConsiderAxisList": [
+        {
+          "$type": "RPG.GameCore.CheckPredicateAxis",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByNPCStatus",
+            "NPCStatus": "TrackedSearch"
+          },
+          "SuccessScore": {
+            "Value": 1
+          }
+        }
+      ]
+    }
+  ],
+  "OnDisable": {
+    "$type": "RPG.GameCore.AdvNPCIdle"
+  },
+  "OnInit": {
+    "$type": "RPG.GameCore.SequenceConfig",
+    "TaskList": [
+      {
+        "$type": "RPG.GameCore.AdvSetNpcAlertConfig",
+        "TargetType": {
+          "$type": "RPG.GameCore.TargetFetchAdvNpcEx"
+        },
+        "AlertLimitMax": 45,
+        "AlertGuardLimitMin": 5,
+        "AlertGuardLimitMax": 25,
+        "AlertDeclineSpeed": 3
+      }
+    ]
+  }
+}
