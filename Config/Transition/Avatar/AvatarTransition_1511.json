@@ -1,0 +1,379 @@
+{
+  "MazeBattleTransitions": [
+    {
+      "Predicate": {
+        "$type": "RPG.GameCore.ByAny",
+        "PredicateList": [
+          {
+            "$type": "RPG.GameCore.ByIsContainAdventureModifier",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "ModifierName": "ADV_Modifier_Maze_Nihilux"
+          },
+          {
+            "$type": "RPG.GameCore.ByIsMazeBuffAffectCurrentWave",
+            "MazeBuffID": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 151102
+              }
+            }
+          }
+        ]
+      },
+      "OnBeforeTriggerBattle": [
+        {
+          "$type": "RPG.GameCore.LockPlayerControl"
+        },
+        {
+          "$type": "RPG.GameCore.ShowMazeUI"
+        },
+        {
+          "$type": "RPG.GameCore.WaitFrame"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_MazeSkill_Boom.prefab",
+          "UniqueEffectName": "Eff_Avatar_Nihilux_10_MazeSkill_Boom"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerSound",
+          "SoundName": {
+            "Value": "Ev_sfx_avatar_Nihilux_Maze_Combat_Start_BS"
+          },
+          "EmitterType": "LocalPlayer"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerSound",
+          "SoundName": {
+            "Value": "Ev_vo_avatar_skill_maze_nihilux"
+          },
+          "EmitterType": "LocalPlayer"
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareCharacterID",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "AdvLocalPlayer"
+            },
+            "TargetCharacterID": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1511
+              }
+            },
+            "Inverse": true
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AdvLocalPlayer"
+              },
+              "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_cam.prefab",
+              "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_cam"
+            },
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.5
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.GlobalVisibilityControl",
+          "StageVisible": false,
+          "AtmosphereVisible": false,
+          "VisibleEntityMask": "None",
+          "VisibleEffects": [
+            "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Body",
+            "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Card",
+            "Eff_Avatar_Nihilux_10_Adv_EnterBattle_scene2",
+            "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Loop"
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_Body.prefab",
+          "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Body",
+          "ForceSimulateImmediately": false
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_Card.prefab",
+          "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Card",
+          "ForceSimulateImmediately": false
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_scene2.prefab",
+          "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_scene2",
+          "ForceSimulateImmediately": false
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_Loop.prefab",
+          "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Loop",
+          "ForceSimulateImmediately": false
+        },
+        {
+          "$type": "ACNFHAKPMIK",
+          "AKJBPEPHNPG": {
+            "Target": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "WhiteListEffects": [
+              "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_Body.prefab",
+              "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_Card.prefab",
+              "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_scene2.prefab",
+              "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_Loop.prefab",
+              "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_cam2_end.prefab"
+            ]
+          },
+          "HENPNIABNAD": {
+            "Target": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "None"
+            },
+            "WhiteListEffects": []
+          },
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_VC.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LookAt",
+          "PerformerType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "TargetType": "CustomTarget",
+          "CustomTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "Duration": 0
+        },
+        {
+          "$type": "RPG.GameCore.LockEntityTransform",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "AdvLocalPlayer"
+          },
+          "LockPosition": true,
+          "LockRotation": true
+        },
+        {
+          "$type": "RPG.GameCore.TransitEnvProfile",
+          "Path": {
+            "Value": "Effects/Eff_EnviroProfile/Avatar/Nihilux_10/Eff_Avatar_Nihilux_10_MazeSkill.enviroProfile.asset"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LockCurrentEnvProfile",
+          "Lock": true
+        },
+        {
+          "$type": "RPG.GameCore.ReleaseEnvProfile"
+        },
+        {
+          "$type": "RPG.GameCore.VCameraConfigChange",
+          "CameraConfig": {
+            "CloseupShotConfig": {
+              "CameraTimelineAssetName": "Camera/TimeLine/Avatar/Character_Nihilux_10_MazeSkill01_EnterBattle_TimeLine.playable",
+              "TransTypeFollow": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AdvLocalPlayer"
+              },
+              "TransTypeAim": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "AdvLocalPlayer"
+              },
+              "Override": true,
+              "PauseTime": 1.85,
+              "KeepLastFrame": true
+            },
+            "BlendConfig": {
+              "BlendType": "Cut"
+            },
+            "ShowEntityConfig": {
+              "ShowTargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "None"
+              }
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Effects/Eff_Animation/Avatar/Nihilux_10/Eff_Avatar_Nihilux_10_BattleEvent_EnterBattle_TimeLine_1.playable",
+          "WrapMode": "Hold"
+        },
+        {
+          "$type": "RPG.GameCore.WaitTimelineFinish",
+          "TimelineName": "Camera/TimeLine/Avatar/Character_Nihilux_10_MazeSkill01_EnterBattle_TimeLine.playable"
+        }
+      ],
+      "OnLoopFadeOutBeforeBattle": [
+        {
+          "$type": "RPG.GameCore.WaitFrame",
+          "WaitFrameCount": 3
+        },
+        {
+          "$type": "RPG.GameCore.StopBattlePostureType"
+        },
+        {
+          "$type": "RPG.GameCore.ShowMazeUI"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_cam2_end.prefab",
+          "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_cam2_end"
+        },
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.6
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.StopTimeline",
+          "TimelineName": "Effects/Eff_Animation/Avatar/Nihilux_10/Eff_Avatar_Nihilux_10_BattleEvent_EnterBattle_TimeLine_1.playable"
+        },
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_cam2_end.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.RemoveEffect",
+          "EffectPath": "Effects/Eff_Prefab/Eff_Avatar/Eff_Nihilux_10/Eff_Avatar_Nihilux_10_Adv_EnterBattle_VC.prefab"
+        }
+      ],
+      "OnAfterBattleLoad": [
+        {
+          "$type": "RPG.GameCore.DefineDynamicValue",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "LevelEntity"
+          },
+          "DynamicKey": {
+            "Value": "SkipBattleEnterInsertultrawait"
+          },
+          "ResetValue": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "ContextScope": "TargetEntity"
+        },
+        {
+          "$type": "RPG.GameCore.DefineDynamicValue",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "LevelEntity"
+          },
+          "DynamicKey": {
+            "Value": "BattlePerformInsertOnBattleEnter"
+          },
+          "ResetValue": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "ContextScope": "TargetEntity"
+        },
+        {
+          "$type": "RPG.GameCore.LockCurrentEnvProfile"
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByIsBattleReStart"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.WaitFrame"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Body",
+              "IsNeedFadeOut": false,
+              "ForceImmediateFadeOut": false
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Card",
+              "IsNeedFadeOut": false,
+              "ForceImmediateFadeOut": false
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_Loop",
+              "IsNeedFadeOut": false,
+              "ForceImmediateFadeOut": false
+            },
+            {
+              "$type": "RPG.GameCore.RemoveEffect",
+              "UniqueEffectName": "Eff_Avatar_Nihilux_10_Adv_EnterBattle_scene2",
+              "IsNeedFadeOut": false,
+              "ForceImmediateFadeOut": false
+            },
+            {
+              "$type": "RPG.GameCore.WaitFrame"
+            }
+          ]
+        }
+      ],
+      "OnAfterTriggerBattle": [
+        {
+          "$type": "RPG.GameCore.WaitSecond",
+          "WaitTime": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0.3
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

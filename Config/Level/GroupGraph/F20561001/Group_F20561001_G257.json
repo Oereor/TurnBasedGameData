@@ -1,0 +1,96 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "trigger_sms_G257"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.StartMissionCameraTemplate",
+              "CamDuration": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 4
+                }
+              },
+              "WaitSecondsBeforeCut": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              },
+              "CameraAnchor": {
+                "Value": "LevelArea_P20561_F20561001_G257,Anchor1"
+              },
+              "FirstTalkListStart": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 156024100
+                }
+              },
+              "FirstTalkListEnd": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 156024100
+                }
+              },
+              "FaceToCameraTarget": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              },
+              "CallBackEventName": {
+                "Value": "Group257_CameraEnd"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvSetupCustomTaskTrigger",
+          "TargetType": {
+            "$type": "RPG.GameCore.GroupFetchLocalTarget",
+            "TargetType": "Prop",
+            "Targets": [
+              300025
+            ]
+          },
+          "TriggerName": "MissionTrigger",
+          "OnEnter": [
+            {
+              "$type": "RPG.GameCore.TriggerGroupEvent",
+              "EventName": {
+                "Value": "trigger_sms_G257"
+              }
+            }
+          ],
+          "DisableAfterTriggered": true
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "Group257_CameraEnd"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ClientFinishMission",
+          "SubmissionID": 105460236,
+          "IsWaitServer": true
+        }
+      ]
+    }
+  ],
+  "Type": "Group"
+}

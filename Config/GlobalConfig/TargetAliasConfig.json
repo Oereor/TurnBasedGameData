@@ -534,6 +534,12 @@
         }
       ]
     },
+    "CurrentDamageAttackerEntity": {
+      "$type": "RPG.GameCore.TargetFetchCurrentDamageAttacker"
+    },
+    "CurrentDamageDefenderEntity": {
+      "$type": "RPG.GameCore.TargetFetchCurrentDamageDefender"
+    },
     "AbilityAttackTargetList": {
       "$type": "RPG.GameCore.TargetSequence",
       "Sequence": [
@@ -1967,8 +1973,26 @@
       ]
     },
     "GridFight_AllBackEndActived": {
-      "$type": "RPG.GameCore.TargetAlias",
-      "Alias": "GridFight_AllBackEndActivedRoleOnly.WithBEServant"
+      "$type": "RPG.GameCore.TargetSequence",
+      "Sequence": [
+        {
+          "$type": "RPG.GameCore.TargetAlias",
+          "Alias": "GridFight_AllBackEndActivedRoleOnly.WithBEServant"
+        },
+        {
+          "$type": "RPG.GameCore.TargetFilter",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByIsContainModifier",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "ParamEntity"
+            },
+            "ModifierName": {
+              "Value": "MBattleEvent_GridFight_Common_ActivedRole"
+            }
+          }
+        }
+      ]
     },
     "GridFight_AllBackEndActivedRoleOnly": {
       "$type": "RPG.GameCore.TargetSequence",
@@ -2007,6 +2031,16 @@
                   "Value": "MBattleEvent_GridFight_Common_FrontInBackEnd"
                 },
                 "Inverse": true
+              },
+              {
+                "$type": "RPG.GameCore.ByIsContainModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "ParamEntity"
+                },
+                "ModifierName": {
+                  "Value": "MBattleEvent_GridFight_Common_ActivedRole"
+                }
               }
             ]
           }

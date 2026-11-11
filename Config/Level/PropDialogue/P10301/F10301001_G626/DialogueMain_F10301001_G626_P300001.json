@@ -1,0 +1,151 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            104090105,
+            104090109
+          ],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
+        },
+        {
+          "$type": "RPG.GameCore.SwitchCase",
+          "TaskList": [
+            {
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareSubMissionState",
+                "SubMissionID": 104090105,
+                "SubMissionState": "Started"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TriggerPerformance",
+                  "PerformanceType": "E",
+                  "PerformanceID": 104090106,
+                  "MaskConfig": {},
+                  "ValueSource": {}
+                },
+                {
+                  "$type": "RPG.GameCore.ClientFinishMission",
+                  "SubmissionID": 104090107
+                },
+                {
+                  "$type": "RPG.GameCore.FinishLevelGraph"
+                }
+              ]
+            },
+            {
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareSubMissionState",
+                "SubMissionID": 104090109,
+                "SubMissionState": "Started"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TriggerPerformance",
+                  "PerformanceType": "E",
+                  "PerformanceID": 104090107,
+                  "MaskConfig": {},
+                  "ValueSource": {}
+                },
+                {
+                  "$type": "RPG.GameCore.PerformanceEndSeq",
+                  "Cases": [
+                    {
+                      "Case": 1,
+                      "OnSuccess": [
+                        {
+                          "$type": "RPG.GameCore.SetMissionCustomValue",
+                          "SubmissionID": 104090109,
+                          "MissionCustomValue": {
+                            "ValidValueParamList": [
+                              0,
+                              1,
+                              2,
+                              3
+                            ]
+                          },
+                          "CustomValue": 1
+                        }
+                      ]
+                    },
+                    {
+                      "Case": 2,
+                      "OnSuccess": [
+                        {
+                          "$type": "RPG.GameCore.SetMissionCustomValue",
+                          "SubmissionID": 104090109,
+                          "MissionCustomValue": {
+                            "ValidValueParamList": [
+                              0,
+                              1,
+                              2,
+                              3
+                            ]
+                          },
+                          "CustomValue": 2
+                        }
+                      ]
+                    },
+                    {
+                      "Case": 3,
+                      "OnSuccess": [
+                        {
+                          "$type": "RPG.GameCore.SetMissionCustomValue",
+                          "SubmissionID": 104090109,
+                          "MissionCustomValue": {
+                            "ValidValueParamList": [
+                              0,
+                              1,
+                              2,
+                              3
+                            ]
+                          },
+                          "CustomValue": 3
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.ClientFinishMission",
+                  "SubmissionID": 104090109
+                },
+                {
+                  "$type": "RPG.GameCore.ClientFinishMission",
+                  "SubmissionID": 104090107
+                },
+                {
+                  "$type": "RPG.GameCore.FinishLevelGraph"
+                }
+              ]
+            }
+          ],
+          "DefaultTask": [
+            {
+              "$type": "RPG.GameCore.TriggerPerformance",
+              "PerformanceType": "D",
+              "PerformanceID": 104090108,
+              "MaskConfig": {},
+              "ValueSource": {}
+            },
+            {
+              "$type": "RPG.GameCore.ClientFinishMission",
+              "SubmissionID": 104090107
+            },
+            {
+              "$type": "RPG.GameCore.FinishLevelGraph"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "EntityEventList": []
+}

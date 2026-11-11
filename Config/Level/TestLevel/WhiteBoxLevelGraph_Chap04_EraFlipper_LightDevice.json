@@ -1,0 +1,210 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "Order": 100,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+          "TriggerName": "InteractTrigger",
+          "ButtonsByName": [
+            "PrepareInteract"
+          ],
+          "ButtonConfigs": []
+        },
+        {
+          "$type": "RPG.GameCore.AdvEnableButtons",
+          "TriggerName": "InteractTrigger",
+          "ButtonsByName": [
+            "PrepareInteract"
+          ],
+          "IsEnable": true
+        },
+        {
+          "$type": "RPG.GameCore.InitFlipperLightDevice",
+          "PointList": {
+            "Custom": true,
+            "Key": "FlipperPointList"
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.ParallelConfig",
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.WaitEntityEvent",
+              "EventName": {
+                "Value": "EnterInteract"
+              },
+              "OnEvent": [
+                {
+                  "$type": "RPG.GameCore.AdvEnableButtons",
+                  "TriggerName": "InteractTrigger",
+                  "ButtonsByName": [
+                    "PrepareInteract"
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.ParallelConfig",
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.SequenceConfig",
+                      "TaskList": [
+                        {
+                          "$type": "RPG.GameCore.LockPlayerControl"
+                        },
+                        {
+                          "$type": "RPG.GameCore.WaitSecond",
+                          "WaitTime": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.1
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.ActiveVirtualCamera",
+                          "LevelAreaCameraKey": {
+                            "Custom": true,
+                            "Key": "InteractVirtualCamera"
+                          },
+                          "BlendConfig": {
+                            "ExportToJson": true,
+                            "BlendType": "Custom",
+                            "CustomCurveName": "BlendCut09",
+                            "BlendTime": 0.35
+                          },
+                          "DynamicParams": {}
+                        },
+                        {
+                          "$type": "RPG.GameCore.EnterFlipperLightDeviceControl",
+                          "Op": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "InstanceID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.WaitEntityEvent",
+              "EventName": {
+                "Value": "ExitInteract"
+              },
+              "OnEvent": [
+                {
+                  "$type": "RPG.GameCore.ParallelConfig",
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.SequenceConfig",
+                      "TaskList": [
+                        {
+                          "$type": "RPG.GameCore.WaitSecond",
+                          "WaitTime": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 0.1
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.ActiveVirtualCamera",
+                          "LevelAreaCameraKey": {
+                            "Custom": true,
+                            "Key": "InteractVirtualCamera"
+                          },
+                          "IsActive": false,
+                          "BlendConfig": {
+                            "ExportToJson": true,
+                            "BlendType": "Custom",
+                            "CustomCurveName": "BlendCut09",
+                            "BlendTime": 0.35
+                          },
+                          "DynamicParams": {},
+                          "ImmediatelyRefresh": true
+                        },
+                        {
+                          "$type": "RPG.GameCore.UnLockPlayerControl"
+                        },
+                        {
+                          "$type": "RPG.GameCore.WaitSecond",
+                          "WaitTime": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 1
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.AdvEnableButtons",
+                          "TriggerName": "InteractTrigger",
+                          "ButtonsByName": [
+                            "PrepareInteract"
+                          ],
+                          "IsEnable": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "InstanceID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvOnButtonPressed",
+          "ButtonName": "PrepareInteract",
+          "OnPressedCallback": [
+            {
+              "$type": "RPG.GameCore.TriggerEntityEvent",
+              "EventName": {
+                "Value": "EnterInteract"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.DebugLog",
+          "Message": "erwrqweqweqw"
+        }
+      ]
+    }
+  ],
+  "ValueSource": {
+    "Values": [
+      {
+        "$type": "RPG.GameCore.SharedStringList",
+        "Value": [],
+        "Key": "FlipperPointList"
+      },
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "InteractVirtualCamera"
+      }
+    ]
+  },
+  "Type": "Entity"
+}

@@ -163,6 +163,18 @@
     {
       "TaskList": [
         {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            804720601
+          ],
+          "MainMissionIDList": [
+            8037100
+          ],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
+        },
+        {
           "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
           "TriggerName": "InteractTrigger",
           "ButtonsByName": [],
@@ -181,35 +193,55 @@
           ]
         },
         {
-          "$type": "RPG.GameCore.GenericSwitchCase",
-          "SwitchRef": {
-            "$type": "RPG.GameCore.SwitchRefPropState"
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareSubMissionState",
+            "SubMissionID": 804720601,
+            "SubMissionState": "Started",
+            "Inverse": true
           },
-          "Cases": [
+          "SuccessTaskList": [
             {
-              "$type": "RPG.GameCore.PropStateCaseContainer",
-              "OnSuccess": [
+              "$type": "RPG.GameCore.GenericSwitchCase",
+              "SwitchRef": {
+                "$type": "RPG.GameCore.SwitchRefPropState"
+              },
+              "Cases": [
                 {
-                  "$type": "RPG.GameCore.AdvEnableButtons",
-                  "TriggerName": "InteractTrigger",
-                  "ButtonsByName": [
-                    "Interact01"
+                  "$type": "RPG.GameCore.PropStateCaseContainer",
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.AdvEnableButtons",
+                      "TriggerName": "InteractTrigger",
+                      "ButtonsByName": [
+                        "Interact01"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.PropStateCaseContainer",
+                  "Case": "Open",
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.AdvEnableButtons",
+                      "TriggerName": "InteractTrigger",
+                      "ButtonsByName": [
+                        "Interact01"
+                      ],
+                      "IsEnable": true
+                    }
                   ]
                 }
               ]
-            },
+            }
+          ],
+          "FailedTaskList": [
             {
-              "$type": "RPG.GameCore.PropStateCaseContainer",
-              "Case": "Open",
-              "OnSuccess": [
-                {
-                  "$type": "RPG.GameCore.AdvEnableButtons",
-                  "TriggerName": "InteractTrigger",
-                  "ButtonsByName": [
-                    "Interact01"
-                  ],
-                  "IsEnable": true
-                }
+              "$type": "RPG.GameCore.AdvEnableButtons",
+              "TriggerName": "InteractTrigger",
+              "ButtonsByName": [
+                "Interact01"
               ]
             }
           ]
@@ -219,16 +251,65 @@
     {
       "TaskList": [
         {
+          "$type": "RPG.GameCore.WaitSubMissionStateChange",
+          "SubMissions": [
+            804720601
+          ],
+          "State": "Finish",
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.AdvEnableButtons",
+              "TriggerName": "InteractTrigger",
+              "ButtonsByName": [
+                "Interact01"
+              ],
+              "IsEnable": true
+            }
+          ],
+          "TriggerOnMissionInit": false
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            804720601
+          ],
+          "MainMissionIDList": [
+            8037100
+          ],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
+        },
+        {
           "$type": "RPG.GameCore.AdvOnButtonPressed",
           "ButtonName": "Interact01",
           "OnPressedCallback": [
             {
-              "$type": "RPG.GameCore.ShowUI",
-              "Name": "Ui.GridFight.Entrance.GridFightEntrancePage",
-              "Param": {
-                "Custom": true,
-                "Key": "UIName"
-              }
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareMainMissionState",
+                "MainMissionID": 8037100
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TriggerGroupEvent",
+                  "EventName": {
+                    "Value": "OpenNewUI"
+                  }
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.TriggerGroupEvent",
+                  "EventName": {
+                    "Value": "OpenOldUI"
+                  }
+                }
+              ]
             }
           ]
         }

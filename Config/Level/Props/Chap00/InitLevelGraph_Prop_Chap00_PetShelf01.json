@@ -1,0 +1,372 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitSubMissionStateChange",
+          "SubMissions": [
+            804620701
+          ],
+          "State": "Started",
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.AdvEnableButtons",
+              "TriggerName": "InteractTrigger",
+              "ButtonsByName": [
+                "Interact"
+              ]
+            }
+          ],
+          "TriggerOnMissionInit": false
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitSubMissionStateChange",
+          "SubMissions": [
+            804620701
+          ],
+          "State": "Finish",
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.AdvEnableButtons",
+              "TriggerName": "InteractTrigger",
+              "ButtonsByName": [
+                "Interact"
+              ],
+              "IsEnable": true
+            }
+          ],
+          "TriggerOnMissionInit": false
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            804620701,
+            804620702
+          ],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "GFKIPGPPFOB"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.AdvOverridePropButtonConfig",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              },
+              "ButtonConfigs": [
+                {
+                  "ID": "Interact",
+                  "IconType": {
+                    "EnumIndex": 20,
+                    "Value": 14
+                  },
+                  "ButtonText": {
+                    "Value": "UIText_PetShelf_Entrance_Page_SubName"
+                  }
+                }
+              ],
+              "Refresh": true
+            },
+            {
+              "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+              "TriggerName": "InteractTrigger",
+              "ButtonsByName": [
+                "Interact"
+              ],
+              "ButtonConfigs": [],
+              "ConsiderAngleLimit": true,
+              "InteractAngleRange": 120,
+              "IsOverrideValidGuestConfig": true,
+              "OverridedValidGuestConfig": {
+                "FakePlayer": true
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareSubMissionState",
+                "SubMissionID": 804620701,
+                "SubMissionState": "Started",
+                "Inverse": true
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AdvEnableButtons",
+                  "TriggerName": "InteractTrigger",
+                  "ButtonsByName": [
+                    "Interact"
+                  ],
+                  "IsEnable": true
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.AdvEnableButtons",
+                  "TriggerName": "InteractTrigger",
+                  "ButtonsByName": [
+                    "Interact"
+                  ]
+                }
+              ]
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.AdvOverridePropButtonConfig",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              },
+              "ButtonConfigs": [
+                {
+                  "ID": "Interact",
+                  "IconType": {
+                    "EnumIndex": 20,
+                    "Value": 14
+                  },
+                  "ButtonText": {
+                    "Value": "UIText_CakeCatch_RoomLike_Btn"
+                  }
+                }
+              ],
+              "Refresh": true
+            },
+            {
+              "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+              "TriggerName": "InteractTrigger",
+              "ButtonsByName": [
+                "Interact"
+              ],
+              "ButtonConfigs": [],
+              "ConsiderAngleLimit": true,
+              "InteractAngleRange": 120,
+              "IsOverrideValidGuestConfig": true,
+              "OverridedValidGuestConfig": {
+                "FakePlayer": true
+              }
+            },
+            {
+              "$type": "RPG.GameCore.AdvEnableButtons",
+              "TriggerName": "InteractTrigger",
+              "ButtonsByName": [
+                "Interact"
+              ],
+              "IsEnable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Order": 1,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            804620701,
+            804620702
+          ],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
+        },
+        {
+          "$type": "RPG.GameCore.AdvOnButtonPressed",
+          "ButtonName": "Interact",
+          "OnPressedCallback": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "GFKIPGPPFOB"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "ALGEKGNPOBF"
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareSubMissionState",
+                    "SubMissionID": 804620702,
+                    "SubMissionState": "Started"
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.ClientFinishMission",
+                      "SubmissionID": 804620702
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "JAFAJMDFAKK",
+                  "GMPGDEINODK": "TrainPet"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            804620701,
+            804620702
+          ],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
+        },
+        {
+          "$type": "NLIFBFLEHPK",
+          "LEAHACBFJBP": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "GFKIPGPPFOB"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.AdvOverridePropButtonConfig",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  },
+                  "ButtonConfigs": [
+                    {
+                      "ID": "Interact",
+                      "IconType": {
+                        "EnumIndex": 20,
+                        "Value": 14
+                      },
+                      "ButtonText": {
+                        "Value": "UIText_PetShelf_Entrance_Page_SubName"
+                      }
+                    }
+                  ],
+                  "Refresh": true
+                },
+                {
+                  "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+                  "TriggerName": "InteractTrigger",
+                  "ButtonsByName": [
+                    "Interact"
+                  ],
+                  "ButtonConfigs": [],
+                  "ConsiderAngleLimit": true,
+                  "InteractAngleRange": 120,
+                  "IsOverrideValidGuestConfig": true,
+                  "OverridedValidGuestConfig": {
+                    "FakePlayer": true
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareSubMissionState",
+                    "SubMissionID": 804620701,
+                    "SubMissionState": "Started",
+                    "Inverse": true
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AdvEnableButtons",
+                      "TriggerName": "InteractTrigger",
+                      "ButtonsByName": [
+                        "Interact"
+                      ],
+                      "IsEnable": true
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.AdvEnableButtons",
+                      "TriggerName": "InteractTrigger",
+                      "ButtonsByName": [
+                        "Interact"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.AdvOverridePropButtonConfig",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  },
+                  "ButtonConfigs": [
+                    {
+                      "ID": "Interact",
+                      "IconType": {
+                        "EnumIndex": 20,
+                        "Value": 14
+                      },
+                      "ButtonText": {
+                        "Value": "UIText_CakeCatch_RoomLike_Btn"
+                      }
+                    }
+                  ],
+                  "Refresh": true
+                },
+                {
+                  "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+                  "TriggerName": "InteractTrigger",
+                  "ButtonsByName": [
+                    "Interact"
+                  ],
+                  "ButtonConfigs": [],
+                  "ConsiderAngleLimit": true,
+                  "InteractAngleRange": 120,
+                  "IsOverrideValidGuestConfig": true,
+                  "OverridedValidGuestConfig": {
+                    "FakePlayer": true
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.AdvEnableButtons",
+                  "TriggerName": "InteractTrigger",
+                  "ButtonsByName": [
+                    "Interact"
+                  ],
+                  "IsEnable": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ValueSource": {
+    "Values": []
+  },
+  "Type": "Entity",
+  "EntityEventList": [
+    {
+      "Name": "Clt_TriggerOpen"
+    },
+    {
+      "Name": "Clt_TriggerClose"
+    }
+  ]
+}

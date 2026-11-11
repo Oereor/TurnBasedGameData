@@ -1,0 +1,471 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": []
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitFiveDimPlayerEnterOrExit",
+          "OnEnter": [
+            {
+              "$type": "RPG.GameCore.SetFiveDimEntityAttachTarget",
+              "LittleGame": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "LittleGame",
+                "Targets": [
+                  110001
+                ]
+              },
+              "AttachTarget": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "Prop",
+                "Targets": [
+                  300004
+                ]
+              },
+              "EntityID": {
+                "Value": "23"
+              },
+              "AttachPoint": "PropAttach"
+            },
+            {
+              "$type": "RPG.GameCore.AnimSetParameter",
+              "TargetType": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "Prop",
+                "Targets": [
+                  300004
+                ]
+              },
+              "ParameterName": "Start",
+              "ParameterType": "Bool"
+            },
+            {
+              "$type": "RPG.GameCore.PropCurveSetStartPoint",
+              "TargetType": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "Prop",
+                "Targets": [
+                  300005
+                ]
+              },
+              "TargetCurve": {
+                "Value": {
+                  "$type": "RPG.GameCore.GameLevelObjectRefConfig",
+                  "GroupID": 9,
+                  "InstanceID": 2,
+                  "Type": "Curve"
+                }
+              },
+              "CurvePointIndex": {
+                "Value": "0"
+              },
+              "Duration": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.1
+                }
+              },
+              "UseCurveGORotation": true,
+              "UseCurveRotationYaw": false,
+              "ForceTick": true
+            },
+            {
+              "$type": "RPG.GameCore.SetStageItemState",
+              "ItemList": [
+                {
+                  "BlockAlias": "R5",
+                  "PrefabAlias": "Chap05_CloseView_MAZ_B702_Sign01"
+                },
+                {
+                  "BlockAlias": "R5",
+                  "PrefabAlias": "Chap05_CloseView_MAZ_B702_Root01"
+                }
+              ]
+            }
+          ],
+          "OnExit": [
+            {
+              "$type": "RPG.GameCore.AnimSetParameter",
+              "TargetType": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "Prop",
+                "Targets": [
+                  300004
+                ]
+              },
+              "ParameterName": "Start",
+              "ParameterType": "Bool"
+            },
+            {
+              "$type": "RPG.GameCore.SetStageItemState",
+              "ItemList": [
+                {
+                  "BlockAlias": "R5",
+                  "PrefabAlias": "Chap05_CloseView_MAZ_B702_Sign01"
+                },
+                {
+                  "BlockAlias": "R5",
+                  "PrefabAlias": "Chap05_CloseView_MAZ_B702_Root01"
+                }
+              ],
+              "EnableState": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "TeleportToStation"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.SetFiveDimEntityAttachTarget",
+              "LittleGame": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "LittleGame",
+                "Targets": [
+                  110001
+                ]
+              },
+              "AttachTarget": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "Prop",
+                "Targets": [
+                  300005
+                ]
+              },
+              "EntityID": {
+                "Value": "23"
+              },
+              "AttachPoint": "Root"
+            },
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.TriggerGroupEvent",
+              "EventName": {
+                "Value": "HideScroll"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "StartMove"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.AnimSetParameter",
+              "TargetType": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "Prop",
+                "Targets": [
+                  300004
+                ]
+              },
+              "ParameterName": "Start",
+              "ParameterType": "Bool",
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitFiveDimPlayerEnterOrExit",
+          "OnEnter": [
+            {
+              "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+              "Name": {
+                "Value": "FCV_MusicLevelWaypoint"
+              },
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            }
+          ],
+          "OnExit": [
+            {
+              "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+              "Name": {
+                "Value": "FCV_MusicLevelWaypoint"
+              },
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitServerGroupPropertyChangeV2"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareGroupProperty",
+            "DynamicName": {
+              "Value": "LG_110001_MusicLevelFinished02"
+            },
+            "CompareValue": 1
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetFloorSavedValue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "FDEV_OnStartTeleport"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareGroupProperty",
+                "DynamicName": {
+                  "Value": "LG_110001_MusicLevelFinished02"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.PlayFullScreenTransfer",
+                  "PrevDuration": 0.75,
+                  "PostDuration": -1
+                },
+                {
+                  "$type": "RPG.GameCore.PlayFullScreenTransfer",
+                  "PrevDuration": -1,
+                  "KeepDuration": 3,
+                  "PostDuration": 1,
+                  "TextInfo": {
+                    "TextList": [
+                      {
+                        "TalkSentenceID": 408001882
+                      }
+                    ]
+                  },
+                  "Action": [
+                    {
+                      "$type": "RPG.GameCore.ScrTrfActTaskList",
+                      "TaskList": [
+                        {
+                          "$type": "RPG.GameCore.WaitSecond",
+                          "WaitTime": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 3
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.TriggerGroupEvent",
+                          "EventName": {
+                            "Value": "FDEV_LevelFinished"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.EnterMapByCondition",
+                  "EntranceID": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1050101
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "DanmuAchievement"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.SetAdvAchievement",
+              "QuestID": 4045703,
+              "GroupID": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "MusicLevelFinishedAchievement"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareGroupProperty",
+                "DynamicName": {
+                  "Value": "LG_110001_MusicLevelFinished"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.RequestSetServerGroupPropertyV2",
+                  "GroupID": 9,
+                  "DynamicName": {
+                    "Value": "LG_110001_MusicLevelFinished"
+                  },
+                  "Value": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitFloorCustomValueChangeV2",
+          "Name": {
+            "Value": "FCV_MusicLevelState"
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.TriggerEntityEvent",
+              "EventName": {
+                "Value": "Clt_TriggerOpen"
+              },
+              "InstanceID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 300001
+                }
+              }
+            }
+          ],
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareFloorCustomFloatV2",
+            "Name": {
+              "Value": "FCV_MusicLevelState"
+            },
+            "CompareValue": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitServerFloorSavedValueChange"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+            "DynamicName": {
+              "Value": "FSV_MusicLevelState"
+            },
+            "CompareValue": 1
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerEntityServerEvent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "FDEV_ExitPipeVisible"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+              "Name": {
+                "Value": "FCV_MusicLevelWaypoint"
+              },
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group",
+  "EntityEventList": []
+}

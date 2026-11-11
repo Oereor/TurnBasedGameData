@@ -1266,43 +1266,34 @@
       "FollowOffsetMode": "Target"
     },
     {
-      "ActiveCameraStates": [
-        "SelectLightTeamEntity"
-      ],
-      "ActiveTeamFormationTypes": [
-        "LightTeamNormal"
-      ],
-      "ParamGroupName": "RobinS_Servant_HasRobins",
-      "FormationType": "Follow",
-      "LocationConfig": {
-        "Width": 1,
-        "RootOffset": {
-          "X": 0,
-          "Y": -1,
-          "Z": 0
-        },
-        "FormationFollowOffset": {
-          "X": -0.6,
-          "Y": 0,
-          "Z": 0
-        },
-        "CloseToSummonerRatio": 0.6
-      },
-      "FollowOffsetMode": "Target"
-    },
-    {
       "ActionEntityTypes": 12,
       "ActiveCondition": {
-        "$type": "RPG.GameCore.ByTargetListIntersects",
-        "FirstTargetType": {
-          "$type": "RPG.GameCore.TargetAlias",
-          "Alias": "CurrentActionTargetList"
-        },
-        "SecondTargetType": {
-          "$type": "RPG.GameCore.TargetAlias",
-          "Alias": "CasterSummoner"
-        },
-        "Inverse": true
+        "$type": "RPG.GameCore.ByAnd",
+        "PredicateList": [
+          {
+            "$type": "RPG.GameCore.ByTargetListIntersects",
+            "FirstTargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "CurrentActionTargetList"
+            },
+            "SecondTargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "CasterSummoner"
+            },
+            "Inverse": true
+          },
+          {
+            "$type": "RPG.GameCore.ByTargetListIntersects",
+            "FirstTargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "CurrentActionTargetList"
+            },
+            "SecondTargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            }
+          }
+        ]
       },
       "ParamGroupName": "RobinS_Servant_NoRobins",
       "FormationType": "Follow",

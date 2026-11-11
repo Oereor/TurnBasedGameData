@@ -1,0 +1,151 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+          "TriggerName": "PetDiyInteract",
+          "ButtonsByName": [],
+          "ButtonConfigs": [
+            {
+              "ID": "Interact",
+              "IconType": {
+                "EnumIndex": 20,
+                "Value": 52
+              },
+              "ButtonText": {
+                "Value": "UIText_Petpark_Talk_Btn"
+              },
+              "ButtonTextParam": {
+                "Custom": true,
+                "Key": "PetDiy_PetName"
+              }
+            }
+          ],
+          "IsOverrideValidGuestConfig": true,
+          "OverridedValidGuestConfig": {
+            "FakePlayer": true
+          }
+        }
+      ]
+    },
+    {
+      "Order": 1,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvOnButtonPressed",
+          "ButtonName": "Interact",
+          "OnPressedCallback": [
+            {
+              "$type": "ACDJHCBFNJN",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.AdvEnableButtons",
+              "TriggerName": "PetDiyInteract",
+              "ButtonsByName": [
+                "Interact"
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.TriggerCustomString",
+              "CustomString": {
+                "Value": "ST_PetDiy_TriggerIdleShow"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 5
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.AdvEnableButtons",
+              "TriggerName": "PetDiyInteract",
+              "ButtonsByName": [
+                "Interact"
+              ],
+              "IsEnable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IsLoop": true,
+      "Order": 2,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ST_PetDiy_TriggerIdleShow"
+          },
+          "WaitOwnerOnly": true,
+          "ResetWhenTaskBegin": true
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCanPlayIdleShow",
+            "TargetType": {
+              "$type": "RPG.GameCore.TargetAlias",
+              "Alias": "Caster"
+            },
+            "IgnoreForbidPlayIdleShow": true
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.AdvAddAIHangUpInfo",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "HangUpKey": {
+                "Value": "PetDiy_Interact_HangUp"
+              },
+              "AITickImmediately": true,
+              "SuccessWhenNoAIComponent": true
+            },
+            {
+              "$type": "BKNKICGINJA",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "BDEFACKEMPD": true,
+              "GONACCPIJOO": 1,
+              "HAOKIGJPEII": true
+            },
+            {
+              "$type": "RPG.GameCore.AdvRemoveAIHangUpInfo",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetAlias",
+                "Alias": "Caster"
+              },
+              "HangUpKey": {
+                "Value": "PetDiy_Interact_HangUp"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ValueSource": {
+    "Values": [
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "PetDiy_PetName"
+      }
+    ]
+  },
+  "Type": "Entity",
+  "EntityEventList": []
+}

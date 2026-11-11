@@ -20,10 +20,33 @@
               "$type": "NGCOKAIKPHC"
             },
             {
-              "$type": "RPG.GameCore.TutorialTaskUnlock",
-              "TriggerParam": {
-                "Value": "TantaoInvasion"
-              }
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "JCBAIKOADID",
+                "EHCHAPPGJDJ": "GreaterEqual",
+                "DPICNGBHFAC": {
+                  "IsDynamic": false,
+                  "FixedValue": {
+                    "Value": 4
+                  }
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TutorialTaskUnlock",
+                  "TriggerParam": {
+                    "Value": "TantaoInvasionMaxLV"
+                  }
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.TutorialTaskUnlock",
+                  "TriggerParam": {
+                    "Value": "TantaoInvasion"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -106,6 +129,27 @@
             },
             {
               "$type": "RPG.GameCore.GridFightShowMonsterCutIn"
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareStageType",
+            "CurrentStageType": "RealityShowActivity"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.333
+                }
+              }
+            },
+            {
+              "$type": "CDLPFFIKLOC"
             }
           ]
         },

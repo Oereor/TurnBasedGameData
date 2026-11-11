@@ -1,0 +1,139 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "EnterRaid_G121"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.SetLoadingStratageType",
+              "StratageType": "Plain"
+            },
+            {
+              "$type": "RPG.GameCore.ActiveVirtualCamera",
+              "AreaName": "LevelArea_P20571_F20571001_G121",
+              "AnchorName": "Anchor1",
+              "WaitBlendFinish": true
+            },
+            {
+              "$type": "RPG.GameCore.OpenTreasureChallenge",
+              "RaidID": 40571,
+              "OnCancel": [
+                {
+                  "$type": "RPG.GameCore.ActiveVirtualCamera",
+                  "AreaName": "LevelArea_P20571_F20571001_G121",
+                  "AnchorName": "Anchor1",
+                  "IsActive": false,
+                  "WaitBlendFinish": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PropSetupUITrigger",
+          "IconType": {
+            "EnumIndex": 20,
+            "Value": 10
+          },
+          "ButtonText": {
+            "Hash": 17361363617212696378
+          },
+          "ButtonCallback": [
+            {
+              "$type": "RPG.GameCore.TriggerGroupEvent",
+              "EventName": {
+                "Value": "EnterRaid_G121"
+              }
+            }
+          ],
+          "OverrideTargetTypes": [],
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx",
+            "FetchType": "SinglePropByPropID",
+            "SinglePropID": {
+              "GroupID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 121
+                }
+              },
+              "ID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 300001
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareGroupProperty",
+            "GroupID": 121,
+            "DynamicName": {
+              "Value": "FirstEncounter"
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.ParallelConfig",
+              "TaskList": [
+                {
+                  "$type": "RPG.GameCore.SequenceConfig",
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetLoadingStratageType",
+                      "StratageType": "Plain"
+                    },
+                    {
+                      "$type": "RPG.GameCore.ActiveVirtualCamera",
+                      "AreaName": "LevelArea_P20571_F20571001_G121",
+                      "AnchorName": "Anchor1",
+                      "WaitBlendFinish": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.OpenTreasureChallenge",
+                      "RaidID": 40571,
+                      "OnCancel": [
+                        {
+                          "$type": "RPG.GameCore.ActiveVirtualCamera",
+                          "AreaName": "LevelArea_P20571_F20571001_G121",
+                          "AnchorName": "Anchor1",
+                          "IsActive": false,
+                          "WaitBlendFinish": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.RequestSetServerGroupPropertyV2",
+                  "GroupID": 121,
+                  "DynamicName": {
+                    "Value": "FirstEncounter"
+                  },
+                  "Value": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group"
+}

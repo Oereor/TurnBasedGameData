@@ -1,0 +1,68 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitEntityEventV2",
+          "EventName": {
+            "Value": "G69TriggerBubble"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.CharacterTriggerFreeStyle",
+              "TargetAlias": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "Targets": [
+                  400001
+                ]
+              },
+              "ForceStart": false,
+              "StoryAvatarID": "NPC_Special_AdvertBoard_00",
+              "StoryMotionID": 900180283
+            },
+            {
+              "$type": "RPG.GameCore.PlayNPCBubbleTalk",
+              "BubbleTalkInfoList": [
+                {
+                  "AutoSkipTime": 5,
+                  "GroupID": 69,
+                  "GroupNpcID": 400001,
+                  "TalkSentenceID": 156090032
+                }
+              ],
+              "IsLoop": true
+            }
+          ],
+          "TargetType": {
+            "$type": "RPG.GameCore.GroupFetchLocalTarget",
+            "Targets": [
+              400001
+            ]
+          },
+          "IsLoop": false
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvNpcHitListener",
+          "TargetType": {
+            "$type": "RPG.GameCore.GroupFetchLocalTarget",
+            "Targets": [
+              400001
+            ]
+          },
+          "OnHit": [
+            {
+              "$type": "RPG.GameCore.ClientFinishMission",
+              "SubmissionID": 105460902
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group"
+}

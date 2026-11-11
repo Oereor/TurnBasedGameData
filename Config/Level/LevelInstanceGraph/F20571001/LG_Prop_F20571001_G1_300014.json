@@ -1,0 +1,137 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": []
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvOverridePropButtonConfig",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+          },
+          "ButtonConfigs": [
+            {
+              "ID": "RollerCoasterStart",
+              "IconType": {
+                "EnumIndex": 20,
+                "Value": 0
+              },
+              "ButtonText": {
+                "Value": "PropInteractTitle_1"
+              }
+            }
+          ],
+          "Refresh": true
+        },
+        {
+          "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+          },
+          "TriggerName": "InteractTrigger",
+          "ButtonsByName": [
+            "RollerCoasterStart"
+          ],
+          "ButtonConfigs": [],
+          "ConsiderAngleLimit": true,
+          "InteractAngleRange": 120,
+          "IsOverrideValidGuestConfig": true,
+          "OverridedValidGuestConfig": {
+            "FakePlayer": true
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvOnButtonPressed",
+          "ButtonName": "RollerCoasterStart",
+          "OnPressedCallback": [
+            {
+              "$type": "RPG.GameCore.ActiveVirtualCamera",
+              "LevelAreaCameraKey": {
+                "Custom": true,
+                "Key": "Camera"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvLocalPlayer"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.GroupFetchLocalTarget",
+                "TargetType": "Prop",
+                "Targets": [
+                  300003
+                ]
+              }
+            },
+            {
+              "$type": "RPG.GameCore.BlockSetVisibility",
+              "BlockTags": [],
+              "BlockHoyoTags": {},
+              "BlockAllHoyoTags": {},
+              "BlockAlias": [
+                {
+                  "Value": "Chap05_CloseView_MAZ_B701_R7_BlockData"
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.TriggerEffectList",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              },
+              "EffectList": [
+                {
+                  "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_PinballStation_01_Tunnel_Lod0.prefab"
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.PlayMissionTalk",
+              "StartSentenceID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 157021400
+                }
+              },
+              "EndSentenceID": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 157021400
+                }
+              },
+              "SimpleTalkList": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": []
+    }
+  ],
+  "ValueSource": {
+    "Values": [
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "Tran"
+      },
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "Camera"
+      }
+    ]
+  },
+  "Type": "EntityInstance",
+  "EntityEventList": []
+}

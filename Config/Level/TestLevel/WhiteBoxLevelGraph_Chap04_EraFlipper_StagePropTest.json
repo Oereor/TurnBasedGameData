@@ -1,0 +1,102 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "Order": 100,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+          "TriggerName": "InteractTrigger",
+          "ButtonsByName": [
+            "PrepareInteract"
+          ],
+          "ButtonConfigs": []
+        },
+        {
+          "$type": "RPG.GameCore.AdvEnableButtons",
+          "TriggerName": "InteractTrigger",
+          "ButtonsByName": [
+            "PrepareInteract"
+          ],
+          "IsEnable": true
+        },
+        {
+          "$type": "RPG.GameCore.DebugLog",
+          "Message": "Init Debug Log"
+        }
+      ]
+    },
+    {
+      "TaskList": []
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvOnButtonPressed",
+          "ButtonName": "PrepareInteract",
+          "OnPressedCallback": [
+            {
+              "$type": "RPG.GameCore.PPFilterStackEffect",
+              "StartRate": 0,
+              "Rate": 0.95,
+              "Duration": 0.1,
+              "AssetPath": "EnviroSystem/PostProcessFilterAsset/Flash.asset"
+            },
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0.095
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PPFilterStackEffect",
+              "Active": false,
+              "StartRate": 0.95,
+              "Rate": 0,
+              "Duration": 0.1,
+              "AssetPath": "EnviroSystem/PostProcessFilterAsset/Flash.asset"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.EntityOnEraFlippedListener",
+          "OnSelfSwitchToState1": [
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Message": "EraFlipper: Switch To State1"
+            }
+          ],
+          "OnSelfSwitchToState2": [
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Message": "EraFlipper: Switch To State2"
+            }
+          ],
+          "OnSelfDitherIn": [
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Message": "EraFlipper: Dither In"
+            }
+          ],
+          "OnSelfDitherOut": [
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Message": "EraFlipper: Dither Out"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ValueSource": {
+    "Values": []
+  },
+  "Type": "Entity"
+}

@@ -1,0 +1,163 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": []
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicFloat",
+            "Name": "start_state",
+            "Value": {
+              "IsDynamic": false,
+              "FixedValue": {
+                "Value": 1
+              }
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCheckTimelineEntityState",
+                "Target": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "Caster"
+                },
+                "StateName": {
+                  "Custom": true,
+                  "Key": "UseAnimate"
+                }
+              },
+              "SuccessTaskList": [],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetTimelineEntityState",
+                  "Target": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  },
+                  "StateName": {
+                    "Custom": true,
+                    "Key": "UseAnimate"
+                  }
+                }
+              ]
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCheckTimelineEntityState",
+                "Target": {
+                  "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                },
+                "StateName": {
+                  "Value": "L0_Root"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.PropSetupHitBox",
+                  "OnBeHit": [
+                    {
+                      "$type": "RPG.GameCore.SetTimelineEntityState",
+                      "Target": {
+                        "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                      },
+                      "StateName": {
+                        "Custom": true,
+                        "Key": "UseAnimate"
+                      },
+                      "CutIn": false
+                    },
+                    {
+                      "$type": "RPG.GameCore.PropUnloadHitBox"
+                    }
+                  ],
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  }
+                }
+              ],
+              "FailedTaskList": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AddTimelineEntityEventListener",
+          "Target": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+          },
+          "StateListener": [
+            {
+              "ListenState": [
+                "L0_Root"
+              ]
+            }
+          ],
+          "OnEndControlEntity": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCheckTimelineEntityState",
+                "Target": {
+                  "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                },
+                "StateName": {
+                  "Value": "L0_Root"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.PropSetupHitBox",
+                  "OnBeHit": [
+                    {
+                      "$type": "RPG.GameCore.SetTimelineEntityState",
+                      "Target": {
+                        "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                      },
+                      "StateName": {
+                        "Custom": true,
+                        "Key": "UseAnimate"
+                      },
+                      "CutIn": false
+                    },
+                    {
+                      "$type": "RPG.GameCore.PropUnloadHitBox"
+                    }
+                  ],
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  }
+                }
+              ],
+              "FailedTaskList": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ValueSource": {
+    "Values": [
+      {
+        "$type": "RPG.GameCore.SharedInt",
+        "Key": "start_state"
+      },
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Value": "L1_Run2",
+        "Key": "UseAnimate"
+      }
+    ]
+  }
+}

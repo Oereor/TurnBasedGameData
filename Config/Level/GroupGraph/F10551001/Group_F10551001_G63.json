@@ -1,0 +1,97 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "ShowMainPage"
+          },
+          "OnEvent": [
+            {
+              "$type": "NJGLADGCALF"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [
+            804511108,
+            804511114
+          ],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": []
+        },
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "B51Racing_Match_Failed"
+          },
+          "ResetWhenTaskBegin": true
+        },
+        {
+          "$type": "RPG.GameCore.SwitchCase",
+          "TaskList": [
+            {
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareSubMissionState",
+                "SubMissionID": 804511108,
+                "SubMissionState": "Started"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TriggerPerformance",
+                  "PerformanceType": "D",
+                  "PerformanceID": 804511109,
+                  "MaskConfig": {
+                    "UseExcelData": false,
+                    "StartBlack": "NoPre"
+                  },
+                  "ValueSource": {}
+                },
+                {
+                  "$type": "GMODDCLOONA"
+                }
+              ]
+            },
+            {
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareSubMissionState",
+                "SubMissionID": 804511114,
+                "SubMissionState": "Started"
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TriggerPerformance",
+                  "PerformanceType": "D",
+                  "PerformanceID": 804511117,
+                  "MaskConfig": {
+                    "UseExcelData": false,
+                    "StartBlack": "NoPre"
+                  },
+                  "ValueSource": {}
+                },
+                {
+                  "$type": "GMODDCLOONA"
+                }
+              ]
+            }
+          ],
+          "DefaultTask": [
+            {
+              "$type": "GMODDCLOONA"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group"
+}

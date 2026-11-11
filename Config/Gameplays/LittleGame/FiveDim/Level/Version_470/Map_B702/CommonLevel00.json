@@ -1,0 +1,2096 @@
+{
+  "Entities": [
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {}
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameEditorDebugDrawConfig",
+          "IsDebugDraw": true,
+          "Shape": "Box",
+          "GizmoColor": {
+            "R": 0,
+            "G": 1,
+            "B": 0.5,
+            "A": 0.8
+          },
+          "Size": {
+            "X": 30,
+            "Y": 20,
+            "Z": 0.1
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimSurfaceConfig",
+          "UseDynamicSurface": true,
+          "DynamicSize": {
+            "X": 30,
+            "Y": 20,
+            "Z": 0.1
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimSurfaceCameraConfig",
+          "SimpleOverrideFollow": {
+            "ViewHeight": 16
+          }
+        }
+      ],
+      "Name": "FiveDimSurface_001",
+      "Type": "FiveDimSurface",
+      "EntityID": 1
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimStageViewConfig",
+          "PrefabPath": "Gameplays/FiveDim/StagePrefab/CommonLevel00_StagePrefab_2.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {}
+        }
+      ],
+      "Name": "FiveDimStage_001",
+      "Type": "FiveDimStage",
+      "EntityID": 2
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 0,
+            "Y": -4.5,
+            "Z": 0.275
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Prop_PipeEntryV2_Vertical.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.NoArrowAttach",
+                "TagHash": -277647960
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Slippery",
+                "TagHash": 1970513973
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Unstable",
+                "TagHash": 1964810839
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "EffectPoint",
+                "IsDynamic": true,
+                "BindPath": "Chap05_GameplayProp_FDPipeEntry_01_Lod0/EffectPoint"
+              },
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              },
+              {
+                "Name": "MapIconRoot",
+                "IsDynamic": true,
+                "BindPath": "MapIconRoot"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimCustomVisibilityConfig",
+          "IsCustomVisibility": true,
+          "DoActionOnInitVisible": true,
+          "VisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimFireEffectAction",
+              "FireParams": {
+                "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPipeEntry_02_Idle_Lod0.prefab",
+                "AttachPointName": "EffectPoint"
+              }
+            }
+          ],
+          "InvisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimKillAllEffectAction"
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "StartHint"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "IsNear",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "StopHint"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "IsNear",
+                  "ParameterType": "Int"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "EnterPipe"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPipeEntry_01_SuckIn_Lod0.prefab",
+                    "AttachPointName": "EffectPoint"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPipeEntry_2D_In"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "ExitPipe"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPipeEntry_2D_Out"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "OnPlayerStand"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 2,
+                  "Name": "Delay_ExitHint",
+                  "IgnoreFreezeTimeScale": true,
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FiveDimUIPileToastMessageTextIDAction",
+                      "TextID": {
+                        "Hash": 4837081824157344389
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "OnPlayerExitStand"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimCancelDelayedSequenceAction",
+                  "Name": "Delay_ExitHint"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimContactEventEmitterConfig",
+          "IsContactEventEmitter": true,
+          "OnPlayerStand": {
+            "EventName": "OnPlayerStand"
+          },
+          "OnPlayerExitStand": {
+            "EventName": "OnPlayerExitStand"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimPipePortalConfig",
+          "IsPipePortal": true,
+          "HintTrigger": {
+            "UseTriggerFromView": true,
+            "TriggerName": "InteractTrigger",
+            "TriggerInfo": {
+              "Radius": 1,
+              "PointList": []
+            }
+          },
+          "VerticalOffset": -0.1,
+          "CenterTolerance": 0.45,
+          "SnapTolerance": 0.9,
+          "SnapLerpDuration": 0.6,
+          "InDistance": 2,
+          "Target": {},
+          "UsePipeCamera": true,
+          "PipeCameraType": "EnterExitPipe",
+          "PipeCameraConfig": {
+            "UseDefaultFollow": false,
+            "SimpleOverrideFollow": {
+              "ViewHeight": 8
+            },
+            "BakedFollow": {
+              "ViewHeight": 4,
+              "ScreenY": 0.625,
+              "ScreenYAtMaxFallSpeed": 0.1875,
+              "ScreenYBlendTime": 1,
+              "SoftZoneWidth": 0.5,
+              "SoftZoneHeight": 0.875,
+              "DampingX": 0,
+              "DampingY": 4,
+              "DampingYCurve": {
+                "Keys": [
+                  {
+                    "Time": -1,
+                    "Value": 0.5,
+                    "TangentMode": 136,
+                    "InWeight": 0.333333,
+                    "OutWeight": 0.333333
+                  },
+                  {
+                    "Value": 4,
+                    "TangentMode": 136,
+                    "InWeight": 0.333333,
+                    "OutWeight": 0.333333
+                  }
+                ],
+                "PreWrapMode": "ClampForever",
+                "PostWrapMode": "ClampForever"
+              },
+              "BiasY": -0.142857,
+              "FollowClampMargin": {
+                "X": 0.8,
+                "Y": 0.5
+              },
+              "LookAheadConfig": {
+                "MaxOffset": 1,
+                "DampingXMove": 0.25,
+                "DampingXStop": 0.25,
+                "MaxOffsetTurnDelay": 0.5,
+                "LookDownYSpeedThreshold": 499.5,
+                "OffsetYCurve": {
+                  "Keys": [],
+                  "PreWrapMode": "ClampForever",
+                  "PostWrapMode": "ClampForever"
+                },
+                "MaxDampingSpeed": 2.873151
+              },
+              "RotateDampingTime": 1,
+              "DisableYFollowMode": "GroundJumpHeight"
+            },
+            "UseDefaultObserve": false,
+            "Observe": {
+              "MaxObserveOffset": {
+                "X": 5,
+                "Y": 5
+              },
+              "ObserveRecoverTime": 0.5
+            },
+            "BakedObserve": {
+              "MaxObserveOffset": {
+                "X": 2.5,
+                "Y": 2.5
+              },
+              "ObserveRecoverTime": 0.5
+            }
+          },
+          "StartHintEvent": {
+            "EventName": "StartHint"
+          },
+          "StopHintEvent": {
+            "EventName": "StopHint"
+          },
+          "EnterPipeEvent": {
+            "EventName": "EnterPipe"
+          },
+          "ExitPipeEvent": {
+            "EventName": "ExitPipe"
+          },
+          "StartTeleportEvent": {
+            "EventName": "StartTeleport"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameNavMapIconConfig",
+          "IsMapIcon": true,
+          "IconID": 11,
+          "MapInfoID": 2541
+        }
+      ],
+      "Name": "FD_Prop_PipeEntryV2_Vertical_001",
+      "Type": "FiveDimProp",
+      "EntityID": 3
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": -4.5,
+            "Y": -4.5,
+            "Z": 0.025
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Grid_ClimbableWall_Left.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.SnapshotVisibility.Roadmap",
+                "TagHash": 614926609
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimGridViewConfig",
+          "IsGridView": true,
+          "GridSizeX": 1,
+          "GridSizeY": 10
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimContactEventEmitterConfig",
+          "IsContactEventEmitter": true,
+          "OnPlayerClimb": {
+            "EventName": "OnPlayerClimb"
+          },
+          "OnPlayerExitClimb": {
+            "EventName": "OnPlayerExitClimb"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLadderConfig",
+          "IsLadder": true,
+          "ClimbSide": "Left"
+        }
+      ],
+      "Name": "FD_Grid_ClimbableWall_Left_001",
+      "Type": "FiveDimProp",
+      "EntityID": 4
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 4,
+            "Y": -4.5,
+            "Z": 0.025
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Grid_ClimbableWall_Right.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.SnapshotVisibility.Roadmap",
+                "TagHash": 614926609
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimGridViewConfig",
+          "IsGridView": true,
+          "GridSizeX": 1,
+          "GridSizeY": 10
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimContactEventEmitterConfig",
+          "IsContactEventEmitter": true,
+          "OnPlayerClimb": {
+            "EventName": "OnPlayerClimb"
+          },
+          "OnPlayerExitClimb": {
+            "EventName": "OnPlayerExitClimb"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLadderConfig",
+          "IsLadder": true,
+          "ClimbSide": "Right"
+        }
+      ],
+      "Name": "FD_Grid_ClimbableWall_Right_001",
+      "Type": "FiveDimProp",
+      "EntityID": 5
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 0,
+            "Y": 0.55,
+            "Z": 0.125
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "14ddc300-cda1-4b73-bb1b-3ef3db6d7e4e",
+              "EntityVarName": "PortalState",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "_6_PortalState_Auto",
+              "DefaultLevelVar": {
+                "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+                "DefaultValue": 1,
+                "Side": "ServerClient",
+                "MaxValue": 1
+              },
+              "AutoCreateAndBindLevelVar": true
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Prop_Portal.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.NoArrowAttach",
+                "TagHash": -277647960
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Slippery",
+                "TagHash": 1970513973
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Unstable",
+                "TagHash": 1964810839
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "Effect",
+                "IsDynamic": true,
+                "BindPath": "Chap05_GameplayProp_FDPortal_01_Lod0"
+              },
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              },
+              {
+                "Name": "MapIconRoot",
+                "Position": {
+                  "X": 0,
+                  "Y": 0.75,
+                  "Z": 0
+                },
+                "BindPath": "MapIconRoot"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimCustomVisibilityConfig",
+          "IsCustomVisibility": true,
+          "DoActionOnInitVisible": true,
+          "VisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimFireEffectAction",
+              "FireParams": {
+                "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPortal_01_Portal_Lod0.prefab",
+                "AttachPointName": "Effect"
+              }
+            }
+          ],
+          "InvisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimKillAllEffectAction"
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "PortalUnlock"
+                },
+                {
+                  "EventName": "PortalLock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimDebugLogEventAction",
+                  "Message": "注释：先设置一个解锁的默认值，如果绑定了变量，再用变量值覆盖"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamByRawLevelVarAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "LevelVarName": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "IsEntityVar": true,
+                    "VarName": "PortalState"
+                  }
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "PortalInteract"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPortal_in"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "TeleportFinish"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPortal_out"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimPortalConfig",
+          "IsPortal": true,
+          "BindLevelVarName": {
+            "$type": "RPG.GameCore.LittleGameDynamicVar",
+            "IsEntityVar": true,
+            "VarName": "PortalState"
+          },
+          "LockValues": [
+            0
+          ],
+          "UnlockValues": [
+            1
+          ],
+          "TriggerShape": {
+            "UseTriggerFromView": true,
+            "TriggerName": "InteractTrigger",
+            "TriggerInfo": {
+              "Radius": 1,
+              "PointList": []
+            }
+          },
+          "InteractButtonConfig": {
+            "ID": "Interact",
+            "ButtonIcon": {
+              "Value": "SpriteOutput/TalkIcon/TriggerProp.png"
+            },
+            "ButtonText": {
+              "Value": "MazePuzzle_FD_Interact_Portal"
+            }
+          },
+          "Target": {
+            "IsCrossLevel": true,
+            "TargetLGameEntityRef": "MoveToLevel1"
+          },
+          "TriggerFiveDimLoadingView": true,
+          "LockEvent": {
+            "EventName": "PortalLock"
+          },
+          "UnlockEvent": {
+            "EventName": "PortalUnlock"
+          },
+          "PortalInteractEvent": {
+            "EventName": "PortalInteract"
+          },
+          "TeleportFinishEvent": {
+            "EventName": "TeleportFinish"
+          }
+        }
+      ],
+      "Name": "FD_Prop_Portal_001",
+      "Type": "FiveDimProp",
+      "EntityID": 6
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 6,
+            "Y": 0.55,
+            "Z": 0.125
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "14ddc300-cda1-4b73-bb1b-3ef3db6d7e4e",
+              "EntityVarName": "PortalState",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "_7_PortalState_Auto",
+              "DefaultLevelVar": {
+                "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+                "DefaultValue": 1,
+                "Side": "ServerClient",
+                "MaxValue": 1
+              },
+              "AutoCreateAndBindLevelVar": true
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Prop_Portal.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.NoArrowAttach",
+                "TagHash": -277647960
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Slippery",
+                "TagHash": 1970513973
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Unstable",
+                "TagHash": 1964810839
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "Effect",
+                "IsDynamic": true,
+                "BindPath": "Chap05_GameplayProp_FDPortal_01_Lod0"
+              },
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              },
+              {
+                "Name": "MapIconRoot",
+                "Position": {
+                  "X": 0,
+                  "Y": 0.75,
+                  "Z": 0
+                },
+                "BindPath": "MapIconRoot"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimCustomVisibilityConfig",
+          "IsCustomVisibility": true,
+          "DoActionOnInitVisible": true,
+          "VisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimFireEffectAction",
+              "FireParams": {
+                "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPortal_01_Portal_Lod0.prefab",
+                "AttachPointName": "Effect"
+              }
+            }
+          ],
+          "InvisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimKillAllEffectAction"
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "PortalUnlock"
+                },
+                {
+                  "EventName": "PortalLock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimDebugLogEventAction",
+                  "Message": "注释：先设置一个解锁的默认值，如果绑定了变量，再用变量值覆盖"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamByRawLevelVarAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "LevelVarName": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "IsEntityVar": true,
+                    "VarName": "PortalState"
+                  }
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "PortalInteract"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPortal_in"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "TeleportFinish"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPortal_out"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimPortalConfig",
+          "IsPortal": true,
+          "BindLevelVarName": {
+            "$type": "RPG.GameCore.LittleGameDynamicVar",
+            "IsEntityVar": true,
+            "VarName": "PortalState"
+          },
+          "LockValues": [
+            0
+          ],
+          "UnlockValues": [
+            1
+          ],
+          "TriggerShape": {
+            "UseTriggerFromView": true,
+            "TriggerName": "InteractTrigger",
+            "TriggerInfo": {
+              "Radius": 1,
+              "PointList": []
+            }
+          },
+          "InteractButtonConfig": {
+            "ID": "Interact",
+            "ButtonIcon": {
+              "Value": "SpriteOutput/TalkIcon/TriggerProp.png"
+            },
+            "ButtonText": {
+              "Value": "MazePuzzle_FD_Interact_Portal"
+            }
+          },
+          "Target": {
+            "IsCrossLevel": true,
+            "TargetLGameEntityRef": "MoveToLevel2"
+          },
+          "TriggerFiveDimLoadingView": true,
+          "LockEvent": {
+            "EventName": "PortalLock"
+          },
+          "UnlockEvent": {
+            "EventName": "PortalUnlock"
+          },
+          "PortalInteractEvent": {
+            "EventName": "PortalInteract"
+          },
+          "TeleportFinishEvent": {
+            "EventName": "TeleportFinish"
+          }
+        }
+      ],
+      "Name": "FD_Prop_Portal_001",
+      "Type": "FiveDimProp",
+      "EntityID": 7
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": -6,
+            "Y": 0.55,
+            "Z": 0.125
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "14ddc300-cda1-4b73-bb1b-3ef3db6d7e4e",
+              "EntityVarName": "PortalState",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "_8_PortalState_Auto",
+              "DefaultLevelVar": {
+                "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+                "DefaultValue": 1,
+                "Side": "ServerClient",
+                "MaxValue": 1
+              },
+              "AutoCreateAndBindLevelVar": true
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Prop_Portal.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.NoArrowAttach",
+                "TagHash": -277647960
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Slippery",
+                "TagHash": 1970513973
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Unstable",
+                "TagHash": 1964810839
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "Effect",
+                "IsDynamic": true,
+                "BindPath": "Chap05_GameplayProp_FDPortal_01_Lod0"
+              },
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              },
+              {
+                "Name": "MapIconRoot",
+                "Position": {
+                  "X": 0,
+                  "Y": 0.75,
+                  "Z": 0
+                },
+                "BindPath": "MapIconRoot"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimCustomVisibilityConfig",
+          "IsCustomVisibility": true,
+          "DoActionOnInitVisible": true,
+          "VisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimFireEffectAction",
+              "FireParams": {
+                "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPortal_01_Portal_Lod0.prefab",
+                "AttachPointName": "Effect"
+              }
+            }
+          ],
+          "InvisibleActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimKillAllEffectAction"
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "PortalUnlock"
+                },
+                {
+                  "EventName": "PortalLock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimDebugLogEventAction",
+                  "Message": "注释：先设置一个解锁的默认值，如果绑定了变量，再用变量值覆盖"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamByRawLevelVarAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "LevelVarName": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "IsEntityVar": true,
+                    "VarName": "PortalState"
+                  }
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "PortalInteract"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPortal_in"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "TeleportFinish"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPortal_out"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimPortalConfig",
+          "IsPortal": true,
+          "BindLevelVarName": {
+            "$type": "RPG.GameCore.LittleGameDynamicVar",
+            "IsEntityVar": true,
+            "VarName": "PortalState"
+          },
+          "LockValues": [
+            0
+          ],
+          "UnlockValues": [
+            1
+          ],
+          "TriggerShape": {
+            "UseTriggerFromView": true,
+            "TriggerName": "InteractTrigger",
+            "TriggerInfo": {
+              "Radius": 1,
+              "PointList": []
+            }
+          },
+          "InteractButtonConfig": {
+            "ID": "Interact",
+            "ButtonIcon": {
+              "Value": "SpriteOutput/TalkIcon/TriggerProp.png"
+            },
+            "ButtonText": {
+              "Value": "MazePuzzle_FD_Interact_Portal"
+            }
+          },
+          "Target": {
+            "IsCrossLevel": true,
+            "TargetLGameEntityRef": "MoveToLevel3"
+          },
+          "TriggerFiveDimLoadingView": true,
+          "LockEvent": {
+            "EventName": "PortalLock"
+          },
+          "UnlockEvent": {
+            "EventName": "PortalUnlock"
+          },
+          "PortalInteractEvent": {
+            "EventName": "PortalInteract"
+          },
+          "TeleportFinishEvent": {
+            "EventName": "TeleportFinish"
+          }
+        }
+      ],
+      "Name": "FD_Prop_Portal_001",
+      "Type": "FiveDimProp",
+      "EntityID": 8
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 0.003,
+            "Y": 3,
+            "Z": 0.275
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "3f8cac95-3318-4f7c-a435-873e3c4a8453",
+              "EntityVarName": "ChestStateM",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "_9_ChestStateM_Auto",
+              "DefaultLevelVar": {
+                "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+                "DefaultValue": 1,
+                "Side": "ServerClient",
+                "MaxValue": 3
+              },
+              "AutoCreateAndBindLevelVar": true
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Prop_TreasureBox_02.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Slippery",
+                "TagHash": 1970513973
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Unstable",
+                "TagHash": 1964810839
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.NoArrowAttach",
+                "TagHash": -277647960
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.SnapshotVisibility.Hide",
+                "TagHash": -1422695391
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimCustomLoadConfig",
+          "IsCustomLoad": true,
+          "BindLevelVarName": {
+            "$type": "RPG.GameCore.LittleGameDynamicVar",
+            "IsEntityVar": true,
+            "VarName": "ChestStateM"
+          },
+          "LoadValues": [
+            0,
+            1
+          ],
+          "LoadActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimFireEffectAction",
+              "FireParams": {
+                "EffectPath": "Effects/Eff_Prefab/Eff_Scene/Interactive Object/Eff_Common_FDTreasureBox02_Appear_Lod0.prefab"
+              }
+            }
+          ],
+          "UnloadActions": [
+            {
+              "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+              "Delay": 0.75,
+              "Name": "TreasureBoxDelay01",
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "IsDissolved",
+                  "ParameterType": "Bool",
+                  "BoolValue": true
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FiveDim_01_Disappear_Lod0.prefab",
+                    "EffectName": "Disappear"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetColliderVisibleAction",
+                  "RelativePaths": []
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 3,
+                  "Name": "TreasureBoxDelay02",
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FiveDimDebugLogEventAction",
+                      "Message": "======="
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "FDEV_InitLock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Common_Prop_Blockade_01_Block01_Lod0.prefab",
+                    "EffectName": "Lock"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "PropState",
+                  "ParameterType": "Int",
+                  "IntValue": 12
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "FDEV_InitClose"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_TreasureBox_02_Idle01_Lod0.prefab",
+                    "EffectName": "Close"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "PropState",
+                  "ParameterType": "Int",
+                  "IntValue": 12
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "FDEV_OnClose"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimKillAllEffectAction",
+                  "NeedFadeOut": true
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_TreasureBox_02_Idle01_Lod0.prefab",
+                    "EffectName": "Close"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Common_Prop_Blockade_01_Unlock01_Lod0.prefab",
+                    "EffectName": "Unlock"
+                  }
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "FDEV_OnOpen"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimKillAllEffectAction",
+                  "NeedFadeOut": true
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_TreasureBox_02_Opening01_Lod0.prefab",
+                    "EffectName": "Open"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "PropState",
+                  "ParameterType": "Int",
+                  "IntValue": 13
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_treasurebox_lv2"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "FDEV_LockInteract"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimKillAllEffectAction"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Common_Prop_Blockade_01_Trigger01_Lod0.prefab",
+                    "EffectName": "Forbidden"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 0.2,
+                  "Name": "FobiddenDelay",
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                      "FireParams": {
+                        "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Common_Prop_Blockade_01_Block01_Lod0.prefab",
+                        "EffectName": "Lock"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimUIPileToastMessageTextIDAction",
+                  "TextID": {
+                    "Hash": 14257420492457405644
+                  }
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "FDEV_CloseInteract"
+                }
+              ],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimChestConfig",
+          "IsChest": true,
+          "BindLevelVarName": {
+            "$type": "RPG.GameCore.LittleGameDynamicVar",
+            "IsEntityVar": true,
+            "VarName": "ChestStateM"
+          },
+          "CloseValue": 1,
+          "OpenValue": 2,
+          "TriggerShape": {
+            "UseTriggerFromView": true,
+            "TriggerName": "InteractTrigger",
+            "TriggerInfo": {
+              "Radius": 1
+            }
+          },
+          "InteractButtonConfig": {
+            "ID": "Interact",
+            "IconType": {
+              "EnumIndex": 20,
+              "Value": 6
+            },
+            "ButtonText": {
+              "Value": "PropName_60302"
+            }
+          },
+          "InitAsLockEvent": {
+            "EventName": "FDEV_InitLock"
+          },
+          "InitAsCloseEvent": {
+            "EventName": "FDEV_InitClose"
+          },
+          "InitAsOpenEvent": {
+            "EventName": "FDEV_InitOpen"
+          },
+          "LockEvent": {
+            "EventName": "FDEV_OnLock"
+          },
+          "CloseEvent": {
+            "EventName": "FDEV_OnClose"
+          },
+          "OpenEvent": {
+            "EventName": "FDEV_OnOpen"
+          },
+          "InteractLockEvent": {
+            "EventName": "FDEV_LockInteract"
+          },
+          "InteractCloseEvent": {
+            "EventName": "FDEV_CloseInteract"
+          }
+        }
+      ],
+      "Name": "FD_Prop_TreasureBox_02_001",
+      "Type": "FiveDimProp",
+      "EntityID": 9
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 1.387,
+            "Y": 3.002,
+            "Z": 0.275
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "1c0a76b1-39e1-458b-bab9-358bb4a3b743",
+              "EntityVarName": "Key1",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "ReturnPortal01Unlocked"
+            },
+            {
+              "ID": "8d584cb5-9930-4d14-82bf-c5112b8cd24b",
+              "EntityVarName": "Key2",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "ReturnPortal02Unlocked"
+            },
+            {
+              "ID": "c78c9db1-0c58-4828-84a9-01f9d2a70dac",
+              "EntityVarName": "Key3",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "ReturnPortal03Unlocked"
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Prop_Door3Key.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Slippery",
+                "TagHash": 1970513973
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Unstable",
+                "TagHash": 1964810839
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.NoArrowAttach",
+                "TagHash": -277647960
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "LightEffect",
+                "Position": {
+                  "X": 0,
+                  "Y": 1.5,
+                  "Z": 0.4
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "KeyChange"
+                },
+                {
+                  "EventName": "DoorUnlock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamByDoorKeyCountAction",
+                  "ParameterName": "KeyCount"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "KeyCollect"
+                },
+                {
+                  "EventName": "DoorUnlock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDDoor_01_Fire01_Lod0.prefab",
+                    "AttachPointName": "LightEffect"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDDoor_unlock"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "DoorOpen"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "DoorState",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDDoor_open"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 2,
+                  "Name": "CloseColliderDelay",
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FiveDimSetColliderVisibleAction",
+                      "RelativePaths": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimDoorConfig",
+          "IsFiveDimDoor": true,
+          "RequireKeyNumber": 3,
+          "BindLevelVarNames": [
+            {
+              "$type": "RPG.GameCore.LittleGameDynamicVar",
+              "IsEntityVar": true,
+              "VarName": "Key1"
+            },
+            {
+              "$type": "RPG.GameCore.LittleGameDynamicVar",
+              "IsEntityVar": true,
+              "VarName": "Key2"
+            },
+            {
+              "$type": "RPG.GameCore.LittleGameDynamicVar",
+              "IsEntityVar": true,
+              "VarName": "Key3"
+            }
+          ],
+          "OpenDelayDuration": 0.2,
+          "KeyChangeEvent": {
+            "EventName": "KeyChange"
+          },
+          "KeyCollectEvent": {
+            "EventName": "KeyCollect"
+          },
+          "DoorUnlockEvent": {
+            "EventName": "DoorUnlock"
+          },
+          "DoorOpenEvent": {
+            "EventName": "DoorOpen"
+          }
+        }
+      ],
+      "Name": "FD_Prop_Door3Key_001",
+      "Type": "FiveDimProp",
+      "EntityID": 10
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": -1.3968,
+            "Y": 3.002,
+            "Z": 0.275
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "1c0a76b1-39e1-458b-bab9-358bb4a3b743",
+              "EntityVarName": "Key1",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "ReturnPortal01Unlocked"
+            },
+            {
+              "ID": "8d584cb5-9930-4d14-82bf-c5112b8cd24b",
+              "EntityVarName": "Key2",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "ReturnPortal02Unlocked"
+            },
+            {
+              "ID": "c78c9db1-0c58-4828-84a9-01f9d2a70dac",
+              "EntityVarName": "Key3",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "ReturnPortal03Unlocked"
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FiveDim/EntityView/Common/FD_Prop_Door3Key.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {
+            "List": [
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Slippery",
+                "TagHash": 1970513973
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.Unstable",
+                "TagHash": 1964810839
+              },
+              {
+                "Tag": "LittleGame.EntityConfig.FiveDim.NoArrowAttach",
+                "TagHash": -277647960
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "LightEffect",
+                "Position": {
+                  "X": 0,
+                  "Y": 1.5,
+                  "Z": 0.4
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "KeyChange"
+                },
+                {
+                  "EventName": "DoorUnlock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamByDoorKeyCountAction",
+                  "ParameterName": "KeyCount"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "KeyCollect"
+                },
+                {
+                  "EventName": "DoorUnlock"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDDoor_01_Fire01_Lod0.prefab",
+                    "AttachPointName": "LightEffect"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDDoor_unlock"
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "DoorOpen"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "DoorState",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDDoor_open"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 2,
+                  "Name": "CloseColliderDelay",
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FiveDimSetColliderVisibleAction",
+                      "RelativePaths": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimDoorConfig",
+          "IsFiveDimDoor": true,
+          "RequireKeyNumber": 3,
+          "BindLevelVarNames": [
+            {
+              "$type": "RPG.GameCore.LittleGameDynamicVar",
+              "IsEntityVar": true,
+              "VarName": "Key1"
+            },
+            {
+              "$type": "RPG.GameCore.LittleGameDynamicVar",
+              "IsEntityVar": true,
+              "VarName": "Key2"
+            },
+            {
+              "$type": "RPG.GameCore.LittleGameDynamicVar",
+              "IsEntityVar": true,
+              "VarName": "Key3"
+            }
+          ],
+          "OpenDelayDuration": 0.2,
+          "KeyChangeEvent": {
+            "EventName": "KeyChange"
+          },
+          "KeyCollectEvent": {
+            "EventName": "KeyCollect"
+          },
+          "DoorUnlockEvent": {
+            "EventName": "DoorUnlock"
+          },
+          "DoorOpenEvent": {
+            "EventName": "DoorOpen"
+          }
+        }
+      ],
+      "Name": "FD_Prop_Door3Key_001",
+      "Type": "FiveDimProp",
+      "EntityID": 11
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 0,
+            "Y": -0.12,
+            "Z": 8.93
+          },
+          "Rotation": {
+            "X": 0,
+            "Y": 180,
+            "Z": 0
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTagConfig",
+          "Tags": {}
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLevelCameraConfig",
+          "CreateTrigger": true,
+          "TriggerInfo": {
+            "Shape": "Box",
+            "Radius": 1,
+            "DimX": 20,
+            "DimY": 15,
+            "DimZ": 1,
+            "Offset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 8.35
+            },
+            "PointList": []
+          },
+          "Type": "Fix",
+          "SimpleOverrideFollow": {
+            "ViewHeight": 16
+          }
+        }
+      ],
+      "Name": "FiveDimLevelCamera_001",
+      "Type": "FiveDimLevelCamera",
+      "EntityID": 12
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig",
+          "ParentID": 1
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameEditorDebugDrawConfig",
+          "IsDebugDraw": true,
+          "Shape": "Box",
+          "GizmoColor": {
+            "R": 0,
+            "G": 1,
+            "B": 0.5,
+            "A": 0.2
+          },
+          "Size": {
+            "X": 32,
+            "Y": 22,
+            "Z": 4
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimTriggerEventEmitterConfig",
+          "IsTriggerEventEmitter": true,
+          "TriggerShape": {
+            "TriggerInfo": {
+              "Shape": "Box",
+              "Radius": 1,
+              "DimX": 32,
+              "DimY": 22,
+              "DimZ": 4,
+              "PointList": []
+            }
+          },
+          "TargetType": "None",
+          "EnterEvents": [
+            {
+              "EventName": "OnTriggerEnter"
+            }
+          ],
+          "ExitEvents": [
+            {
+              "EventName": "OnTriggerExit"
+            }
+          ],
+          "EnterEventsToGuests": [],
+          "ExitEventsToGuests": []
+        }
+      ],
+      "Name": "FD_Prop_Trigger_ReturnProgress",
+      "Type": "FiveDimProp",
+      "EntityID": 13
+    }
+  ],
+  "GameType": "FiveDim",
+  "LevelGraphValueSource": {},
+  "LockSources": [],
+  "LevelVariables": {
+    "LevelVariables": [
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "ResetOnExit": true,
+        "MaxValue": 1,
+        "Name": "ReturnPortal01Unlocked",
+        "IsPrivate": true
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "ResetOnExit": true,
+        "MaxValue": 1,
+        "Name": "ReturnPortal02Unlocked",
+        "IsPrivate": true
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "ResetOnExit": true,
+        "MaxValue": 1,
+        "Name": "ReturnPortal03Unlocked",
+        "IsPrivate": true
+      },
+      {
+        "$type": "RPG.GameCore.LittleGameLevelVariableEntityRef",
+        "DefaultValue": {},
+        "Name": "MoveToLevel1"
+      },
+      {
+        "$type": "RPG.GameCore.LittleGameLevelVariableEntityRef",
+        "DefaultValue": {},
+        "Name": "MoveToLevel2"
+      },
+      {
+        "$type": "RPG.GameCore.LittleGameLevelVariableEntityRef",
+        "DefaultValue": {},
+        "Name": "MoveToLevel3"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "DefaultValue": 1,
+        "Side": "ServerClient",
+        "MaxValue": 1,
+        "Name": "_6_PortalState_Auto"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "DefaultValue": 1,
+        "Side": "ServerClient",
+        "MaxValue": 1,
+        "Name": "_7_PortalState_Auto"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "DefaultValue": 1,
+        "Side": "ServerClient",
+        "MaxValue": 1,
+        "Name": "_8_PortalState_Auto"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "DefaultValue": 1,
+        "Side": "ServerClient",
+        "MaxValue": 3,
+        "Name": "_9_ChestStateM_Auto"
+      }
+    ]
+  },
+  "LevelSettings": {
+    "$type": "RPG.GameCore.FiveDimLevelSettings",
+    "Tags": {
+      "List": [
+        {
+          "Tag": "LittleGame.EntityConfig.FiveDim.Visibility.HideOutsideFiveDim",
+          "TagHash": 294601596
+        }
+      ]
+    },
+    "ExtraLevelGraphConfigList": [
+      {
+        "LevelGraph": "Config/Level/LittleGame/FiveDim/Version_470/Map_B702/LG_LittleGame_FiveDim_CommonLevel00_ReturnProgress.json",
+        "LevelGraphValueSource": {}
+      }
+    ],
+    "LevelAudioConfig": {},
+    "MusicJumpConfig": {},
+    "WaterLevelConfig": {},
+    "CollectCoinConfig": {
+      "PersistentWaveConfig": {}
+    },
+    "FlappyBirdConfig": {},
+    "TrainConfig": {},
+    "HundredFloorConfig": {
+      "ChildPresetTags": {}
+    }
+  }
+}

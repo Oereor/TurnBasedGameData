@@ -4,6 +4,18 @@
       "Name": "Monster_ChangePhase",
       "TaskList": [
         {
+          "$type": "RPG.GameCore.TriggerModifierCustomEvent",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "BattleAllEntity.GetAliveOrLimbo"
+          },
+          "IncludeLimbo": true,
+          "EventType": {
+            "EnumIndex": 4,
+            "Value": 13
+          }
+        },
+        {
           "$type": "RPG.GameCore.ExitBreakState",
           "TargetType": {
             "$type": "RPG.GameCore.TargetAlias",
@@ -151,6 +163,95 @@
         },
         {
           "$type": "RPG.GameCore.RefreshChangePhaseUI"
+        }
+      ]
+    },
+    {
+      "Name": "Monster_ChangePhase_ParamEntity_TriggerBegin",
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.TriggerModifierCustomEvent",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "BattleAllEntity.GetAliveOrLimbo"
+          },
+          "IncludeLimbo": true,
+          "EventType": {
+            "EnumIndex": 4,
+            "Value": 13
+          },
+          "OverrideParamEntity": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.ExitBreakState",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          },
+          "CancelRecoverAnim": true
+        },
+        {
+          "$type": "RPG.GameCore.DefineDynamicValue",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          },
+          "DynamicKey": {
+            "Value": "ChangePhase_MaxHPValue"
+          },
+          "ContextScope": "TargetEntity"
+        },
+        {
+          "$type": "RPG.GameCore.SetDynamicValueByProperty",
+          "DynamicKey": "ChangePhase_MaxHPValue",
+          "ReadTargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          },
+          "Value": "MaxHP"
+        },
+        {
+          "$type": "RPG.GameCore.SetHP",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          },
+          "ModifyRatio": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "ShowText": false
+        },
+        {
+          "$type": "RPG.GameCore.ResetStance",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          },
+          "ForbidWhenEmpty": false
+        },
+        {
+          "$type": "RPG.GameCore.RefreshChangePhaseUI"
+        },
+        {
+          "$type": "RPG.GameCore.TriggerModifierCustomEvent",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "BattleAllEntity.GetAliveOrLimbo"
+          },
+          "EventType": {
+            "EnumIndex": 4,
+            "Value": 8
+          },
+          "OverrideParamEntity": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "ParamEntity"
+          }
         }
       ]
     },
@@ -4904,26 +5005,108 @@
       }
     },
     {
+      "Name": "Elation_GetOrCreateAha",
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.Retarget",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetAlias",
+            "Alias": "Elation_BE"
+          },
+          "MaxNumber": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 1
+            }
+          },
+          "TaskList": [
+            {
+              "$type": "RPG.GameCore.TaskTemplateFetchParamSequence",
+              "ParamName": "ParamTaskList"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByIsContainModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "LevelEntity"
+                },
+                "ModifierName": {
+                  "Value": "MAvatar_GlobalSkill_Nihilux_10_Main"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.CreateBattleEvent",
+                  "EventID": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 70002
+                    }
+                  },
+                  "PropertyFromTarget": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
+                  },
+                  "SpecifyCaster": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
+                  },
+                  "Team": "TeamNeutral",
+                  "OnBattleEventCreate": [
+                    {
+                      "$type": "RPG.GameCore.TaskTemplateFetchParamSequence",
+                      "ParamName": "ParamTaskList"
+                    }
+                  ],
+                  "IsDynamicPreload": true,
+                  "AllowDuplicate": true
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.CreateBattleEvent",
+                  "EventID": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 70001
+                    }
+                  },
+                  "PropertyFromTarget": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
+                  },
+                  "SpecifyCaster": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
+                  },
+                  "Team": "TeamNeutral",
+                  "OnBattleEventCreate": [
+                    {
+                      "$type": "RPG.GameCore.TaskTemplateFetchParamSequence",
+                      "ParamName": "ParamTaskList"
+                    }
+                  ],
+                  "IsDynamicPreload": true,
+                  "AllowDuplicate": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Name": "Elation_StartElationTime",
       "TaskList": [
         {
           "$type": "RPG.GameCore.Retarget",
           "TargetType": {
             "$type": "RPG.GameCore.TargetAlias",
-            "Alias": "BattleEventEntityList"
-          },
-          "Predicate": {
-            "$type": "RPG.GameCore.ByCompareBattleEventID",
-            "TargetType": {
-              "$type": "RPG.GameCore.TargetAlias",
-              "Alias": "ParamEntity"
-            },
-            "TargetBattleEventID": {
-              "IsDynamic": false,
-              "FixedValue": {
-                "Value": 70001
-              }
-            }
+            "Alias": "Elation_BE"
           },
           "MaxNumber": {
             "IsDynamic": false,
@@ -4936,7 +5119,7 @@
               "$type": "RPG.GameCore.TurnInsertAction",
               "TargetType": {
                 "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "Elation_BE"
+                "Alias": "ParamEntity"
               },
               "SkillIndex": {
                 "IsDynamic": false,
@@ -5017,75 +5200,50 @@
           ],
           "FailedTaskList": [
             {
-              "$type": "RPG.GameCore.CreateBattleEvent",
-              "EventID": {
-                "IsDynamic": false,
-                "FixedValue": {
-                  "Value": 70001
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByIsContainModifier",
+                "TargetType": {
+                  "$type": "RPG.GameCore.TargetAlias",
+                  "Alias": "LevelEntity"
+                },
+                "ModifierName": {
+                  "Value": "MAvatar_GlobalSkill_Nihilux_10_Main"
                 }
               },
-              "PropertyFromTarget": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "LevelEntity"
-              },
-              "SpecifyCaster": {
-                "$type": "RPG.GameCore.TargetAlias",
-                "Alias": "LevelEntity"
-              },
-              "Team": "TeamNeutral",
-              "OnBattleEventCreate": [
+              "SuccessTaskList": [
                 {
-                  "$type": "RPG.GameCore.TurnInsertAction",
-                  "TargetType": {
-                    "$type": "RPG.GameCore.TargetAlias",
-                    "Alias": "Elation_BE"
-                  },
-                  "SkillIndex": {
+                  "$type": "RPG.GameCore.CreateBattleEvent",
+                  "EventID": {
                     "IsDynamic": false,
                     "FixedValue": {
-                      "Value": 0
+                      "Value": 70002
                     }
                   },
-                  "DynamicValues": {
-                    "ElationTime_OverrideElationPointTemp": {
-                      "IsDynamic": true,
-                      "PostfixExpr": {
-                        "OpCodes": "AQAR",
-                        "FixedValues": [],
-                        "DynamicHashes": [
-                          -524900775
-                        ]
-                      }
-                    },
-                    "ElationTime_IsNoConsumeTemp": {
-                      "IsDynamic": true,
-                      "PostfixExpr": {
-                        "OpCodes": "AQAR",
-                        "FixedValues": [],
-                        "DynamicHashes": [
-                          829408295
-                        ]
-                      }
-                    }
+                  "PropertyFromTarget": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
                   },
-                  "DynamicStrings": {
-                    "ElationTime_CustomTagTemp": {
-                      "Key": "ElationTime_CustomTagTemp",
-                      "Value": "TryStartElationTime_CustomTag"
-                    }
+                  "SpecifyCaster": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
                   },
-                  "OnInsertAbort": [
+                  "Team": "TeamNeutral",
+                  "OnBattleEventCreate": [
                     {
-                      "$type": "RPG.GameCore.AddModifier",
+                      "$type": "RPG.GameCore.TurnInsertAction",
                       "TargetType": {
                         "$type": "RPG.GameCore.TargetAlias",
-                        "Alias": "Elation_BE"
+                        "Alias": "ParamEntity"
                       },
-                      "ModifierName": {
-                        "Value": "MBattleEvent_Elation_InsertActionCheck"
+                      "SkillIndex": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
                       },
                       "DynamicValues": {
-                        "MDF_OverrideElationPoint": {
+                        "ElationTime_OverrideElationPointTemp": {
                           "IsDynamic": true,
                           "PostfixExpr": {
                             "OpCodes": "AQAR",
@@ -5095,7 +5253,7 @@
                             ]
                           }
                         },
-                        "MDF_ElationTimeIsNoConsume": {
+                        "ElationTime_IsNoConsumeTemp": {
                           "IsDynamic": true,
                           "PostfixExpr": {
                             "OpCodes": "AQAR",
@@ -5107,18 +5265,164 @@
                         }
                       },
                       "DynamicStrings": {
-                        "MDF_CustomTag": {
-                          "Key": "MDF_CustomTag",
+                        "ElationTime_CustomTagTemp": {
+                          "Key": "ElationTime_CustomTagTemp",
                           "Value": "TryStartElationTime_CustomTag"
                         }
-                      }
+                      },
+                      "OnInsertAbort": [
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "Elation_BE"
+                          },
+                          "ModifierName": {
+                            "Value": "MBattleEvent_Elation_InsertActionCheck"
+                          },
+                          "DynamicValues": {
+                            "MDF_OverrideElationPoint": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  -524900775
+                                ]
+                              }
+                            },
+                            "MDF_ElationTimeIsNoConsume": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  829408295
+                                ]
+                              }
+                            }
+                          },
+                          "DynamicStrings": {
+                            "MDF_CustomTag": {
+                              "Key": "MDF_CustomTag",
+                              "Value": "TryStartElationTime_CustomTag"
+                            }
+                          }
+                        }
+                      ],
+                      "CopyAbortContext": true
                     }
                   ],
-                  "CopyAbortContext": true
+                  "IsDynamicPreload": true,
+                  "AllowDuplicate": true
                 }
               ],
-              "IsDynamicPreload": true,
-              "AllowDuplicate": true
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.CreateBattleEvent",
+                  "EventID": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 70001
+                    }
+                  },
+                  "PropertyFromTarget": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
+                  },
+                  "SpecifyCaster": {
+                    "$type": "RPG.GameCore.TargetAlias",
+                    "Alias": "LevelEntity"
+                  },
+                  "Team": "TeamNeutral",
+                  "OnBattleEventCreate": [
+                    {
+                      "$type": "RPG.GameCore.TurnInsertAction",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetAlias",
+                        "Alias": "ParamEntity"
+                      },
+                      "SkillIndex": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      },
+                      "DynamicValues": {
+                        "ElationTime_OverrideElationPointTemp": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              -524900775
+                            ]
+                          }
+                        },
+                        "ElationTime_IsNoConsumeTemp": {
+                          "IsDynamic": true,
+                          "PostfixExpr": {
+                            "OpCodes": "AQAR",
+                            "FixedValues": [],
+                            "DynamicHashes": [
+                              829408295
+                            ]
+                          }
+                        }
+                      },
+                      "DynamicStrings": {
+                        "ElationTime_CustomTagTemp": {
+                          "Key": "ElationTime_CustomTagTemp",
+                          "Value": "TryStartElationTime_CustomTag"
+                        }
+                      },
+                      "OnInsertAbort": [
+                        {
+                          "$type": "RPG.GameCore.AddModifier",
+                          "TargetType": {
+                            "$type": "RPG.GameCore.TargetAlias",
+                            "Alias": "Elation_BE"
+                          },
+                          "ModifierName": {
+                            "Value": "MBattleEvent_Elation_InsertActionCheck"
+                          },
+                          "DynamicValues": {
+                            "MDF_OverrideElationPoint": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  -524900775
+                                ]
+                              }
+                            },
+                            "MDF_ElationTimeIsNoConsume": {
+                              "IsDynamic": true,
+                              "PostfixExpr": {
+                                "OpCodes": "AQAR",
+                                "FixedValues": [],
+                                "DynamicHashes": [
+                                  829408295
+                                ]
+                              }
+                            }
+                          },
+                          "DynamicStrings": {
+                            "MDF_CustomTag": {
+                              "Key": "MDF_CustomTag",
+                              "Value": "TryStartElationTime_CustomTag"
+                            }
+                          }
+                        }
+                      ],
+                      "CopyAbortContext": true
+                    }
+                  ],
+                  "IsDynamicPreload": true,
+                  "AllowDuplicate": true
+                }
+              ]
             }
           ]
         }
@@ -5260,7 +5564,10 @@
                             "PredicateList": [
                               {
                                 "$type": "RPG.GameCore.ByCheckModifierCallBackName",
-                                "ModifierName": "MBattleEvent_Elation_ElationEchoPointBuff"
+                                "ModifierName": {
+                                  "Custom": true,
+                                  "Key": "ModifierName"
+                                }
                               },
                               {
                                 "$type": "RPG.GameCore.ByCheckModifierCallBackModifierValue",
@@ -5273,21 +5580,6 @@
                                     "FixedValues": [],
                                     "DynamicHashes": [
                                       247365766
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "$type": "RPG.GameCore.ByCompareModifierCallBackDynamicValue",
-                                "DynamicKey": "SpecialEcho",
-                                "CompareType": "Equal",
-                                "CompareValue": {
-                                  "IsDynamic": true,
-                                  "PostfixExpr": {
-                                    "OpCodes": "AQAR",
-                                    "FixedValues": [],
-                                    "DynamicHashes": [
-                                      -1814063556
                                     ]
                                   }
                                 }
@@ -5372,8 +5664,10 @@
                             "Alias": "ParamEntity"
                           },
                           "ModifierName": {
-                            "Value": "MBattleEvent_Elation_ElationEchoPointBuff"
+                            "Custom": true,
+                            "Key": "ModifierName"
                           },
+                          "ReferenceModifierName": "MBattleEvent_Elation_ElationEchoPointBuff",
                           "DynamicValues": {
                             "ElationEchoPoint": {
                               "IsDynamic": true,
@@ -5382,16 +5676,6 @@
                                 "FixedValues": [],
                                 "DynamicHashes": [
                                   1166716581
-                                ]
-                              }
-                            },
-                            "SpecialEcho": {
-                              "IsDynamic": true,
-                              "PostfixExpr": {
-                                "OpCodes": "AQAR",
-                                "FixedValues": [],
-                                "DynamicHashes": [
-                                  -1814063556
                                 ]
                               }
                             }
@@ -5430,12 +5714,6 @@
               "Index": 0
             }
           },
-          "-1814063556": {
-            "ReadInfo": {
-              "Type": "None",
-              "Index": 0
-            }
-          },
           "1775211630": {
             "ReadInfo": {
               "Type": "None",
@@ -5461,6 +5739,9 @@
             }
           }
         }
+      },
+      "DynamicStrings": {
+        "ModifierName": "MBattleEvent_Elation_ElationEchoPointBuff"
       }
     },
     {

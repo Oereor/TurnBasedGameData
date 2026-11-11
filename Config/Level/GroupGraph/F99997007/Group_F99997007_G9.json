@@ -1,0 +1,198 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+            "Name": "ScreenState"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerEntityServerEvent"
+            },
+            {
+              "$type": "RPG.GameCore.TriggerEntityServerEvent"
+            },
+            {
+              "$type": "RPG.GameCore.TriggerEntityServerEvent"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+                "Name": "ScreenState",
+                "CompareValue": 1
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                },
+                {
+                  "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                },
+                {
+                  "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+                    "Name": "ScreenState",
+                    "CompareValue": 2
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                    },
+                    {
+                      "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                    },
+                    {
+                      "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+                        "Name": "ScreenState",
+                        "CompareValue": 3
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                        },
+                        {
+                          "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                        },
+                        {
+                          "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "RPG.GameCore.PredicateTaskList",
+                          "Predicate": {
+                            "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+                            "Name": "ScreenState",
+                            "CompareValue": 4
+                          },
+                          "SuccessTaskList": [
+                            {
+                              "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                            },
+                            {
+                              "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                            },
+                            {
+                              "$type": "RPG.GameCore.TriggerEntityServerEvent"
+                            }
+                          ],
+                          "FailedTaskList": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.LoopWaitServerFloorSavedValueChange"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.LoopWaitEnterScene"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitFloorCustomValueChange",
+          "Name": {
+            "Value": "ScreenContent"
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareFloorCustomString",
+                "IgnoreCase": true,
+                "Name": {
+                  "Value": "ScreenContent"
+                },
+                "CompareValue": {
+                  "Value": "Idle"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetGraphDynamicFloat",
+                  "Name": "MenuID",
+                  "TargetIDs": [
+                    300002
+                  ],
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 7
+                    }
+                  }
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareFloorCustomString",
+                    "IgnoreCase": true,
+                    "Name": {
+                      "Value": "ScreenContent"
+                    },
+                    "CompareValue": {
+                      "Value": "Cartoon"
+                    }
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.SetGraphDynamicFloat",
+                      "Name": "MenuID",
+                      "TargetIDs": [
+                        300002
+                      ],
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 5
+                        }
+                      }
+                    }
+                  ],
+                  "FailedTaskList": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group"
+}

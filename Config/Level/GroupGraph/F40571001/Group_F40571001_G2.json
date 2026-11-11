@@ -1,0 +1,105 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareGroupProperty",
+            "GroupID": 2,
+            "DynamicName": {
+              "Value": "FirstEncounter"
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerCustomString",
+              "CustomString": {
+                "Value": "FirstTriggerBattle_G2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "FirstTriggerBattle_G2"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerPerformance",
+          "PerformanceType": "PlayVideo",
+          "PerformanceID": 105470226,
+          "MaskConfig": {
+            "UseExcelData": false,
+            "StartBlack": "NoPre",
+            "EndCrack": true
+          },
+          "ValueSource": {}
+        },
+        {
+          "$type": "RPG.GameCore.PerformanceEndSeq",
+          "BeforeCases": [
+            {
+              "$type": "RPG.GameCore.RequestSetServerGroupPropertyV2",
+              "GroupID": 2,
+              "DynamicName": {
+                "Value": "FirstEncounter"
+              },
+              "Value": 1
+            },
+            {
+              "$type": "RPG.GameCore.TriggerCustomString",
+              "CustomString": {
+                "Value": "StartBattle_G2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "StartBattle_G2"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerBattle",
+          "EventID": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 20571080
+            }
+          },
+          "GroupID": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          },
+          "BattleAreaID": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 0
+            }
+          },
+          "BattleAreaConfigID": {
+            "IsDynamic": false,
+            "FixedValue": {
+              "Value": 2057101
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "Type": "Group"
+}

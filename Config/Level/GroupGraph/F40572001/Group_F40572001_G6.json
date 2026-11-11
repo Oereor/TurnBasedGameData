@@ -1,0 +1,40 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PlayerSelectMotionMode"
+        }
+      ]
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByHeroGender",
+            "Gender": "GENDER_MAN"
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.PlayerRemoteControlOtherEntity",
+              "SpecialNPCID": 16002,
+              "UseLocalPlayerPosition": true
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PlayerRemoteControlOtherEntity",
+              "SpecialNPCID": 16003,
+              "UseLocalPlayerPosition": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group",
+  "EntityEventList": []
+}

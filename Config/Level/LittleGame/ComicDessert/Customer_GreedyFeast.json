@@ -1,0 +1,207 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.SetTargetEntityFadeWithAnim",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "IsAttachToTargetEntity": true,
+          "Flags": [],
+          "AliveOnly": true,
+          "EffectPath": "Effects/Eff_Prefab/Eff_NPC/Normal/Common/Eff_Normal_Common_VoracityMask.prefab",
+          "AttachPoint": "Head",
+          "OverrideMonoEffectConfig": {},
+          "SubObjectModifyDataList": []
+        }
+      ]
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.SetTargetEntityFadeWithAnim",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetTargetEntityFadeWithAnim",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "TargetValue": 1,
+          "Duration": 0.5
+        },
+        {
+          "$type": "PJMIPHILAGG",
+          "HILNFHCPEAD": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "FPHBEHJJBIA": "Walk",
+          "MLPAPEJNLGM": 1.5,
+          "JPHFDCIAAGM": true
+        },
+        {
+          "$type": "RPG.GameCore.SetGraphDynamicString",
+          "Name": "CustomerStage",
+          "TargetIDs": [],
+          "Value": {
+            "Value": "Arrived"
+          }
+        }
+      ]
+    },
+    {
+      "Order": 2,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "OrderComplete"
+            }
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.CharacterTriggerFreeStyle",
+              "TargetAlias": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              },
+              "StoryAvatarID": "NPC_Male",
+              "NormalizedTimeWait": 1,
+              "NormalizedTransitionDuration": 0.3,
+              "StoryMotionID": 100010495
+            }
+          ],
+          "IsLoop": false
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "Leave"
+            }
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.SetGraphDynamicString",
+              "Name": "CustomerStage",
+              "TargetIDs": [],
+              "Value": {
+                "Value": "Departed"
+              }
+            }
+          ],
+          "IsLoop": false
+        }
+      ]
+    },
+    {
+      "Order": 3,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "FinishService"
+            }
+          },
+          "IsLoop": false
+        },
+        {
+          "$type": "RPG.GameCore.CharacterTriggerFreeStyle",
+          "TargetAlias": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "StoryAvatarID": "NPC_Male",
+          "NormalizedTimeWait": 0.3,
+          "NormalizedTransitionDuration": 0.5,
+          "StoryMotionID": 100010000
+        },
+        {
+          "$type": "RPG.GameCore.CharacterTriggerFreeStyle",
+          "TargetAlias": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "StoryAvatarID": "NPC_Male",
+          "NormalizedTimeWait": 0.5,
+          "NormalizedTransitionDuration": 0.3,
+          "StoryMotionID": 100010388
+        },
+        {
+          "$type": "RPG.GameCore.SetGraphDynamicString",
+          "Name": "CustomerStage",
+          "TargetIDs": [],
+          "Value": {
+            "Value": "ServiceFinished"
+          }
+        }
+      ]
+    },
+    {
+      "Order": 4,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "WrongServe"
+            }
+          },
+          "OnChange": [
+            {
+              "$type": "KGDPHMBLLHE",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              },
+              "MGJPIILDPMF": "UI/Quest/ComicDessert/Effect/Eff_ComicDessert_Question.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            },
+            {
+              "$type": "LDANGCCCCCK",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              },
+              "MGJPIILDPMF": "UI/Quest/ComicDessert/Effect/Eff_ComicDessert_Question.prefab"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "EntitasEntity",
+  "EntityEventList": []
+}

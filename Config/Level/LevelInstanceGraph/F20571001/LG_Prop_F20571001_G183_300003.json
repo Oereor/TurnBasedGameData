@@ -1,0 +1,361 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": []
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvOnButtonPressed",
+          "ButtonName": "RollerCoasterStart",
+          "OnPressedCallback": [
+            {
+              "$type": "RPG.GameCore.SetAdvAchievement",
+              "AchievementID": 4045707
+            },
+            {
+              "$type": "RPG.GameCore.SetHudTemplate",
+              "TemplateID": 1021,
+              "EnableTemplate": true
+            },
+            {
+              "$type": "RPG.GameCore.PropInitPuzzle",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              },
+              "BoardPath": {
+                "Value": "Gameplays/RollerCoaster/Prefabs/RollerCoasterPuzzleBoard.prefab"
+              },
+              "LocalPosition": {
+                "X": 0,
+                "Y": 0,
+                "Z": 0
+              },
+              "IsAsyncLoad": true
+            },
+            {
+              "$type": "RPG.GameCore.WaitPropPuzzleLoadingFinish",
+              "TargetEntity": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.TriggerGroupEvent",
+              "EventName": {
+                "Value": "RollerCoasterLoadRequested"
+              }
+            },
+            {
+              "$type": "BAGCMCFPEKP",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              },
+              "EGBKPHCCJBL": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx",
+                "FetchType": "SinglePropByPropID",
+                "SinglePropID": {
+                  "GroupID": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 183
+                    }
+                  },
+                  "ID": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 300002
+                    }
+                  }
+                }
+              },
+              "ONKAMPHIMKH": [
+                {
+                  "TrackDataPrefabPath": "Gameplays/RollerCoaster/B701Track06_1.prefab",
+                  "CoasterScale": 1.2
+                }
+              ],
+              "EKPHDHMJKPO": 3,
+              "HFLOKHHPBNI": {
+                "AnchorID": 1
+              },
+              "MFHHCDBPFOI": {
+                "AnchorID": 2,
+                "BlendType": "EaseIn",
+                "BlendTime": 2
+              },
+              "GAEPIHDDAOF": false,
+              "OLDLJFFBPNF": []
+            },
+            {
+              "$type": "RPG.GameCore.EndPropInteract"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "RollerCoasterLoadRequested"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.PropPuzzleEventListener",
+              "InitializedCallback": [
+                {
+                  "$type": "RPG.GameCore.PropStartPuzzle",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  }
+                }
+              ],
+              "InitializedCallbackLoop": false,
+              "FinishCallback": [
+                {
+                  "$type": "IIJMPIJAOMG",
+                  "HILNFHCPEAD": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PropClosePuzzle",
+                  "TargetType": {
+                    "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.TriggerUINotify",
+                  "NotifyTypeName": "UIClosePuzzleCommon",
+                  "StringParams": [],
+                  "ValueParams": []
+                },
+                {
+                  "$type": "RPG.GameCore.EndPropInteract"
+                }
+              ],
+              "FinishCallbackLoop": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitForNotifyNoParam",
+          "NotifyTypeName": "UIPuzzleCommonExitClick",
+          "IsLoop": true,
+          "OnNotify": [
+            {
+              "$type": "IIJMPIJAOMG",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PropClosePuzzle",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.TriggerUINotify",
+              "NotifyTypeName": "UIClosePuzzleCommon",
+              "StringParams": [],
+              "ValueParams": []
+            },
+            {
+              "$type": "RPG.GameCore.EndPropInteract"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "KJEEDKIIMOO",
+          "HILNFHCPEAD": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+          },
+          "MGFLFCHMGPA": [
+            {
+              "$type": "RPG.GameCore.TriggerEffect",
+              "Flags": [],
+              "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_Transition_01_Start02_Lod0.prefab",
+              "OverrideMonoEffectConfig": {},
+              "SubObjectModifyDataList": [],
+              "FollowCasterTimeSlow": true
+            },
+            {
+              "$type": "RPG.GameCore.TriggerSound",
+              "SoundName": {
+                "Value": "Ev_sfx_planarcadia_rollercoaster_loading"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.LensDistortionCurveEffect",
+              "Intensity": 3,
+              "Scale": 1,
+              "XCurvePath": "Camera/BlendCurve/Blend_SlowToFast.asset",
+              "YCurvePath": "Camera/BlendCurve/Blend_SlowToFast.asset",
+              "IntensityCurvePath": "Camera/BlendCurve/Blend_SlowToFast.asset",
+              "ScaleCurvePath": "Camera/BlendCurve/Blend_SlowToFast.asset",
+              "Duration": 2
+            },
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvNPC",
+                "MultiGroupFetch": [
+                  {
+                    "GroupID": 195,
+                    "GroupNpcID": 400001
+                  }
+                ]
+              }
+            },
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 2
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.TriggerGroupEvent",
+              "EventName": {
+                "Value": "OpenKey"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.TriggerSound",
+              "SoundName": {
+                "Value": "Ev_sfx_planarcadia_rollercoaster_eject"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.AdvOverridePropButtonConfig",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+          },
+          "ButtonConfigs": [
+            {
+              "ID": "RollerCoasterStart",
+              "IconType": {
+                "EnumIndex": 20,
+                "Value": 13
+              },
+              "ButtonText": {
+                "Value": "MazePuzzle_B701_RollCoaster02"
+              }
+            }
+          ],
+          "Refresh": true
+        },
+        {
+          "$type": "RPG.GameCore.AdvSetupButtonListTrigger",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+          },
+          "TriggerName": "InteractTrigger",
+          "ButtonsByName": [
+            "RollerCoasterStart"
+          ],
+          "ButtonConfigs": [],
+          "ConsiderAngleLimit": true,
+          "InteractAngleRange": 120,
+          "IsOverrideValidGuestConfig": true,
+          "OverridedValidGuestConfig": {
+            "FakePlayer": true
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitEntityEventV2",
+          "EventName": {
+            "Value": "UnlockStreaming"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.UnlockMainStreamingSource"
+            },
+            {
+              "$type": "RPG.GameCore.SetHudTemplate",
+              "TemplateID": 1021
+            },
+            {
+              "$type": "RPG.GameCore.SetEntityVisible",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvNPC",
+                "MultiGroupFetch": [
+                  {
+                    "GroupID": 195,
+                    "GroupNpcID": 400001
+                  }
+                ]
+              },
+              "Visible": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitEntityEventV2",
+          "EventName": {
+            "Value": "FinishRoller"
+          },
+          "OnEvent": [
+            {
+              "$type": "HENDHKHIIHD",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "JumpToFive"
+          },
+          "OnEvent": []
+        }
+      ]
+    }
+  ],
+  "Type": "EntityInstance",
+  "EntityEventList": [
+    {
+      "Name": "JumpToCake"
+    },
+    {
+      "Name": "FinishRoller"
+    },
+    {
+      "Name": "UnlockStreaming"
+    }
+  ]
+}

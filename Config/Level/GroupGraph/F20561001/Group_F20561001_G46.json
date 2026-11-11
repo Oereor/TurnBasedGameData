@@ -1,0 +1,120 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": []
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "MusicLevelFinished"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareGroupProperty",
+                "DynamicName": {
+                  "Value": "LG_110001_MusicLevelFinished"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.RequestSetServerGroupPropertyV2",
+                  "DynamicName": {
+                    "Value": "LG_110001_MusicLevelFinished"
+                  },
+                  "Value": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupEvent",
+          "EventName": {
+            "Value": "JumpAchievement"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.SetAdvAchievement",
+              "QuestID": 4045602,
+              "GroupID": 28
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitFiveDimPlayerEnterOrExit",
+          "OnEnter": [
+            {
+              "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+              "Name": {
+                "Value": "FCV_IsInMusicLevel"
+              },
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetStageItemState",
+              "ItemList": [
+                {
+                  "BlockAlias": "R3b",
+                  "PrefabAlias": "Chap05_Prop_B601_Ballon_01"
+                },
+                {
+                  "BlockAlias": "R03",
+                  "PrefabAlias": "Chap05_AirWall_Collider"
+                }
+              ]
+            }
+          ],
+          "OnExit": [
+            {
+              "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+              "Name": {
+                "Value": "FCV_IsInMusicLevel"
+              },
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetStageItemState",
+              "ItemList": [
+                {
+                  "BlockAlias": "R3b",
+                  "PrefabAlias": "Chap05_Prop_B601_Ballon_01"
+                },
+                {
+                  "BlockAlias": "R03",
+                  "PrefabAlias": "Chap05_AirWall_Collider"
+                }
+              ],
+              "EnableState": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group",
+  "EntityEventList": []
+}

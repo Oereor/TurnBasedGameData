@@ -1,0 +1,244 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitEntityEventV2",
+          "EventName": {
+            "Value": "SwitchHandTravel_Dock"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.PlayScreenTransfer",
+              "Mode": "SwitchOut",
+              "CustomTime": 0.2
+            },
+            {
+              "$type": "RPG.GameCore.TravelShipArriveTo",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx",
+                "FetchType": "SinglePropByPropKey",
+                "SinglePropKey": {
+                  "Custom": true,
+                  "Key": "AircraftProp"
+                }
+              },
+              "TargetCurve": {
+                "Custom": true,
+                "Key": "LandingCurve"
+              },
+              "Duration": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.ActiveVirtualCamera",
+              "LevelAreaCameraKey": {
+                "Custom": true,
+                "Key": "CameraAnchor"
+              },
+              "WaitBlendFinish": true,
+              "BlendConfig": {
+                "ExportToJson": true,
+                "BlendType": "Custom",
+                "CustomCurveName": "BlendCut01"
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PlayScreenTransfer",
+              "CustomTime": 0.5
+            },
+            {
+              "$type": "RPG.GameCore.DebugLog",
+              "Message": "###确认降落###"
+            },
+            {
+              "$type": "RPG.GameCore.PropCurveSetStartPoint",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx",
+                "FetchType": "SinglePropByPropKey",
+                "SinglePropKey": {
+                  "Custom": true,
+                  "Key": "AircraftProp"
+                }
+              },
+              "TargetCurve": {
+                "Custom": true,
+                "Key": "LandingCurve"
+              },
+              "CurvePointIndex": {
+                "Value": "0"
+              },
+              "Duration": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.PropCurveMoveStart",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx",
+                "FetchType": "SinglePropByPropKey",
+                "SinglePropKey": {
+                  "Custom": true,
+                  "Key": "AircraftProp"
+                }
+              },
+              "MoveMode": {
+                "$type": "RPG.GameCore.PropCurveMoveStartMode_TargetPoint",
+                "TargetPointIndex": {
+                  "Value": "2"
+                }
+              },
+              "MoveType": "Speed",
+              "MoveTypeValue": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 5
+                }
+              },
+              "InterpHalfTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "Deceleration": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 2
+                }
+              },
+              "CurveRotationOffset": {
+                "X": 270,
+                "Y": 0,
+                "Z": 0
+              }
+            },
+            {
+              "$type": "RPG.GameCore.VCameraConfigChange",
+              "CharacterCameraTargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvLocalPlayer"
+              },
+              "CameraConfig": {
+                "ConfigType": "ShakeConfig",
+                "ShakeTemplateName": "2.4LevelShake",
+                "OverrideShakeConfigV2": {
+                  "ShakeScale": 0.25,
+                  "ShakeTime": 5,
+                  "LoopTime": 4
+                },
+                "NoiseConfig": {},
+                "Priority": 10
+              }
+            },
+            {
+              "$type": "RPG.GameCore.WaitPropCurveMoveFinish",
+              "TargetType": {
+                "$type": "RPG.GameCore.TargetFetchAdvPropEx",
+                "FetchType": "SinglePropByPropKey",
+                "SinglePropKey": {
+                  "Custom": true,
+                  "Key": "AircraftProp"
+                }
+              },
+              "TasksConfig": [
+                {
+                  "$type": "RPG.GameCore.DebugLog",
+                  "Level": "Warn",
+                  "Message": "###降落完成###"
+                },
+                {
+                  "$type": "RPG.GameCore.WaitSecond",
+                  "WaitTime": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1.5
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.PlayScreenTransfer",
+                  "Mode": "SwitchOut",
+                  "CustomTime": 0.5
+                },
+                {
+                  "$type": "RPG.GameCore.WaitSecond",
+                  "WaitTime": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0.5
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.ActiveVirtualCamera",
+                  "LevelAreaCameraKey": {
+                    "Custom": true,
+                    "Key": "CameraAnchor"
+                  },
+                  "IsActive": false,
+                  "WaitBlendFinish": true,
+                  "BlendConfig": {
+                    "ExportToJson": true,
+                    "BlendType": "Custom",
+                    "CustomCurveName": "BlendCut01",
+                    "CustomCurveData": {}
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.TriggerGroupEvent",
+                  "EventName": {
+                    "Custom": true,
+                    "Key": "FinishLanding_GroupEvent"
+                  }
+                }
+              ]
+            }
+          ],
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchAdvPropEx"
+          }
+        }
+      ]
+    }
+  ],
+  "ValueSource": {
+    "Values": [
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "AircraftProp"
+      },
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Key": "CameraAnchor"
+      },
+      {
+        "$type": "RPG.GameCore.SharedString",
+        "Value": "GE_FinishLanding",
+        "Key": "FinishLanding_GroupEvent"
+      },
+      {
+        "$type": "RPG.GameCore.SharedJsonConfig",
+        "Value": {
+          "$type": "RPG.GameCore.GameLevelObjectRefConfig"
+        },
+        "Key": "LandingCurve"
+      }
+    ]
+  },
+  "Type": "Entity",
+  "EntityEventList": [
+    {
+      "Name": "SwitchHandTravel_Dock",
+      "IsPrivate": true,
+      "Description": "降落Event"
+    }
+  ]
+}

@@ -1,0 +1,1497 @@
+{
+  "Entities": [
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 4,
+            "Y": 40,
+            "Z": -6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/EntityView/Common/FR_Prop_Animal01.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "LineCenter",
+                "IsDynamic": true,
+                "BindPath": "LineCenter"
+              },
+              {
+                "Name": "LiquidSprayPoint",
+                "IsDynamic": true,
+                "BindPath": "LiquidSprayPoint"
+              },
+              {
+                "Name": "CastPoint",
+                "IsDynamic": true,
+                "BindPath": "CastPoint"
+              },
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "BeforeFinishHint"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimUIPileToastMessageTextIDAction",
+                  "TextID": {
+                    "Hash": 4443277839012130171
+                  }
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "GameStart"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelDimensionUpAction",
+                  "Duration": 5
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimMutePlayerInputAction",
+                  "IsMute": true
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimMuteUIInputAction"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 2,
+                  "Name": "UpgradePre",
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FourRotateVoxelSetCameraActiveAction",
+                      "CameraEntityConfigID": 13,
+                      "IsActive": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.FiveDimMissionTalkAction",
+                      "TalkListConfig": {
+                        "$type": "RPG.GameCore.SimpleTalkListConfig",
+                        "SimpleTalkList": [
+                          {
+                            "TalkSentenceID": 408001618
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                      "Delay": 5,
+                      "Name": "Upgrade",
+                      "Actions": [
+                        {
+                          "$type": "RPG.GameCore.FourRotateVoxelSetCameraActiveAction",
+                          "CameraEntityConfigID": 13
+                        },
+                        {
+                          "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                          "Delay": 2,
+                          "Name": "Back",
+                          "Actions": [
+                            {
+                              "$type": "RPG.GameCore.FiveDimMutePlayerInputAction"
+                            },
+                            {
+                              "$type": "RPG.GameCore.FiveDimMuteUIInputAction",
+                              "IsMute": false
+                            },
+                            {
+                              "$type": "RPG.GameCore.FiveDimTriggerSelfEventAction",
+                              "EventName": {
+                                "EventName": "TriggerTutorial"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "SourceType": "LevelGraph",
+                  "EventName": "RotateClear"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimMutePlayerInputAction",
+                  "IsMute": true
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimMuteUIInputAction"
+                },
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelPlayZoomAndRotateCurveAction",
+                  "TargetDirectionIndex": 1,
+                  "MaxRotateLoops": 2,
+                  "FocusEntityID": 14,
+                  "CurveName": "ZoomAndRotateMissionB702_01"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 5,
+                  "Name": "UpgradePre",
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FiveDimMissionTalkAction",
+                      "TalkListConfig": {
+                        "$type": "RPG.GameCore.SimpleTalkListConfig",
+                        "SimpleTalkList": [
+                          {
+                            "TalkSentenceID": 408001629,
+                            "ProtectTime": 2
+                          },
+                          {
+                            "TalkSentenceID": 408001630,
+                            "ProtectTime": 2
+                          },
+                          {
+                            "TalkSentenceID": 408001631,
+                            "ProtectTime": 2
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                      "Delay": 5,
+                      "Name": "Upgrade",
+                      "Actions": [
+                        {
+                          "$type": "RPG.GameCore.FiveDimMutePlayerInputAction"
+                        },
+                        {
+                          "$type": "RPG.GameCore.FiveDimMuteUIInputAction",
+                          "IsMute": false
+                        },
+                        {
+                          "$type": "RPG.GameCore.FiveDimSetLevelVarShortAction",
+                          "Name": {
+                            "$type": "RPG.GameCore.LittleGameDynamicVar",
+                            "VarName": "_16_PortalState_Auto"
+                          },
+                          "Value": {
+                            "IsDynamic": false,
+                            "FixedValue": {
+                              "Value": 1
+                            }
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.FiveDimTriggerSelfEventAction",
+                          "EventName": {
+                            "EventName": "FRVPortalTeleport"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "GameStartTrigger"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                  "Delay": 1,
+                  "Name": "OnlyStateOne",
+                  "Actions": [
+                    {
+                      "$type": "RPG.GameCore.FourRotateVoxelMutePlayerInputAction",
+                      "IsMute": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.FiveDimMuteUIInputAction"
+                    },
+                    {
+                      "$type": "RPG.GameCore.FourRotateVoxelPlayZoomAndRotateCurveAction",
+                      "TargetDirectionIndex": 1,
+                      "MaxRotateLoops": 2,
+                      "FocusEntityID": 14,
+                      "CurveName": "ZoomAndRotateMission01"
+                    },
+                    {
+                      "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                      "Delay": 5,
+                      "Name": "UpgradePre",
+                      "Actions": [
+                        {
+                          "$type": "RPG.GameCore.FiveDimMissionTalkAction",
+                          "TalkListConfig": {
+                            "$type": "RPG.GameCore.SimpleTalkListConfig",
+                            "SimpleTalkList": [
+                              {
+                                "TalkSentenceID": 154134711
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "$type": "RPG.GameCore.FiveDimAddDelayedSequenceAction",
+                          "Delay": 3,
+                          "Name": "Upgrade",
+                          "Actions": [
+                            {
+                              "$type": "RPG.GameCore.FiveDimMutePlayerInputAction"
+                            },
+                            {
+                              "$type": "RPG.GameCore.FiveDimMuteUIInputAction",
+                              "IsMute": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxelFinishPointConfig",
+          "IsFinishPoint": true,
+          "BeforeFinishInteractButtonConfig": {
+            "ButtonIcon": {
+              "Value": "SpriteOutput/TalkIcon/TriggerProp.png"
+            },
+            "IconType": {
+              "EnumIndex": 20,
+              "Value": 13
+            },
+            "ButtonText": {
+              "Value": "PropInteractTitle_1 "
+            },
+            "InteractEvent": {
+              "EventName": "BeforeFinishHint"
+            }
+          },
+          "InteractButtonConfig": {
+            "ID": "FinishPoint",
+            "ButtonIcon": {
+              "Value": "SpriteOutput/TalkIcon/BoxIcon.png"
+            },
+            "IconType": {
+              "EnumIndex": 20,
+              "Value": 13
+            },
+            "ButtonText": {
+              "Value": "MazeText_4D_GetThanks"
+            },
+            "InteractEvent": {
+              "EventName": "GetThanks"
+            }
+          },
+          "IsFinishGameAfterReward": false,
+          "AnimMatIndex": 4,
+          "OnGameStart": {
+            "EventName": "GameStart"
+          },
+          "OnAll2DBrickUpgrade": {
+            "EventName": "Upgrade"
+          },
+          "OnGameStartOnlyStateOne": {
+            "EventName": "GameStartTrigger"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "f670671c-bfba-4730-81f2-33a571558338",
+              "EntityVarName": "MaterialID",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "Value": 4
+            },
+            {
+              "ID": "15e8b973-0585-4b82-ab05-3216bebe8276",
+              "EntityVarName": "ChestStateS",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "_1_ChestStateS_Auto",
+              "DefaultLevelVar": {
+                "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+                "DefaultValue": 1,
+                "Side": "ServerClient",
+                "MaxValue": 3
+              },
+              "AutoCreateAndBindLevelVar": true,
+              "Value": 4
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameBillboardConfig",
+          "IsBillboard": true,
+          "ShowName": false,
+          "ShowIcon": false
+        }
+      ],
+      "Name": "FinishPoint_002",
+      "Type": "FourRotateVoxelProp",
+      "EntityID": 1
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/Player/4DPlayer.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 37,
+            "Y": 3,
+            "Z": -40
+          },
+          "Rotation": {
+            "X": 0,
+            "Y": 270,
+            "Z": 0
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxelCameraComponentConfig",
+          "IsCamera": true,
+          "CameraPathRef": "Gameplays/FourRotateVoxel/FollowCamera.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "PlayerArt",
+                "IsDynamic": true,
+                "BindPath": "Player"
+              },
+              {
+                "Name": "EffectPoint",
+                "IsDynamic": true,
+                "BindPath": "Player/EffectPoint"
+              }
+            ]
+          }
+        }
+      ],
+      "Name": "Player_001",
+      "Type": "FourRotateVoxelPlayer",
+      "EntityID": 6
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/SceneItem/MAZ_B702_SubMission/2DVoxel_001.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": -18,
+            "Y": -10,
+            "Z": -30
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxel2DPlatformConfig",
+          "IsPlatform": true,
+          "InteractButtonConfig": {
+            "ID": "Platform2D",
+            "ButtonIcon": {
+              "Value": "DownTo2D"
+            },
+            "IconType": {
+              "EnumIndex": 20,
+              "Value": 13
+            },
+            "ButtonText": {
+              "Value": "MazeText_DownTo2D"
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "LineCenter",
+                "IsDynamic": true,
+                "BindPath": "LineCenter"
+              },
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxelGuideHintBillboardConfig",
+          "IsGuideHintBillboard": true,
+          "AttachPointName": "NameBoard",
+          "ActiveCondition": {
+            "Conditions": [
+              {
+                "VarName": "Save2DUpgrade"
+              }
+            ]
+          }
+        }
+      ],
+      "Name": "2DVoxel_001",
+      "Type": "FourRotateVoxelSceneItem",
+      "EntityID": 2
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": -1,
+            "Y": 41,
+            "Z": -4
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/EntityView/Common/FR_Prop_Portal.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "Effect",
+                "IsDynamic": true,
+                "BindPath": "Chap05_GameplayProp_FDPortal_01_Lod0"
+              },
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "PortalInteract"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDPortal_in"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetLevelVarShortAction",
+                  "Name": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "VarName": "TriggerTeleport"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  },
+                  "IsSetOnce": true
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetLevelVarShortAction",
+                  "Name": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "VarName": "Save2DUpgrade"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 2
+                    }
+                  },
+                  "IsSetOnce": true
+                }
+              ]
+            },
+            {
+              "Events": [
+                {
+                  "EventName": "TeleportAnchor"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetLevelVarShortAction",
+                  "Name": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "VarName": "IN4D"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetLevelVarShortAction",
+                  "Name": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "VarName": "TeleportAnchorSaved"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 2
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxelPortalConfig",
+          "IsPortal": true,
+          "InteractButtonConfig": {
+            "ID": "Interact",
+            "ButtonIcon": {
+              "Value": "SpriteOutput/TalkIcon/ChatOutIcon.png"
+            },
+            "ButtonText": {
+              "Value": "PropInteractTitle_2"
+            },
+            "InteractEvent": {
+              "EventName": "PortalInteract"
+            }
+          },
+          "Target": {
+            "TargetContainerID": 110004,
+            "Target": {
+              "IsCrossLevel": true,
+              "TargetLGameEntityRef": "Exit_5D"
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEntityVarConfig",
+          "IsEnableEntityVar": true,
+          "PublicEntityVars": [
+            {
+              "ID": "f6148124-a6a0-4bad-a615-2601138cd670",
+              "EntityVarName": "PortalState",
+              "EntityVarType": "LevelVarNameString",
+              "BindLevelVarType": "FiveDimLevelVariableShort",
+              "BindLevelVarName": "_16_PortalState_Auto",
+              "DefaultLevelVar": {
+                "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+                "Side": "ServerClient",
+                "MaxValue": 1
+              },
+              "AutoCreateAndBindLevelVar": true
+            }
+          ],
+          "PrivateEntityVars": []
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxelEntityStateConfig",
+          "IsEntityState": true,
+          "BindLevelVarName": "_16_PortalState_Auto",
+          "EntityStateActionConfigs": {
+            "1": {
+              "InitActionConfigs": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamByRawLevelVarAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPortal_01_Portal_Lod0.prefab",
+                    "AttachPointName": "Effect"
+                  }
+                }
+              ],
+              "EnterActionConfigs": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int",
+                  "IntValue": 1
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamByRawLevelVarAction",
+                  "SyncToEffects": true,
+                  "ParameterName": "PortalState",
+                  "ParameterType": "Int"
+                },
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelSetEntityEnableAction",
+                  "IsEnable": true,
+                  "TriggerLayerNames": []
+                },
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelFireEffectAction",
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPortal_01_Portal_Lod0.prefab",
+                    "AttachPointName": "Effect"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelFireEffectAction",
+                  "IsAlwaysFaceToScreen": true,
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDPortal_01_Appear01_Lod0.prefab",
+                    "AttachPointName": "Effect"
+                  }
+                }
+              ]
+            },
+            "0": {
+              "InitActionConfigs": [
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelSetEntityEnableAction",
+                  "TriggerLayerNames": []
+                }
+              ]
+            }
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimTriggerEventEmitterConfig",
+          "IsTriggerEventEmitter": true,
+          "TriggerShape": {
+            "TriggerInfo": {
+              "Radius": 2,
+              "PointList": []
+            }
+          },
+          "EnterEvents": [
+            {
+              "EventName": "TeleportAnchor"
+            }
+          ],
+          "ExitEvents": [],
+          "EnterEventsToGuests": [],
+          "ExitEventsToGuests": []
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxelGuideHintBillboardConfig",
+          "IsGuideHintBillboard": true,
+          "AttachPointName": "NameBoard",
+          "ActiveCondition": {
+            "Conditions": [
+              {
+                "VarName": "Save2DUpgrade",
+                "Value": 2
+              },
+              {
+                "VarName": "TeleportAnchor",
+                "Value": 1
+              }
+            ]
+          }
+        }
+      ],
+      "Name": "Portal_002",
+      "Type": "FourRotateVoxelProp",
+      "EntityID": 16
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 32,
+            "Y": 3,
+            "Z": -34
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/EntityView/Common/FR_Prop_TrampolineSP.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "OnTrampolineJump"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FourRotateVoxelFireEffectAction",
+                  "IsAlwaysFaceToScreen": true,
+                  "FireParams": {
+                    "EffectPath": "Effects/Eff_Prefab/Eff_Scene/InteractiveProp/Eff_Chap05_Prop_FDTrampoline_02_Jump_Lod0.prefab"
+                  }
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimSetAnimParamEventAction",
+                  "ParameterName": "Trigger",
+                  "ParameterType": "Trigger"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_sfx_planarcadia_FDTrampoline_special"
+                },
+                {
+                  "$type": "RPG.GameCore.FiveDimAudioPostEventAction",
+                  "EventName": "Ev_motion_Gameplay_FiveDim_medium_short"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimTrampolineConfig",
+          "IsTrampoline": true,
+          "TrampolineTrigger": {
+            "TriggerInfo": {
+              "Radius": 1
+            }
+          },
+          "OverrideJumpParams": true,
+          "TrampolineJumpHeight": 15,
+          "TrampolineMusicJumpHeight": 5.5,
+          "OnTrampolineJump": {
+            "EventName": "OnTrampolineJump"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        }
+      ],
+      "Name": "Trampoline_001",
+      "Type": "FourRotateVoxelProp",
+      "EntityID": 5
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": -76,
+            "Y": 18,
+            "Z": -8
+          },
+          "Rotation": {
+            "X": 0,
+            "Y": 90,
+            "Z": 0
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLevelCameraConfig",
+          "Type": "Fix",
+          "UseDefaultLens": false,
+          "Lens": {
+            "Fov": 60,
+            "FixCameraViewHeight": 65
+          },
+          "SimpleOverrideFollow": {
+            "ViewHeight": 16
+          }
+        }
+      ],
+      "Name": "LevelCamera_001",
+      "Type": "FiveDimLevelCamera",
+      "EntityID": 4
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 6,
+            "Y": 16,
+            "Z": -174
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLevelCameraConfig",
+          "Type": "Fix",
+          "UseDefaultLens": false,
+          "Lens": {
+            "Fov": 60,
+            "FixCameraViewHeight": 65
+          },
+          "SimpleOverrideFollow": {
+            "ViewHeight": 16
+          }
+        }
+      ],
+      "Name": "LevelCamera_004",
+      "Type": "FiveDimLevelCamera",
+      "EntityID": 13
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/SceneItem/MAZ_B402_Mission_02/StageVoxel_008.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 36,
+            "Y": 1,
+            "Z": -36
+          }
+        }
+      ],
+      "Name": "StageVoxel_008",
+      "Type": "FourRotateVoxelSceneItem",
+      "EntityID": 3
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/SceneItem/MAZ_B402_Mission_02/StageVoxel_008.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 1,
+            "Y": 39,
+            "Z": -6
+          }
+        }
+      ],
+      "Name": "StageVoxel_010",
+      "Type": "FourRotateVoxelSceneItem",
+      "EntityID": 10
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/SceneItem/MAZ_B402_Mission_02/StageVoxel_008.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 24,
+            "Y": 36,
+            "Z": 16
+          }
+        }
+      ],
+      "Name": "StageVoxel_011",
+      "Type": "FourRotateVoxelSceneItem",
+      "EntityID": 12
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 1,
+            "Y": 43,
+            "Z": -200
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLevelCameraConfig",
+          "Type": "Fix",
+          "UseDefaultLens": false,
+          "Lens": {
+            "Fov": 60,
+            "FixCameraViewHeight": 50
+          },
+          "SimpleOverrideFollow": {
+            "ViewHeight": 16
+          }
+        }
+      ],
+      "Name": "LevelCamera_005",
+      "Type": "FiveDimLevelCamera",
+      "EntityID": 9
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 6,
+            "Y": 16,
+            "Z": -6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/EntityView/Common/FR_Prop_EmptyAnchor.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        }
+      ],
+      "Name": "EmptyAnchor_002",
+      "Type": "FourRotateVoxelProp",
+      "EntityID": 14
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": -1,
+            "Y": 41,
+            "Z": -4
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/EntityView/Common/FR_Prop_EmptyAnchor.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameAttachPointComponentConfig",
+          "HasAttachPoint": true,
+          "Config": {
+            "AttachPoints": [
+              {
+                "Name": "NameBoard",
+                "IsDynamic": true,
+                "BindPath": "NameBoard"
+              }
+            ]
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.FourRotateVoxelGuideHintBillboardConfig",
+          "IsGuideHintBillboard": true,
+          "AttachPointName": "NameBoard",
+          "ActiveCondition": {
+            "Conditions": [
+              {
+                "VarName": "Save2DUpgrade",
+                "Value": 1
+              },
+              {
+                "VarName": "_1_ChestStateS_Auto",
+                "Value": 2
+              }
+            ]
+          }
+        }
+      ],
+      "Name": "Portal_003",
+      "Type": "FourRotateVoxelProp",
+      "EntityID": 11
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 1,
+            "Y": 41,
+            "Z": -6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/EntityView/Common/FR_Prop_EmptyAnchor.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimContactEventEmitterConfig",
+          "IsContactEventEmitter": true
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": [
+            {
+              "Events": [
+                {
+                  "EventName": "EnterTrigger"
+                }
+              ],
+              "Actions": [
+                {
+                  "$type": "RPG.GameCore.FiveDimSetLevelVarShortAction",
+                  "Name": {
+                    "$type": "RPG.GameCore.LittleGameDynamicVar",
+                    "VarName": "EnterTrigger"
+                  },
+                  "Value": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimTriggerEventEmitterConfig",
+          "IsTriggerEventEmitter": true,
+          "TriggerShape": {
+            "TriggerInfo": {
+              "Shape": "Box",
+              "Radius": 2,
+              "DimX": 11,
+              "DimY": 1,
+              "DimZ": 12,
+              "Offset": {
+                "X": 0,
+                "Y": 0,
+                "Z": 0.5
+              },
+              "PointList": []
+            }
+          },
+          "EnterEvents": [
+            {
+              "EventName": "EnterTrigger"
+            }
+          ],
+          "ExitEvents": [],
+          "EnterEventsToGuests": [],
+          "ExitEventsToGuests": []
+        }
+      ],
+      "Name": "EmptyAnchor_003",
+      "Type": "FourRotateVoxelProp",
+      "EntityID": 17
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 1,
+            "Y": 41,
+            "Z": -6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameViewComponentConfig",
+          "PrefabPath": "Gameplays/FourRotateVoxel/EntityView/Common/FR_Prop_EmptyAnchor.prefab"
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimContactEventEmitterConfig",
+          "IsContactEventEmitter": true
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimEventReceiverConfig",
+          "IsEventReceiver": true,
+          "ReceiverItems": []
+        },
+        {
+          "$type": "RPG.GameCore.LittleGameParentConfig"
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimTriggerEventEmitterConfig",
+          "IsTriggerEventEmitter": true,
+          "TriggerShape": {
+            "TriggerInfo": {
+              "Shape": "Box",
+              "Radius": 2,
+              "DimX": 11,
+              "DimY": 5,
+              "DimZ": 12,
+              "Offset": {
+                "X": 0,
+                "Y": 2,
+                "Z": 0.5
+              },
+              "PointList": []
+            }
+          },
+          "EnterEvents": [
+            {
+              "EventName": "EnterTrigger"
+            }
+          ],
+          "ExitEvents": [
+            {
+              "EventName": "ExitTrigger"
+            }
+          ],
+          "EnterEventsToGuests": [],
+          "ExitEventsToGuests": []
+        }
+      ],
+      "Name": "EmptyAnchor_004",
+      "Type": "FourRotateVoxelProp",
+      "EntityID": 7
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 4,
+            "Y": 42,
+            "Z": -6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLevelCameraConfig",
+          "UseDefaultLens": false,
+          "Lens": {
+            "Fov": 45,
+            "FixCameraViewHeight": 65
+          },
+          "UseDefaultFollow": false,
+          "UseSimpleOverrideFollow": false,
+          "SimpleOverrideFollow": {
+            "ViewHeight": 60
+          },
+          "Follow": {
+            "ViewHeight": 65,
+            "ScreenY": 0.3,
+            "ScreenYAtMaxFallSpeed": 0.1875,
+            "ScreenYBlendTime": 1,
+            "SoftZoneWidth": 0.5,
+            "SoftZoneHeight": 0.875,
+            "DampingX": 0,
+            "DampingY": 4,
+            "DampingYCurve": {
+              "Keys": [
+                {
+                  "Time": -1,
+                  "Value": 0.5,
+                  "TangentMode": 136,
+                  "InWeight": 0.333333,
+                  "OutWeight": 0.333333
+                },
+                {
+                  "Value": 4,
+                  "TangentMode": 136,
+                  "InWeight": 0.333333,
+                  "OutWeight": 0.333333
+                }
+              ],
+              "PreWrapMode": "ClampForever",
+              "PostWrapMode": "ClampForever"
+            },
+            "BiasY": -0.142857,
+            "FollowClampMargin": {
+              "X": 1.6,
+              "Y": 1
+            },
+            "LookAheadConfig": {
+              "MaxOffset": 2,
+              "DampingXMove": 0.25,
+              "DampingXStop": 0.25,
+              "MaxOffsetTurnDelay": 0.5,
+              "LookDownYSpeedThreshold": 999,
+              "OffsetYCurve": {
+                "Keys": [],
+                "PreWrapMode": "ClampForever",
+                "PostWrapMode": "ClampForever"
+              },
+              "MaxDampingSpeed": 5.746301
+            },
+            "RotateDampingTime": 1,
+            "DisableYFollowMode": "GroundJumpHeight"
+          },
+          "BakedFollow": {
+            "ViewHeight": 65,
+            "ScreenY": 0.3,
+            "ScreenYAtMaxFallSpeed": 0.1875,
+            "ScreenYBlendTime": 1,
+            "SoftZoneWidth": 0.5,
+            "SoftZoneHeight": 0.875,
+            "DampingX": 0,
+            "DampingY": 4,
+            "DampingYCurve": {
+              "Keys": [
+                {
+                  "Time": -1,
+                  "Value": 0.5,
+                  "TangentMode": 136,
+                  "InWeight": 0.333333,
+                  "OutWeight": 0.333333
+                },
+                {
+                  "Value": 4,
+                  "TangentMode": 136,
+                  "InWeight": 0.333333,
+                  "OutWeight": 0.333333
+                }
+              ],
+              "PreWrapMode": "ClampForever",
+              "PostWrapMode": "ClampForever"
+            },
+            "BiasY": -0.142857,
+            "FollowClampMargin": {
+              "X": 1.6,
+              "Y": 1
+            },
+            "LookAheadConfig": {
+              "MaxOffset": 2,
+              "DampingXMove": 0.25,
+              "DampingXStop": 0.25,
+              "MaxOffsetTurnDelay": 0.5,
+              "LookDownYSpeedThreshold": 999,
+              "OffsetYCurve": {
+                "Keys": [],
+                "PreWrapMode": "ClampForever",
+                "PostWrapMode": "ClampForever"
+              },
+              "MaxDampingSpeed": 5.746301
+            },
+            "RotateDampingTime": 1,
+            "DisableYFollowMode": "GroundJumpHeight"
+          }
+        }
+      ],
+      "Name": "LevelCamera_006",
+      "Type": "FiveDimLevelCamera",
+      "EntityID": 18
+    },
+    {
+      "Components": [
+        {
+          "$type": "RPG.GameCore.LittleGameTransformComponentConfig",
+          "Position": {
+            "X": 1,
+            "Y": 41,
+            "Z": -6
+          }
+        },
+        {
+          "$type": "RPG.GameCore.FiveDimLevelCameraConfig",
+          "TriggerInfo": {
+            "Shape": "Box",
+            "Radius": 2,
+            "DimX": 11,
+            "DimY": 1,
+            "DimZ": 12,
+            "Offset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0.5
+            },
+            "PointList": []
+          },
+          "UseDefaultLens": false,
+          "Lens": {
+            "Fov": 45,
+            "FixCameraViewHeight": 60
+          },
+          "UseDefaultFollow": false,
+          "SimpleOverrideFollow": {
+            "ViewHeight": 10
+          },
+          "BakedFollow": {
+            "ViewHeight": 10,
+            "ScreenY": 0.625,
+            "ScreenYAtMaxFallSpeed": 0.1875,
+            "ScreenYBlendTime": 1,
+            "SoftZoneWidth": 0.5,
+            "SoftZoneHeight": 0.875,
+            "DampingX": 0,
+            "DampingY": 4,
+            "DampingYCurve": {
+              "Keys": [
+                {
+                  "Time": -1,
+                  "Value": 0.5,
+                  "TangentMode": 136,
+                  "InWeight": 0.333333,
+                  "OutWeight": 0.333333
+                },
+                {
+                  "Value": 4,
+                  "TangentMode": 136,
+                  "InWeight": 0.333333,
+                  "OutWeight": 0.333333
+                }
+              ],
+              "PreWrapMode": "ClampForever",
+              "PostWrapMode": "ClampForever"
+            },
+            "BiasY": -0.142857,
+            "FollowClampMargin": {
+              "X": 1.6,
+              "Y": 1
+            },
+            "LookAheadConfig": {
+              "MaxOffset": 2,
+              "DampingXMove": 0.25,
+              "DampingXStop": 0.25,
+              "MaxOffsetTurnDelay": 0.5,
+              "LookDownYSpeedThreshold": 999,
+              "OffsetYCurve": {
+                "Keys": [],
+                "PreWrapMode": "ClampForever",
+                "PostWrapMode": "ClampForever"
+              },
+              "MaxDampingSpeed": 5.746301
+            },
+            "RotateDampingTime": 1,
+            "DisableYFollowMode": "GroundJumpHeight"
+          }
+        }
+      ],
+      "Name": "LevelCamera_007",
+      "Type": "FiveDimLevelCamera",
+      "EntityID": 19
+    }
+  ],
+  "GameType": "FourRotateVoxel",
+  "LevelGraph": "Config/Level/LittleGame/FourRotateVoxel/Mission/MAZ_B702/LG_LittleGame_FourRotateVoxel_MAZ_B702_SubMission_01.json",
+  "LevelGraphValueSource": {},
+  "LockSources": [],
+  "LevelVariables": {
+    "LevelVariables": [
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "ResetOnExit": true,
+        "Name": "TriggerTeleport"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "ResetOnExit": true,
+        "Name": "TeleportAnchor"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "Side": "ServerClient",
+        "MaxValue": 1,
+        "Name": "EnterTrigger"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "Side": "ServerClient",
+        "MaxValue": 2,
+        "Name": "TeleportAnchorSaved"
+      },
+      {
+        "$type": "RPG.GameCore.LittleGameLevelVariableEntityRef",
+        "DefaultValue": {},
+        "Name": "Entrance_5D"
+      },
+      {
+        "$type": "RPG.GameCore.LittleGameLevelVariableEntityRef",
+        "DefaultValue": {},
+        "Name": "Exit_5D"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "Side": "ServerClient",
+        "MaxValue": 2,
+        "Name": "Save2DUpgrade"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "Side": "ServerClient",
+        "MaxValue": 1,
+        "Name": "IN4D"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "DefaultValue": 1,
+        "Side": "ServerClient",
+        "MaxValue": 3,
+        "Name": "_1_ChestStateS_Auto"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "DefaultValue": 1,
+        "Side": "ServerClient",
+        "MaxValue": 1,
+        "Name": "_7_PortalState_Auto"
+      },
+      {
+        "$type": "RPG.GameCore.FiveDimLevelVariableShort",
+        "Side": "ServerClient",
+        "MaxValue": 1,
+        "Name": "_16_PortalState_Auto"
+      }
+    ]
+  },
+  "LevelSettings": {
+    "$type": "RPG.GameCore.FourRotateVoxelLevelSettings",
+    "Tags": {},
+    "EnvType": "Otherworldly",
+    "TargetProgressConfigs": [],
+    "CustomCameraParameterConfig": {
+      "IsUseCustomCameraParameter": true,
+      "TargetOrthographicSize": 40,
+      "StartCurveTargetEntityID": 2
+    },
+    "SubMissionID": 205470109,
+    "SaveDimensionUpgradState": true,
+    "SkipOpeningPerformance": true,
+    "LockSceneRotation": true,
+    "LockedRotateWarningTextID": "MazeText_RotateWarningMission702_01"
+  }
+}

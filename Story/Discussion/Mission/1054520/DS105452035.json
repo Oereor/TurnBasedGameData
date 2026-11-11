@@ -1,0 +1,575 @@
+{
+  "OnInitSequece": [],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.CollectDataConditions",
+          "TaskIDList": [],
+          "MainMissionIDList": [],
+          "PerformanceIDList": [],
+          "PerformanceIDDsList": [],
+          "CustomValueMainMissionIDList": [
+            1054521
+          ]
+        },
+        {
+          "$type": "RPG.GameCore.LevelPerformanceInitialize",
+          "PerformanceType": "D",
+          "AreaPrefabPath": "Story/Discussion/Mission/1054520/DS105452035.prefab",
+          "CreateCharacterList": [
+            {
+              "CharacterUniqueName": "Shutup_01_C00",
+              "AvatarID": "NPC_Special_Shutup_01",
+              "AreaName": "DS105452035.prefab",
+              "OverrideReplaceMaterialKeyList": [
+                "NPC_Special_Shutup_01_001"
+              ]
+            },
+            {
+              "CharacterUniqueName": "W5_Lady_35_C00",
+              "AvatarID": "NPC_W5_Lady_35",
+              "AreaName": "DS105452035.prefab"
+            },
+            {
+              "CharacterUniqueName": "PlayerBoy_00_C00",
+              "AvatarID": "NPC_Avatar_Lad_PlayerBoy_00",
+              "AreaName": "DS105452035.prefab"
+            },
+            {
+              "CharacterUniqueName": "PlayerGirl_00_C00",
+              "AvatarID": "NPC_Avatar_Miss_PlayerGirl_00",
+              "AreaName": "DS105452035.prefab"
+            }
+          ],
+          "CaptureNPCList": [],
+          "HideNPC": true,
+          "EntityVisiableList": [],
+          "HideStillNPC": true,
+          "HideProp": true,
+          "PropVisiableList": [],
+          "HideLocalPlayer": true,
+          "FirstCameraAnchor": "SharedCamera0101",
+          "StreamingSourcesInBlackMask": [],
+          "StreamingSourcesAfterBlackMask": [],
+          "MarkStreamingItems": [],
+          "AudioStateList": [],
+          "OverrideCharacterOutfits": []
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/1054520/DS10545203501.playable",
+          "Type": "Discussion",
+          "Parameters": []
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMissionCustomValue",
+            "MainMissionID": 1054521,
+            "MissionCustomValue": {
+              "Index": 3,
+              "Name": "IsSkipPassword",
+              "Type": "Former",
+              "ValidValueParamList": [
+                0,
+                1
+              ]
+            },
+            "TargetValue": 1
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerCustomString",
+              "CustomString": {
+                "Value": "PaySuccess_105452035"
+              }
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.TriggerCustomString",
+              "CustomString": {
+                "Value": "ConfirmBuy_105452035"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "ConfirmBuy_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 155202731,
+              "OptionIconType": {
+                "EnumIndex": 20,
+                "Value": 2
+              },
+              "TriggerCustomString": "EnterPassword_105452035"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 155202732,
+              "OptionIconType": {
+                "EnumIndex": 20,
+                "Value": 2
+              },
+              "TriggerCustomString": "SkipPay_105452035"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IsLoop": true,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "EnterPassword_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/1054520/DS10545203507.playable",
+          "Type": "Discussion",
+          "Parameters": []
+        },
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareMissionCustomValue",
+            "MainMissionID": 1054521,
+            "MissionCustomValue": {
+              "Index": 2,
+              "Name": "PasswordID",
+              "Type": "Former",
+              "isRange": true,
+              "ValidValueParamList": [
+                0,
+                4
+              ]
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.ShowEnterPasswordPage",
+              "Password": "000000",
+              "MustSucceed": false,
+              "OnSuccess": [
+                {
+                  "$type": "RPG.GameCore.TriggerCustomString",
+                  "CustomString": {
+                    "Value": "PaySuccess_105452035"
+                  }
+                }
+              ],
+              "OnFail": [
+                {
+                  "$type": "RPG.GameCore.TriggerCustomString",
+                  "CustomString": {
+                    "Value": "PayFailed_105452035"
+                  }
+                }
+              ],
+              "OnCancel": [
+                {
+                  "$type": "RPG.GameCore.TriggerCustomString",
+                  "CustomString": {
+                    "Value": "CancelPassword_105452035"
+                  }
+                }
+              ]
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareMissionCustomValue",
+                "MainMissionID": 1054521,
+                "MissionCustomValue": {
+                  "Index": 2,
+                  "Name": "PasswordID",
+                  "Type": "Former",
+                  "isRange": true,
+                  "ValidValueParamList": [
+                    0,
+                    4
+                  ]
+                },
+                "TargetValue": 1
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.ShowEnterPasswordPage",
+                  "Password": "123456",
+                  "MustSucceed": false,
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.TriggerCustomString",
+                      "CustomString": {
+                        "Value": "PaySuccess_105452035"
+                      }
+                    }
+                  ],
+                  "OnFail": [
+                    {
+                      "$type": "RPG.GameCore.TriggerCustomString",
+                      "CustomString": {
+                        "Value": "PayFailed_105452035"
+                      }
+                    }
+                  ],
+                  "OnCancel": [
+                    {
+                      "$type": "RPG.GameCore.TriggerCustomString",
+                      "CustomString": {
+                        "Value": "CancelPassword_105452035"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.PredicateTaskList",
+                  "Predicate": {
+                    "$type": "RPG.GameCore.ByCompareMissionCustomValue",
+                    "MainMissionID": 1054521,
+                    "MissionCustomValue": {
+                      "Index": 2,
+                      "Name": "PasswordID",
+                      "Type": "Former",
+                      "isRange": true,
+                      "ValidValueParamList": [
+                        0,
+                        4
+                      ]
+                    },
+                    "TargetValue": 2
+                  },
+                  "SuccessTaskList": [
+                    {
+                      "$type": "RPG.GameCore.ShowEnterPasswordPage",
+                      "Password": "0426",
+                      "MustSucceed": false,
+                      "OnSuccess": [
+                        {
+                          "$type": "RPG.GameCore.TriggerCustomString",
+                          "CustomString": {
+                            "Value": "PaySuccess_105452035"
+                          }
+                        }
+                      ],
+                      "OnFail": [
+                        {
+                          "$type": "RPG.GameCore.TriggerCustomString",
+                          "CustomString": {
+                            "Value": "PayFailed_105452035"
+                          }
+                        }
+                      ],
+                      "OnCancel": [
+                        {
+                          "$type": "RPG.GameCore.TriggerCustomString",
+                          "CustomString": {
+                            "Value": "CancelPassword_105452035"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "FailedTaskList": [
+                    {
+                      "$type": "RPG.GameCore.PredicateTaskList",
+                      "Predicate": {
+                        "$type": "RPG.GameCore.ByCompareMissionCustomValue",
+                        "MainMissionID": 1054521,
+                        "MissionCustomValue": {
+                          "Index": 2,
+                          "Name": "PasswordID",
+                          "Type": "Former",
+                          "isRange": true,
+                          "ValidValueParamList": [
+                            0,
+                            4
+                          ]
+                        },
+                        "TargetValue": 3
+                      },
+                      "SuccessTaskList": [
+                        {
+                          "$type": "RPG.GameCore.ShowEnterPasswordPage",
+                          "Password": "07734",
+                          "MustSucceed": false,
+                          "OnSuccess": [
+                            {
+                              "$type": "RPG.GameCore.TriggerCustomString",
+                              "CustomString": {
+                                "Value": "PaySuccess_105452035"
+                              }
+                            }
+                          ],
+                          "OnFail": [
+                            {
+                              "$type": "RPG.GameCore.TriggerCustomString",
+                              "CustomString": {
+                                "Value": "PayFailed_105452035"
+                              }
+                            }
+                          ],
+                          "OnCancel": [
+                            {
+                              "$type": "RPG.GameCore.TriggerCustomString",
+                              "CustomString": {
+                                "Value": "CancelPassword_105452035"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "FailedTaskList": [
+                        {
+                          "$type": "RPG.GameCore.PredicateTaskList",
+                          "Predicate": {
+                            "$type": "RPG.GameCore.ByCompareMissionCustomValue",
+                            "MainMissionID": 1054521,
+                            "MissionCustomValue": {
+                              "Index": 2,
+                              "Name": "PasswordID",
+                              "Type": "Former",
+                              "isRange": true,
+                              "ValidValueParamList": [
+                                0,
+                                4
+                              ]
+                            },
+                            "TargetValue": 4
+                          },
+                          "SuccessTaskList": [
+                            {
+                              "$type": "RPG.GameCore.ShowEnterPasswordPage",
+                              "Password": "*#06#",
+                              "MustSucceed": false,
+                              "OnSuccess": [
+                                {
+                                  "$type": "RPG.GameCore.TriggerCustomString",
+                                  "CustomString": {
+                                    "Value": "PaySuccess_105452035"
+                                  }
+                                }
+                              ],
+                              "OnFail": [
+                                {
+                                  "$type": "RPG.GameCore.TriggerCustomString",
+                                  "CustomString": {
+                                    "Value": "PayFailed_105452035"
+                                  }
+                                }
+                              ],
+                              "OnCancel": [
+                                {
+                                  "$type": "RPG.GameCore.TriggerCustomString",
+                                  "CustomString": {
+                                    "Value": "CancelPassword_105452035"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "PaySuccess_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/1054520/DS10545203502.playable",
+          "Type": "Discussion",
+          "Parameters": []
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
+    },
+    {
+      "IsLoop": true,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "PayFailed_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/1054520/DS10545203503.playable",
+          "Type": "Discussion",
+          "Parameters": []
+        },
+        {
+          "$type": "RPG.GameCore.PlayOptionTalk",
+          "OptionList": [
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 155202724,
+              "OptionIconType": {
+                "EnumIndex": 20,
+                "Value": 2
+              },
+              "TriggerCustomString": "PasswordHint_105452035"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 155202727,
+              "OptionIconType": {
+                "EnumIndex": 20,
+                "Value": 2
+              },
+              "TriggerCustomString": "EnterPassword_105452035"
+            },
+            {
+              "$type": "RPG.GameCore.OptionTalkInfo",
+              "TalkSentenceID": 155202728,
+              "OptionIconType": {
+                "EnumIndex": 20,
+                "Value": 2
+              },
+              "TriggerCustomString": "SkipPassword_105452035"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "IsLoop": true,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "PasswordHint_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/1054520/DS10545203504.playable",
+          "Type": "Discussion",
+          "Parameters": []
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "EnterPassword_105452035"
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "SkipPassword_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/1054520/DS10545203505.playable",
+          "Type": "Discussion",
+          "Parameters": []
+        },
+        {
+          "$type": "RPG.GameCore.SetPerformanceResult",
+          "Value": 1
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "PaySuccess_105452035"
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "SkipPay_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.PlayTimeline",
+          "TimelineName": "Story/Discussion/Mission/1054520/DS10545203506.playable",
+          "Type": "Discussion",
+          "Parameters": []
+        },
+        {
+          "$type": "RPG.GameCore.SetPerformanceResult",
+          "Value": 1
+        },
+        {
+          "$type": "RPG.GameCore.TriggerCustomString",
+          "CustomString": {
+            "Value": "PaySuccess_105452035"
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitCustomString",
+          "CustomString": {
+            "Value": "CancelPassword_105452035"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetPerformanceResult",
+          "Value": 2
+        },
+        {
+          "$type": "RPG.GameCore.EndPerformance"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitPerformanceEnd"
+        },
+        {
+          "$type": "RPG.GameCore.FinishLevelGraph"
+        }
+      ]
+    }
+  ],
+  "Type": "PerformanceD",
+  "EntityEventList": []
+}

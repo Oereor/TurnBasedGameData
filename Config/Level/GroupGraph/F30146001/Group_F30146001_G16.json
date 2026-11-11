@@ -1,0 +1,1354 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+            "DynamicName": {
+              "Value": "FSV_FinalRoomState"
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetServerGroupProperty"
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.SetServerGroupProperty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.PredicateTaskList",
+          "Predicate": {
+            "$type": "RPG.GameCore.ByCompareFloorSavedValue",
+            "DynamicName": {
+              "Value": "FSV_FinalRoomState"
+            }
+          },
+          "SuccessTaskList": [
+            {
+              "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+              "Name": {
+                "Value": "FCV_FinalRoomState"
+              },
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetClientGroupProperty",
+              "DynamicName": {
+                "Value": "TempState"
+              }
+            }
+          ],
+          "FailedTaskList": [
+            {
+              "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+              "Name": {
+                "Value": "FCV_FinalRoomState"
+              },
+              "Value": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            },
+            {
+              "$type": "RPG.GameCore.SetClientGroupProperty",
+              "DynamicName": {
+                "Value": "TempState"
+              },
+              "Value": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.LoopWaitServerGroupPropertyChangeV2"
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGroupPropertyChange",
+          "Name": {
+            "Value": "TempState"
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.GenericSwitchCase",
+              "SwitchRef": {
+                "$type": "RPG.GameCore.SwitchRefGroupProperty",
+                "PropertyName": {
+                  "Value": "TempState"
+                }
+              },
+              "Cases": [
+                {
+                  "$type": "RPG.GameCore.NumberCaseContainer",
+                  "Case": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+                      "Name": {
+                        "Value": "FCV_FinalRoomState"
+                      },
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 0
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.RequestSetServerGroupPropertyV2",
+                      "DynamicName": {
+                        "Value": "TempStateServer"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.NumberCaseContainer",
+                  "Case": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+                      "Name": {
+                        "Value": "FCV_FinalRoomState"
+                      },
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 1
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.RequestSetServerGroupPropertyV2",
+                      "DynamicName": {
+                        "Value": "TempStateServer"
+                      },
+                      "Value": 1
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.NumberCaseContainer",
+                  "Case": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.SetFloorCustomFloatV2",
+                      "Name": {
+                        "Value": "FCV_FinalRoomState"
+                      },
+                      "Value": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 2
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitEntityEventV2",
+          "EventName": {
+            "Value": "Clt_OnUseFinish"
+          },
+          "OnEvent": [
+            {
+              "$type": "RPG.GameCore.PredicateTaskList",
+              "Predicate": {
+                "$type": "RPG.GameCore.ByCompareGroupProperty",
+                "DynamicName": {
+                  "Value": "TempState"
+                }
+              },
+              "SuccessTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetClientGroupProperty",
+                  "DynamicName": {
+                    "Value": "TempState"
+                  },
+                  "Value": 1
+                }
+              ],
+              "FailedTaskList": [
+                {
+                  "$type": "RPG.GameCore.SetClientGroupProperty",
+                  "DynamicName": {
+                    "Value": "TempState"
+                  }
+                }
+              ]
+            }
+          ],
+          "TargetType": {
+            "$type": "RPG.GameCore.GroupFetchLocalTarget",
+            "TargetType": "Prop",
+            "Targets": [
+              300001
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.GenericSwitchCase",
+          "SwitchRef": {
+            "$type": "RPG.GameCore.SwitchRefFloorSavedValue",
+            "Name": {
+              "Value": "FSV_FinalRoomState"
+            }
+          },
+          "Cases": [
+            {
+              "$type": "RPG.GameCore.NumberCaseContainer",
+              "Case": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 0
+                }
+              },
+              "OnSuccess": [
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.02",
+                        "TagHash": 1462906059
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.11",
+                        "TagHash": -103177883
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.01",
+                        "TagHash": 1462906058
+                      }
+                    ]
+                  },
+                  "BlockAlias": [],
+                  "Visible": true
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19"
+                    }
+                  ],
+                  "Visible": true
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19a"
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19b"
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      },
+                      {
+                        "Tag": "Stage.Region.State.02",
+                        "TagHash": 1462906059
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      },
+                      {
+                        "Tag": "Stage.Region.State.11",
+                        "TagHash": -103177883
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.State.01",
+                        "TagHash": 1462906058
+                      },
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      }
+                    ]
+                  },
+                  "BlockAlias": [],
+                  "Visible": true
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.NumberCaseContainer",
+              "Case": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              },
+              "OnSuccess": [
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.01",
+                        "TagHash": 1462906058
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.11",
+                        "TagHash": -103177883
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.02",
+                        "TagHash": 1462906059
+                      }
+                    ]
+                  },
+                  "BlockAlias": [],
+                  "Visible": true
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19"
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19a"
+                    }
+                  ],
+                  "Visible": true
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19b"
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.State.01",
+                        "TagHash": 1462906058
+                      },
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      },
+                      {
+                        "Tag": "Stage.Region.State.11",
+                        "TagHash": -103177883
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      },
+                      {
+                        "Tag": "Stage.Region.State.02",
+                        "TagHash": 1462906059
+                      }
+                    ]
+                  },
+                  "BlockAlias": [],
+                  "Visible": true
+                }
+              ]
+            },
+            {
+              "$type": "RPG.GameCore.NumberCaseContainer",
+              "Case": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 2
+                }
+              },
+              "OnSuccess": [
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.01",
+                        "TagHash": 1462906058
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.02",
+                        "TagHash": 1462906059
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.18",
+                        "TagHash": 184013269
+                      },
+                      {
+                        "Tag": "Stage.Region.State.11",
+                        "TagHash": -103177883
+                      }
+                    ]
+                  },
+                  "BlockAlias": [],
+                  "Visible": true
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19"
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19a"
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAlias": [
+                    {
+                      "Value": "R19b"
+                    }
+                  ],
+                  "Visible": true
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.State.01",
+                        "TagHash": 1462906058
+                      },
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      },
+                      {
+                        "Tag": "Stage.Region.State.02",
+                        "TagHash": 1462906059
+                      }
+                    ]
+                  },
+                  "BlockAlias": []
+                },
+                {
+                  "$type": "RPG.GameCore.BlockSetVisibility",
+                  "BlockTags": [],
+                  "BlockHoyoTags": {
+                    "List": []
+                  },
+                  "BlockAllHoyoTags": {
+                    "List": [
+                      {
+                        "Tag": "Stage.Region.20",
+                        "TagHash": -219271266
+                      },
+                      {
+                        "Tag": "Stage.Region.State.11",
+                        "TagHash": -103177883
+                      }
+                    ]
+                  },
+                  "BlockAlias": [],
+                  "Visible": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitFloorCustomValueChangeV2",
+          "Name": {
+            "Value": "FCV_FinalRoomState"
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.GenericSwitchCase",
+              "SwitchRef": {
+                "$type": "RPG.GameCore.SwitchRefFloorCustomFloat",
+                "Name": {
+                  "Value": "FCV_FinalRoomState"
+                }
+              },
+              "Cases": [
+                {
+                  "$type": "RPG.GameCore.NumberCaseContainer",
+                  "Case": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 0
+                    }
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.02",
+                            "TagHash": 1462906059
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.11",
+                            "TagHash": -103177883
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.01",
+                            "TagHash": 1462906058
+                          }
+                        ]
+                      },
+                      "BlockAlias": [],
+                      "Visible": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19"
+                        }
+                      ],
+                      "Visible": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19a"
+                        }
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19b"
+                        }
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          },
+                          {
+                            "Tag": "Stage.Region.State.02",
+                            "TagHash": 1462906059
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          },
+                          {
+                            "Tag": "Stage.Region.State.11",
+                            "TagHash": -103177883
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.State.01",
+                            "TagHash": 1462906058
+                          },
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          }
+                        ]
+                      },
+                      "BlockAlias": [],
+                      "Visible": true
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.NumberCaseContainer",
+                  "Case": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 1
+                    }
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.01",
+                            "TagHash": 1462906058
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.11",
+                            "TagHash": -103177883
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.02",
+                            "TagHash": 1462906059
+                          }
+                        ]
+                      },
+                      "BlockAlias": [],
+                      "Visible": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19"
+                        }
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19a"
+                        }
+                      ],
+                      "Visible": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19b"
+                        }
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.State.01",
+                            "TagHash": 1462906058
+                          },
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          },
+                          {
+                            "Tag": "Stage.Region.State.11",
+                            "TagHash": -103177883
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          },
+                          {
+                            "Tag": "Stage.Region.State.02",
+                            "TagHash": 1462906059
+                          }
+                        ]
+                      },
+                      "BlockAlias": [],
+                      "Visible": true
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.NumberCaseContainer",
+                  "Case": {
+                    "IsDynamic": false,
+                    "FixedValue": {
+                      "Value": 2
+                    }
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.01",
+                            "TagHash": 1462906058
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.02",
+                            "TagHash": 1462906059
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.18",
+                            "TagHash": 184013269
+                          },
+                          {
+                            "Tag": "Stage.Region.State.11",
+                            "TagHash": -103177883
+                          }
+                        ]
+                      },
+                      "BlockAlias": [],
+                      "Visible": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19"
+                        }
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19a"
+                        }
+                      ]
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAlias": [
+                        {
+                          "Value": "R19b"
+                        }
+                      ],
+                      "Visible": true
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.State.01",
+                            "TagHash": 1462906058
+                          },
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          },
+                          {
+                            "Tag": "Stage.Region.State.02",
+                            "TagHash": 1462906059
+                          }
+                        ]
+                      },
+                      "BlockAlias": []
+                    },
+                    {
+                      "$type": "RPG.GameCore.BlockSetVisibility",
+                      "BlockTags": [],
+                      "BlockHoyoTags": {
+                        "List": []
+                      },
+                      "BlockAllHoyoTags": {
+                        "List": [
+                          {
+                            "Tag": "Stage.Region.20",
+                            "TagHash": -219271266
+                          },
+                          {
+                            "Tag": "Stage.Region.State.11",
+                            "TagHash": -103177883
+                          }
+                        ]
+                      },
+                      "BlockAlias": [],
+                      "Visible": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "Group",
+  "EntityEventList": []
+}

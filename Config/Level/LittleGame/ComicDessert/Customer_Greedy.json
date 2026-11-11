@@ -1,0 +1,348 @@
+{
+  "OnInitSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.SetTargetEntityFadeWithAnim",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.TriggerEffect",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "IsAttachToTargetEntity": true,
+          "Flags": [],
+          "AliveOnly": true,
+          "EffectPath": "Effects/Eff_Prefab/Eff_NPC/Normal/Common/Eff_Normal_Common_VoracityMask.prefab",
+          "AttachPoint": "Head",
+          "OverrideMonoEffectConfig": {},
+          "SubObjectModifyDataList": []
+        }
+      ]
+    }
+  ],
+  "OnStartSequece": [
+    {
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.SetTargetEntityFadeWithAnim",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          }
+        },
+        {
+          "$type": "RPG.GameCore.SetTargetEntityFadeWithAnim",
+          "TargetType": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "TargetValue": 1,
+          "Duration": 0.5
+        },
+        {
+          "$type": "PJMIPHILAGG",
+          "HILNFHCPEAD": {
+            "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+          },
+          "FPHBEHJJBIA": "Walk",
+          "MLPAPEJNLGM": 2,
+          "JPHFDCIAAGM": true
+        },
+        {
+          "$type": "RPG.GameCore.SetGraphDynamicString",
+          "Name": "CustomerStage",
+          "TargetIDs": [],
+          "Value": {
+            "Value": "Arrived"
+          }
+        }
+      ]
+    },
+    {
+      "Order": 1,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "PatienceStage",
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.GenericSwitchCase",
+              "SwitchRef": {
+                "$type": "RPG.GameCore.SwitchRefGraphDynamicString",
+                "Name": "PatienceStage"
+              },
+              "Cases": [
+                {
+                  "$type": "RPG.GameCore.StringCaseContainer",
+                  "Case": {
+                    "Value": "Happy"
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.TriggerPermanentEmotion",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+                      },
+                      "EmotionName": "Happy01",
+                      "TransitTime": 0.3
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.StringCaseContainer",
+                  "Case": {
+                    "Value": "Calm"
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "LINMDMNCLHK",
+                      "HILNFHCPEAD": {
+                        "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$type": "RPG.GameCore.StringCaseContainer",
+                  "Case": {
+                    "Value": "Angry"
+                  },
+                  "OnSuccess": [
+                    {
+                      "$type": "RPG.GameCore.TriggerPermanentEmotion",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+                      },
+                      "EmotionName": "Angry01",
+                      "TransitTime": 0.3
+                    },
+                    {
+                      "$type": "LINMDMNCLHK",
+                      "HILNFHCPEAD": {
+                        "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+                      }
+                    },
+                    {
+                      "$type": "KGDPHMBLLHE",
+                      "HILNFHCPEAD": {
+                        "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+                      },
+                      "MGJPIILDPMF": "UI/Quest/ComicDessert/Effect/Eff_ComicDessert_Angry.prefab"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Order": 2,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "OrderComplete"
+            }
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.SetGraphDynamicString",
+              "Name": "CustomerStage",
+              "TargetIDs": [],
+              "Value": {
+                "Value": "ServiceFinished"
+              }
+            },
+            {
+              "$type": "LDANGCCCCCK",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              }
+            },
+            {
+              "$type": "EAFAGENDEJO",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              },
+              "OLOIFNNLKJP": "SpriteOutput/EmojiCommon/EmojiFifthWorld/EmojiFifthWorldyHappy.png",
+              "IEHPFADHJFD": 1
+            },
+            {
+              "$type": "RPG.GameCore.SetGraphDynamicString",
+              "Name": "CustomerStage",
+              "TargetIDs": [],
+              "Value": {
+                "Value": "LeaveRequest"
+              }
+            }
+          ],
+          "IsLoop": false
+        }
+      ]
+    },
+    {
+      "Order": 3,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "PatienceTimeout"
+            }
+          },
+          "OnChange": [
+            {
+              "$type": "LDANGCCCCCK",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              }
+            },
+            {
+              "$type": "EAFAGENDEJO",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              },
+              "OLOIFNNLKJP": "SpriteOutput/EmojiCommon/EmojiFifthWorld/EmojiFifthWorldCry.png",
+              "IEHPFADHJFD": 1.5
+            },
+            {
+              "$type": "RPG.GameCore.SetGraphDynamicString",
+              "Name": "CustomerStage",
+              "TargetIDs": [],
+              "Value": {
+                "Value": "LeaveRequest"
+              }
+            }
+          ],
+          "IsLoop": false
+        }
+      ]
+    },
+    {
+      "Order": 4,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "Leave"
+            }
+          },
+          "OnChange": [
+            {
+              "$type": "RPG.GameCore.ParallelConfig",
+              "TaskList": [
+                {
+                  "$type": "PJMIPHILAGG",
+                  "HILNFHCPEAD": {
+                    "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+                  },
+                  "HJKLGDDJDJP": "ToDoor",
+                  "FPHBEHJJBIA": "Walk",
+                  "MLPAPEJNLGM": 1.5,
+                  "JPHFDCIAAGM": true
+                },
+                {
+                  "$type": "RPG.GameCore.SequenceConfig",
+                  "TaskList": [
+                    {
+                      "$type": "RPG.GameCore.WaitSecond",
+                      "WaitTime": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 3
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetTargetEntityFadeWithAnim",
+                      "TargetType": {
+                        "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+                      },
+                      "Duration": 1
+                    },
+                    {
+                      "$type": "RPG.GameCore.WaitSecond",
+                      "WaitTime": {
+                        "IsDynamic": false,
+                        "FixedValue": {
+                          "Value": 1
+                        }
+                      }
+                    },
+                    {
+                      "$type": "RPG.GameCore.SetGraphDynamicString",
+                      "Name": "CustomerStage",
+                      "TargetIDs": [],
+                      "Value": {
+                        "Value": "Departed"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "IsLoop": false
+        }
+      ]
+    },
+    {
+      "Order": 4,
+      "TaskList": [
+        {
+          "$type": "RPG.GameCore.WaitGraphDynamicValueChange",
+          "Name": "CustomerAction",
+          "Condition": {
+            "$type": "RPG.GameCore.ByCompareGraphDynamicString",
+            "Name": "CustomerAction",
+            "Value": {
+              "Value": "WrongServe"
+            }
+          },
+          "OnChange": [
+            {
+              "$type": "KGDPHMBLLHE",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              },
+              "MGJPIILDPMF": "UI/Quest/ComicDessert/Effect/Eff_ComicDessert_Question.prefab"
+            },
+            {
+              "$type": "RPG.GameCore.WaitSecond",
+              "WaitTime": {
+                "IsDynamic": false,
+                "FixedValue": {
+                  "Value": 1
+                }
+              }
+            },
+            {
+              "$type": "LDANGCCCCCK",
+              "HILNFHCPEAD": {
+                "$type": "RPG.GameCore.TargetFetchOwnerEntity"
+              },
+              "MGJPIILDPMF": "UI/Quest/ComicDessert/Effect/Eff_ComicDessert_Question.prefab"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Type": "EntitasEntity",
+  "EntityEventList": []
+}
